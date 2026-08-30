@@ -1,428 +1,712 @@
 <!doctype html>
 <html lang="en">
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#03070b">
-<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#02070b">
 
-<title>SimplePi • Release Catalog</title>
+<title>SimplePi • Latest Releases</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-:root{
-  --bg:#03070b;
-  --panel:#071017;
-  --panel2:#050a0f;
-  --border:#1c2933;
-  --border2:#263642;
-  --text:#eef4f8;
-  --muted:#7f8c97;
-  --green:#39df78;
-  --green2:#25c967;
-  --blue:#4da3ff;
+html{
+  scroll-behavior:smooth;
 }
 
 body{
-  background:
-    radial-gradient(circle at 10% 0%,rgba(45,220,115,.08),transparent 30%),
-    radial-gradient(circle at 100% 20%,rgba(55,130,255,.06),transparent 28%),
-    var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   min-height:100vh;
+  background:
+    radial-gradient(
+      circle at 10% 0%,
+      rgba(48,220,115,.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 100% 20%,
+      rgba(40,120,255,.055),
+      transparent 30%
+    ),
+    #02070b;
+
+  color:#eef4f8;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
 }
 
-button{
-  font-family:inherit;
-  cursor:pointer;
-}
+
+/* =========================
+   MAIN
+========================= */
 
 .wrap{
-  width:min(1180px,calc(100% - 32px));
+  width:min(1180px,calc(100% - 40px));
   margin:auto;
-  padding:55px 0 70px;
+  padding:62px 0 75px;
 }
 
-/* HEADER */
+
+/* =========================
+   HEADER
+========================= */
 
 .catalog{
-  color:var(--green);
-  font:600 11px monospace;
+  color:#36e878;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    monospace;
+
+  font-size:11px;
+  font-weight:600;
+
   letter-spacing:5px;
-  margin-bottom:20px;
+
+  margin-bottom:22px;
 }
 
 .head{
   display:flex;
   justify-content:space-between;
-  align-items:end;
-  gap:25px;
-  margin-bottom:32px;
+  align-items:flex-end;
+
+  gap:30px;
+
+  margin-bottom:35px;
 }
 
 h1{
-  font-size:clamp(43px,6vw,72px);
-  line-height:.95;
+  font-size:clamp(44px,6vw,74px);
+  line-height:.94;
+
   letter-spacing:-4px;
+
+  font-weight:700;
 }
 
-.count{
-  color:#6e7b86;
-  font:12px monospace;
-  letter-spacing:2px;
+.counter{
+  display:flex;
+  gap:9px;
+
+  align-items:center;
+
+  color:#6e7c87;
+
+  font-family:monospace;
+  font-size:11px;
+
+  letter-spacing:3px;
+
+  white-space:nowrap;
 }
 
-/* SEARCH */
+.counter .live-number{
+  color:#9ba8b1;
+}
+
+.counter .regions-number{
+  color:#9ba8b1;
+}
+
+
+/* =========================
+   TOOLBAR
+========================= */
 
 .toolbar{
   display:flex;
   gap:12px;
-  margin-bottom:28px;
+
+  margin-bottom:26px;
 }
 
 .search{
-  position:relative;
   flex:1;
+  position:relative;
 }
 
 .search input{
   width:100%;
-  height:50px;
-  padding:0 18px 0 46px;
-  border-radius:14px;
-  border:1px solid var(--border);
+  height:48px;
+
+  padding:0 18px 0 45px;
+
+  border-radius:13px;
+  border:1px solid #182630;
+
   outline:none;
-  background:#060c11;
-  color:white;
+
+  background:#050b10;
+
+  color:#edf4f7;
+
   font-size:14px;
 }
 
+.search input::placeholder{
+  color:#596872;
+}
+
 .search input:focus{
-  border-color:#36505f;
-  box-shadow:0 0 0 3px rgba(57,223,120,.05);
+  border-color:#2c4b58;
+
+  box-shadow:
+    0 0 0 3px rgba(53,232,120,.035);
 }
 
 .search-icon{
   position:absolute;
+
   left:17px;
-  top:14px;
-  color:#687681;
+  top:12px;
+
+  color:#63727c;
+
   font-size:19px;
 }
 
 .filter{
-  height:50px;
-  padding:0 18px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  background:#060c11;
-  color:#aeb8bf;
+  height:48px;
+
+  padding:0 17px;
+
+  border-radius:13px;
+  border:1px solid #182630;
+
+  outline:none;
+
+  background:#050b10;
+
+  color:#aab5bc;
 }
 
-/* GRID */
+
+/* =========================
+   GRID
+========================= */
 
 .grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
   gap:20px;
 }
 
-/* CARD */
+
+/* =========================
+   CARD
+========================= */
 
 .card{
   position:relative;
+
   overflow:hidden;
-  border:1px solid var(--border);
+
+  border:1px solid #1a2832;
+
+  border-radius:21px;
+
   background:
-    linear-gradient(145deg,#071017,#050a0f);
-  border-radius:22px;
-  padding:26px;
-  transition:.25s ease;
+    linear-gradient(
+      145deg,
+      #071118 0%,
+      #050a0f 100%
+    );
+
+  padding:27px;
+
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
 }
 
 .card:hover{
   transform:translateY(-3px);
-  border-color:#30424e;
-  box-shadow:0 16px 50px rgba(0,0,0,.25);
+
+  border-color:#2a3d49;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.28);
 }
 
-.card:before{
+
+/* subtle glow */
+
+.card::after{
   content:"";
+
   position:absolute;
+
   width:170px;
   height:170px;
-  right:-90px;
-  top:-90px;
+
+  right:-100px;
+  top:-100px;
+
   border-radius:50%;
-  background:rgba(57,223,120,.05);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(52,229,119,.08),
+      transparent 65%
+    );
+
   pointer-events:none;
 }
 
-/* TOP */
+
+/* =========================
+   TOP
+========================= */
 
 .top{
   display:flex;
+
   align-items:center;
+
   gap:17px;
 }
 
+
+/* =========================
+   APP ICON
+========================= */
+
 .icon{
-  width:70px;
-  height:70px;
+  width:72px;
+  height:72px;
+
   flex:none;
+
   border-radius:18px;
-  background:#17222b;
-  border:1px solid #25333d;
-  display:grid;
-  place-items:center;
+
   overflow:hidden;
-  font-size:30px;
-  box-shadow:0 8px 20px rgba(0,0,0,.2);
+
+  background:#121c23;
+
+  border:1px solid #26353f;
+
+  box-shadow:
+    0 7px 20px rgba(0,0,0,.28);
 }
 
 .icon img{
+  display:block;
+
   width:100%;
   height:100%;
+
   object-fit:cover;
 }
 
+
+/* fallback */
+
+.icon-fallback{
+  width:100%;
+  height:100%;
+
+  display:grid;
+  place-items:center;
+
+  color:#3de078;
+
+  font-size:29px;
+  font-weight:800;
+
+  font-family:monospace;
+}
+
+
+/* =========================
+   META
+========================= */
+
 .meta{
   min-width:0;
-  flex:1;
 }
 
 .badges{
   display:flex;
+
   align-items:center;
+
   gap:8px;
+
   margin-bottom:9px;
 }
 
 .badge{
-  border:1px solid #293944;
+  border:1px solid #293943;
+
   border-radius:20px;
-  padding:4px 9px;
-  color:#9ba8b2;
-  font:10px monospace;
+
+  padding:5px 10px;
+
+  color:#8d9aa3;
+
+  font-family:monospace;
+  font-size:10px;
+
   letter-spacing:1px;
 }
 
-.ver{
-  color:#73818b;
-  font:11px monospace;
+.version{
+  color:#71808b;
+
+  font-family:monospace;
+  font-size:11px;
 }
 
 .title{
+  max-width:340px;
+
+  overflow:hidden;
+
+  white-space:nowrap;
+
+  text-overflow:ellipsis;
+
   font-size:20px;
   font-weight:650;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
 }
 
-/* STATUS */
+
+/* =========================
+   TIMESTAMP
+========================= */
 
 .status{
-  margin-top:18px;
   display:flex;
-  gap:8px;
+
   align-items:center;
-  color:#75838e;
-  font:10px monospace;
+
+  gap:9px;
+
+  margin-top:18px;
+
+  color:#65747e;
+
+  font-family:monospace;
+  font-size:10px;
+
   letter-spacing:2px;
 }
+
+
+/* GREEN LIVE DOT */
 
 .dot{
   width:7px;
   height:7px;
+
+  flex:none;
+
   border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 11px var(--green);
+
+  background:#39e77b;
+
+  box-shadow:
+    0 0 5px #39e77b,
+    0 0 13px rgba(57,231,123,.75);
+
+  animation:
+    pulse 1.7s infinite;
 }
+
+@keyframes pulse{
+
+  0%,100%{
+    opacity:1;
+
+    transform:scale(1);
+
+    box-shadow:
+      0 0 5px #39e77b,
+      0 0 13px rgba(57,231,123,.75);
+  }
+
+  50%{
+    opacity:.55;
+
+    transform:scale(.75);
+
+    box-shadow:
+      0 0 2px #39e77b,
+      0 0 5px rgba(57,231,123,.3);
+  }
+
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
 
 .line{
   height:1px;
+
   background:#1b2730;
-  margin:22px 0;
+
+  margin:24px 0;
 }
+
+
+/* =========================
+   INFO
+========================= */
 
 .info{
   display:flex;
+
   justify-content:space-between;
-  gap:10px;
-  color:#8996a0;
-  font:10px monospace;
-  letter-spacing:1.5px;
+
+  gap:12px;
+
+  color:#8997a1;
+
+  font-family:monospace;
+  font-size:10px;
+
+  letter-spacing:1.6px;
 }
 
-/* BUTTONS */
+
+/* =========================
+   INSTALL
+========================= */
 
 .install{
   width:100%;
   height:52px;
+
+  margin-top:23px;
+
   border:0;
   border-radius:14px;
-  margin-top:23px;
-  background:linear-gradient(180deg,#42e27d,#32d36f);
-  color:#031007;
-  font:800 13px monospace;
+
+  background:
+    linear-gradient(
+      180deg,
+      #42df7d,
+      #36d873
+    );
+
+  color:#021007;
+
+  font-family:monospace;
+  font-size:13px;
+  font-weight:900;
+
   letter-spacing:2px;
+
   transition:.2s;
 }
 
 .install:hover{
   filter:brightness(1.08);
+
   transform:translateY(-1px);
+
+  box-shadow:
+    0 8px 25px rgba(55,220,115,.12);
 }
+
+
+/* =========================
+   SECONDARY BUTTONS
+========================= */
 
 .secondary{
   display:grid;
+
   grid-template-columns:1fr 1fr;
+
   gap:10px;
+
   margin-top:10px;
 }
 
 .secondary button{
-  height:46px;
+  height:47px;
+
   border-radius:13px;
+
   border:1px solid #26343e;
-  background:#070d12;
+
+  background:#060c11;
+
   color:#c4cdd3;
-  font:11px monospace;
+
+  font-family:monospace;
+  font-size:10px;
+
   letter-spacing:1.5px;
+
   transition:.2s;
 }
 
 .secondary button:hover{
-  border-color:#3b505e;
   background:#0a1218;
+
+  border-color:#3a4d59;
 }
 
-/* TAG */
+
+/* =========================
+   RELEASE TAG
+========================= */
 
 .tag{
   position:absolute;
-  right:20px;
-  top:20px;
+
+  right:19px;
+  top:19px;
+
   padding:5px 8px;
+
   border-radius:7px;
-  background:rgba(57,223,120,.08);
-  color:#54dc87;
-  border:1px solid rgba(57,223,120,.15);
-  font:9px monospace;
+
+  color:#43df7e;
+
+  background:rgba(55,225,120,.06);
+
+  border:1px solid rgba(55,225,120,.13);
+
+  font-family:monospace;
+  font-size:8px;
+
   letter-spacing:1px;
 }
 
-/* COMING */
+
+/* =========================
+   COMING SOON
+========================= */
 
 .coming{
-  opacity:.62;
+  opacity:.58;
 }
 
 .coming .dot{
-  background:#52606a;
+  background:#52616b;
+
   box-shadow:none;
+
+  animation:none;
 }
 
 .coming .install{
   background:transparent;
-  border:1px dashed #293741;
-  color:#53616b;
+
+  border:1px dashed #283740;
+
+  color:#56636d;
+
   cursor:not-allowed;
 }
 
 .coming .tag{
-  color:#65727c;
+  color:#68757f;
+
   background:#10171c;
-  border-color:#202b33;
+
+  border-color:#202c34;
 }
 
-/* FEATURE CARD */
 
-.feature{
-  grid-column:1/-1;
-  background:
-    radial-gradient(circle at 85% 20%,rgba(57,223,120,.08),transparent 25%),
-    linear-gradient(145deg,#08141a,#050a0f);
-}
-
-.feature-content{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:30px;
-}
-
-.feature h2{
-  font-size:26px;
-  margin-bottom:8px;
-}
-
-.feature p{
-  color:#7e8c96;
-  font-size:13px;
-  line-height:1.6;
-  max-width:600px;
-}
-
-.feature-button{
-  flex:none;
-  border:1px solid #2b3d48;
-  background:#0a1319;
-  color:#dce5ea;
-  padding:14px 20px;
-  border-radius:12px;
-  font:11px monospace;
-  letter-spacing:1px;
-}
-
-/* EMPTY */
-
-.no-results{
-  display:none;
-  text-align:center;
-  padding:50px 20px;
-  color:#687681;
-  border:1px dashed #24323b;
-  border-radius:18px;
-  grid-column:1/-1;
-}
-
-/* FOOTER */
+/* =========================
+   FOOTER
+========================= */
 
 footer{
   margin-top:55px;
+
   padding-top:25px;
-  border-top:1px solid #172129;
+
+  border-top:1px solid #15212a;
+
   text-align:center;
-  color:#4e5c66;
-  font:10px monospace;
+
+  color:#4d5b65;
+
+  font-family:monospace;
+  font-size:9px;
+
   letter-spacing:2px;
+
   line-height:2;
 }
 
-/* MOBILE */
+
+/* =========================
+   NO RESULTS
+========================= */
+
+.no-results{
+  display:none;
+
+  grid-column:1/-1;
+
+  padding:60px 20px;
+
+  text-align:center;
+
+  border:1px dashed #24323b;
+
+  border-radius:18px;
+
+  color:#65737d;
+
+  font-family:monospace;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:750px){
 
   .wrap{
     width:calc(100% - 22px);
-    padding:38px 0 55px;
+
+    padding:
+      40px
+      0
+      55px;
   }
 
   .head{
     display:block;
-    margin-bottom:25px;
+
+    margin-bottom:26px;
   }
 
-  .count{
-    margin-top:17px;
+  .counter{
+    margin-top:18px;
   }
 
   .toolbar{
@@ -433,27 +717,16 @@ footer{
     grid-template-columns:1fr;
   }
 
-  .feature{
-    grid-column:auto;
-  }
-
-  .feature-content{
-    display:block;
-  }
-
-  .feature-button{
-    margin-top:20px;
-    width:100%;
-  }
-
   .card{
     padding:21px;
+
     border-radius:19px;
   }
 
   .icon{
-    width:62px;
-    height:62px;
+    width:63px;
+    height:63px;
+
     border-radius:16px;
   }
 
@@ -462,31 +735,59 @@ footer{
   }
 
   .info{
-    font-size:9px;
+    font-size:8px;
   }
 
   h1{
     letter-spacing:-3px;
   }
+
 }
+
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="wrap">
+
+
+  <!-- HEADER -->
 
   <div class="catalog">
     01 / THE CATALOG
   </div>
 
-  <div class="head">
-    <h1>Latest releases</h1>
 
-    <div class="count" id="releaseCount">
-      5 LIVE · 4 REGIONS
+  <div class="head">
+
+    <h1>
+      Latest releases
+    </h1>
+
+    <div class="counter">
+
+      <span>
+        <span class="live-number" id="liveCount">
+          5
+        </span>
+        LIVE
+      </span>
+
+      <span>·</span>
+
+      <span>
+        <span class="regions-number" id="regionCount">
+          4
+        </span>
+        REGIONS
+      </span>
+
     </div>
+
   </div>
 
 
@@ -495,74 +796,109 @@ footer{
   <div class="toolbar">
 
     <div class="search">
-      <span class="search-icon">⌕</span>
+
+      <span class="search-icon">
+        ⌕
+      </span>
+
       <input
         id="search"
         type="search"
         placeholder="Search applications..."
-        oninput="searchApps()"
+        oninput="filterApps()"
       >
+
     </div>
 
-    <select class="filter" id="regionFilter" onchange="searchApps()">
-      <option value="all">All regions</option>
-      <option value="global">Global</option>
-      <option value="india">India</option>
-      <option value="vn">Vietnam</option>
-      <option value="kr">Korea</option>
+
+    <select
+      class="filter"
+      id="regionFilter"
+      onchange="filterApps()"
+    >
+
+      <option value="all">
+        All regions
+      </option>
+
+      <option value="global">
+        Global
+      </option>
+
+      <option value="india">
+        India
+      </option>
+
+      <option value="vn">
+        Vietnam
+      </option>
+
+      <option value="kr">
+        Korea
+      </option>
+
+      <option value="tw">
+        Taiwan
+      </option>
+
     </select>
 
   </div>
 
 
+  <!-- RELEASE GRID -->
+
   <div class="grid" id="appGrid">
 
 
-    <!-- FEATURE -->
+    <!-- =====================
+         APP 1
+    ====================== -->
 
-    <article class="card feature">
-
-      <div class="feature-content">
-
-        <div>
-          <h2>SimplePi OTA</h2>
-
-          <p>
-            Official release catalog for SimplePi.
-            Browse available versions, regions and authorized
-            installations from one place.
-          </p>
-        </div>
-
-        <button class="feature-button"
-                onclick="copyLink()">
-          COPY CATALOG LINK
-        </button>
-
-      </div>
-
-    </article>
-
-
-    <!-- APP 1 -->
-
-    <article class="card app"
+    <article
+      class="card app"
       data-name="SimplePi"
-      data-region="global">
+      data-region="global"
+      data-live="true"
+    >
 
-      <span class="tag">LIVE</span>
+      <span class="tag">
+        LIVE
+      </span>
+
 
       <div class="top">
 
         <div class="icon">
-          π
+
+          <img
+            src="icons/simplepi.png"
+            alt="SimplePi"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            π
+          </div>
+
         </div>
+
 
         <div class="meta">
 
           <div class="badges">
-            <span class="badge">GLOBAL</span>
-            <span class="ver">v1.0</span>
+
+            <span class="badge">
+              GLOBAL
+            </span>
+
+            <span class="version">
+              v1.0
+            </span>
+
           </div>
 
           <div class="title">
@@ -573,30 +909,51 @@ footer{
 
       </div>
 
+
       <div class="status">
+
         <span class="dot"></span>
-        LIVE RELEASE
+
+        1 DAY AGO
+
       </div>
+
 
       <div class="line"></div>
 
+
       <div class="info">
-        <span>AUTHORIZED RELEASE</span>
-        <span>8.35 MB</span>
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          8.35 MB
+        </span>
+
       </div>
 
-      <button class="install"
-              onclick="installApp('simplepi')">
+
+      <button
+        class="install"
+        onclick="installApp('simplepi')"
+      >
         INSTALL
       </button>
 
+
       <div class="secondary">
 
-        <button onclick="downloadApp('simplepi')">
+        <button
+          onclick="downloadApp('simplepi')"
+        >
           DOWNLOAD IPA
         </button>
 
-        <button onclick="copyAppLink('simplepi')">
+        <button
+          onclick="copyAppLink('simplepi')"
+        >
           COPY LINK
         </button>
 
@@ -605,25 +962,54 @@ footer{
     </article>
 
 
-    <!-- APP 2 -->
 
-    <article class="card app"
+    <!-- =====================
+         APP 2
+    ====================== -->
+
+    <article
+      class="card app"
       data-name="SimplePi Pro"
-      data-region="india">
+      data-region="india"
+      data-live="true"
+    >
 
-      <span class="tag">LIVE</span>
+      <span class="tag">
+        LIVE
+      </span>
 
       <div class="top">
 
         <div class="icon">
-          ◆
+
+          <img
+            src="icons/simplepi-pro.png"
+            alt="SimplePi Pro"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            P
+          </div>
+
         </div>
+
 
         <div class="meta">
 
           <div class="badges">
-            <span class="badge">INDIA</span>
-            <span class="ver">v1.2</span>
+
+            <span class="badge">
+              INDIA
+            </span>
+
+            <span class="version">
+              v1.2
+            </span>
+
           </div>
 
           <div class="title">
@@ -634,30 +1020,51 @@ footer{
 
       </div>
 
+
       <div class="status">
+
         <span class="dot"></span>
-        LIVE RELEASE
+
+        2 DAYS AGO
+
       </div>
+
 
       <div class="line"></div>
 
+
       <div class="info">
-        <span>AUTHORIZED RELEASE</span>
-        <span>12.4 MB</span>
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          12.4 MB
+        </span>
+
       </div>
 
-      <button class="install"
-              onclick="installApp('simplepiPro')">
+
+      <button
+        class="install"
+        onclick="installApp('simplepiPro')"
+      >
         INSTALL
       </button>
 
+
       <div class="secondary">
 
-        <button onclick="downloadApp('simplepiPro')">
+        <button
+          onclick="downloadApp('simplepiPro')"
+        >
           DOWNLOAD IPA
         </button>
 
-        <button onclick="copyAppLink('simplepiPro')">
+        <button
+          onclick="copyAppLink('simplepiPro')"
+        >
           COPY LINK
         </button>
 
@@ -666,25 +1073,54 @@ footer{
     </article>
 
 
-    <!-- APP 3 -->
 
-    <article class="card app"
+    <!-- =====================
+         APP 3
+    ====================== -->
+
+    <article
+      class="card app"
       data-name="Ultra iOS"
-      data-region="global">
+      data-region="global"
+      data-live="true"
+    >
 
-      <span class="tag">LIVE</span>
+      <span class="tag">
+        LIVE
+      </span>
 
       <div class="top">
 
         <div class="icon">
-          U
+
+          <img
+            src="icons/ultra-ios.png"
+            alt="Ultra iOS"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            U
+          </div>
+
         </div>
+
 
         <div class="meta">
 
           <div class="badges">
-            <span class="badge">GLOBAL</span>
-            <span class="ver">v2.0</span>
+
+            <span class="badge">
+              GLOBAL
+            </span>
+
+            <span class="version">
+              v2.0
+            </span>
+
           </div>
 
           <div class="title">
@@ -695,30 +1131,51 @@ footer{
 
       </div>
 
+
       <div class="status">
+
         <span class="dot"></span>
-        LIVE RELEASE
+
+        2 DAYS AGO
+
       </div>
+
 
       <div class="line"></div>
 
+
       <div class="info">
-        <span>AUTHORIZED RELEASE</span>
-        <span>24.8 MB</span>
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          24.8 MB
+        </span>
+
       </div>
 
-      <button class="install"
-              onclick="installApp('ultra')">
+
+      <button
+        class="install"
+        onclick="installApp('ultra')"
+      >
         INSTALL
       </button>
 
+
       <div class="secondary">
 
-        <button onclick="downloadApp('ultra')">
+        <button
+          onclick="downloadApp('ultra')"
+        >
           DOWNLOAD IPA
         </button>
 
-        <button onclick="copyAppLink('ultra')">
+        <button
+          onclick="copyAppLink('ultra')"
+        >
           COPY LINK
         </button>
 
@@ -727,25 +1184,54 @@ footer{
     </article>
 
 
-    <!-- APP 4 -->
 
-    <article class="card app"
+    <!-- =====================
+         APP 4
+    ====================== -->
+
+    <article
+      class="card app"
       data-name="SimplePi Asia"
-      data-region="vn">
+      data-region="vn"
+      data-live="true"
+    >
 
-      <span class="tag">LIVE</span>
+      <span class="tag">
+        LIVE
+      </span>
 
       <div class="top">
 
         <div class="icon">
-          ◈
+
+          <img
+            src="icons/simplepi-asia.png"
+            alt="SimplePi Asia"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            A
+          </div>
+
         </div>
+
 
         <div class="meta">
 
           <div class="badges">
-            <span class="badge">VN</span>
-            <span class="ver">v3.0</span>
+
+            <span class="badge">
+              VN
+            </span>
+
+            <span class="version">
+              v3.0
+            </span>
+
           </div>
 
           <div class="title">
@@ -756,30 +1242,51 @@ footer{
 
       </div>
 
+
       <div class="status">
+
         <span class="dot"></span>
-        LIVE RELEASE
+
+        3 DAYS AGO
+
       </div>
+
 
       <div class="line"></div>
 
+
       <div class="info">
-        <span>AUTHORIZED RELEASE</span>
-        <span>18.7 MB</span>
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          18.7 MB
+        </span>
+
       </div>
 
-      <button class="install"
-              onclick="installApp('asia')">
+
+      <button
+        class="install"
+        onclick="installApp('asia')"
+      >
         INSTALL
       </button>
 
+
       <div class="secondary">
 
-        <button onclick="downloadApp('asia')">
+        <button
+          onclick="downloadApp('asia')"
+        >
           DOWNLOAD IPA
         </button>
 
-        <button onclick="copyAppLink('asia')">
+        <button
+          onclick="copyAppLink('asia')"
+        >
           COPY LINK
         </button>
 
@@ -788,25 +1295,54 @@ footer{
     </article>
 
 
-    <!-- APP 5 -->
 
-    <article class="card app"
+    <!-- =====================
+         APP 5
+    ====================== -->
+
+    <article
+      class="card app"
       data-name="SimplePi Korea"
-      data-region="kr">
+      data-region="kr"
+      data-live="true"
+    >
 
-      <span class="tag">LIVE</span>
+      <span class="tag">
+        LIVE
+      </span>
 
       <div class="top">
 
         <div class="icon">
-          ✦
+
+          <img
+            src="icons/simplepi-korea.png"
+            alt="SimplePi Korea"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            K
+          </div>
+
         </div>
+
 
         <div class="meta">
 
           <div class="badges">
-            <span class="badge">KR</span>
-            <span class="ver">v3.1</span>
+
+            <span class="badge">
+              KR
+            </span>
+
+            <span class="version">
+              v3.1
+            </span>
+
           </div>
 
           <div class="title">
@@ -817,30 +1353,51 @@ footer{
 
       </div>
 
+
       <div class="status">
+
         <span class="dot"></span>
-        LIVE RELEASE
+
+        3 DAYS AGO
+
       </div>
+
 
       <div class="line"></div>
 
+
       <div class="info">
-        <span>AUTHORIZED RELEASE</span>
-        <span>19.2 MB</span>
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          19.2 MB
+        </span>
+
       </div>
 
-      <button class="install"
-              onclick="installApp('korea')">
+
+      <button
+        class="install"
+        onclick="installApp('korea')"
+      >
         INSTALL
       </button>
 
+
       <div class="secondary">
 
-        <button onclick="downloadApp('korea')">
+        <button
+          onclick="downloadApp('korea')"
+        >
           DOWNLOAD IPA
         </button>
 
-        <button onclick="copyAppLink('korea')">
+        <button
+          onclick="copyAppLink('korea')"
+        >
           COPY LINK
         </button>
 
@@ -849,25 +1406,498 @@ footer{
     </article>
 
 
-    <!-- COMING SOON -->
 
-    <article class="card coming app"
-      data-name="Ultra iOS 2"
-      data-region="global">
+    <!-- =====================
+         APP 6
+    ====================== -->
 
-      <span class="tag">SOON</span>
+    <article
+      class="card app"
+      data-name="SimplePi Taiwan"
+      data-region="tw"
+      data-live="true"
+    >
+
+      <span class="tag">
+        LIVE
+      </span>
 
       <div class="top">
 
         <div class="icon">
-          ★
+
+          <img
+            src="icons/simplepi-taiwan.png"
+            alt="SimplePi Taiwan"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            T
+          </div>
+
         </div>
+
 
         <div class="meta">
 
           <div class="badges">
-            <span class="badge">GLOBAL</span>
-            <span class="ver">v2.1</span>
+
+            <span class="badge">
+              TW
+            </span>
+
+            <span class="version">
+              v4.0
+            </span>
+
+          </div>
+
+          <div class="title">
+            SimplePi Taiwan
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="status">
+
+        <span class="dot"></span>
+
+        4 DAYS AGO
+
+      </div>
+
+
+      <div class="line"></div>
+
+
+      <div class="info">
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          21.3 MB
+        </span>
+
+      </div>
+
+
+      <button
+        class="install"
+        onclick="installApp('taiwan')"
+      >
+        INSTALL
+      </button>
+
+
+      <div class="secondary">
+
+        <button
+          onclick="downloadApp('taiwan')"
+        >
+          DOWNLOAD IPA
+        </button>
+
+        <button
+          onclick="copyAppLink('taiwan')"
+        >
+          COPY LINK
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- =====================
+         APP 7
+    ====================== -->
+
+    <article
+      class="card app"
+      data-name="Ultra iOS Pro"
+      data-region="india"
+      data-live="true"
+    >
+
+      <span class="tag">
+        LIVE
+      </span>
+
+      <div class="top">
+
+        <div class="icon">
+
+          <img
+            src="icons/ultra-pro.png"
+            alt="Ultra iOS Pro"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            UP
+          </div>
+
+        </div>
+
+
+        <div class="meta">
+
+          <div class="badges">
+
+            <span class="badge">
+              INDIA
+            </span>
+
+            <span class="version">
+              v1.0
+            </span>
+
+          </div>
+
+          <div class="title">
+            Ultra iOS Pro
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="status">
+
+        <span class="dot"></span>
+
+        5 DAYS AGO
+
+      </div>
+
+
+      <div class="line"></div>
+
+
+      <div class="info">
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          28.6 MB
+        </span>
+
+      </div>
+
+
+      <button
+        class="install"
+        onclick="installApp('ultraPro')"
+      >
+        INSTALL
+      </button>
+
+
+      <div class="secondary">
+
+        <button
+          onclick="downloadApp('ultraPro')"
+        >
+          DOWNLOAD IPA
+        </button>
+
+        <button
+          onclick="copyAppLink('ultraPro')"
+        >
+          COPY LINK
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- =====================
+         APP 8
+    ====================== -->
+
+    <article
+      class="card app"
+      data-name="SimplePi VNG"
+      data-region="vn"
+      data-live="true"
+    >
+
+      <span class="tag">
+        LIVE
+      </span>
+
+      <div class="top">
+
+        <div class="icon">
+
+          <img
+            src="icons/simplepi-vng.png"
+            alt="SimplePi VNG"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            V
+          </div>
+
+        </div>
+
+
+        <div class="meta">
+
+          <div class="badges">
+
+            <span class="badge">
+              VNG
+            </span>
+
+            <span class="version">
+              v4.2
+            </span>
+
+          </div>
+
+          <div class="title">
+            SimplePi VNG
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="status">
+
+        <span class="dot"></span>
+
+        6 DAYS AGO
+
+      </div>
+
+
+      <div class="line"></div>
+
+
+      <div class="info">
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          31.5 MB
+        </span>
+
+      </div>
+
+
+      <button
+        class="install"
+        onclick="installApp('vng')"
+      >
+        INSTALL
+      </button>
+
+
+      <div class="secondary">
+
+        <button
+          onclick="downloadApp('vng')"
+        >
+          DOWNLOAD IPA
+        </button>
+
+        <button
+          onclick="copyAppLink('vng')"
+        >
+          COPY LINK
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- =====================
+         APP 9
+    ====================== -->
+
+    <article
+      class="card app"
+      data-name="SimplePi Global"
+      data-region="global"
+      data-live="true"
+    >
+
+      <span class="tag">
+        LIVE
+      </span>
+
+      <div class="top">
+
+        <div class="icon">
+
+          <img
+            src="icons/simplepi-global.png"
+            alt="SimplePi Global"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            G
+          </div>
+
+        </div>
+
+
+        <div class="meta">
+
+          <div class="badges">
+
+            <span class="badge">
+              GLOBAL
+            </span>
+
+            <span class="version">
+              v4.5
+            </span>
+
+          </div>
+
+          <div class="title">
+            SimplePi Global
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="status">
+
+        <span class="dot"></span>
+
+        7 DAYS AGO
+
+      </div>
+
+
+      <div class="line"></div>
+
+
+      <div class="info">
+
+        <span>
+          AUTHORIZED RELEASE
+        </span>
+
+        <span>
+          35.0 MB
+        </span>
+
+      </div>
+
+
+      <button
+        class="install"
+        onclick="installApp('global')"
+      >
+        INSTALL
+      </button>
+
+
+      <div class="secondary">
+
+        <button
+          onclick="downloadApp('global')"
+        >
+          DOWNLOAD IPA
+        </button>
+
+        <button
+          onclick="copyAppLink('global')"
+        >
+          COPY LINK
+        </button>
+
+      </div>
+
+    </article>
+
+
+
+    <!-- =====================
+         APP 10 COMING SOON
+    ====================== -->
+
+    <article
+      class="card app coming"
+      data-name="Ultra iOS 2"
+      data-region="global"
+      data-live="false"
+    >
+
+      <span class="tag">
+        SOON
+      </span>
+
+      <div class="top">
+
+        <div class="icon">
+
+          <img
+            src="icons/ultra-ios-2.png"
+            alt="Ultra iOS 2"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='grid';"
+          >
+
+          <div
+            class="icon-fallback"
+            style="display:none"
+          >
+            U2
+          </div>
+
+        </div>
+
+
+        <div class="meta">
+
+          <div class="badges">
+
+            <span class="badge">
+              GLOBAL
+            </span>
+
+            <span class="version">
+              v2.1
+            </span>
+
           </div>
 
           <div class="title">
@@ -878,55 +1908,71 @@ footer{
 
       </div>
 
+
       <div class="status">
+
         <span class="dot"></span>
+
         COMING SOON
+
       </div>
+
 
       <div class="line"></div>
 
+
       <div class="info">
-        <span>NOT YET AVAILABLE</span>
-        <span>COMING SOON</span>
+
+        <span>
+          NOT YET AVAILABLE
+        </span>
+
+        <span>
+          COMING SOON
+        </span>
+
       </div>
 
-      <button class="install" disabled>
+
+      <button
+        class="install"
+        disabled
+      >
         COMING SOON
       </button>
 
     </article>
 
 
-    <div class="no-results" id="noResults">
-      No applications found.
+    <!-- NO RESULTS -->
+
+    <div
+      class="no-results"
+      id="noResults"
+    >
+      NO APPLICATIONS FOUND
     </div>
 
   </div>
 
 
   <footer>
-    SIMPLEPI · RELEASE CATALOG · 2026<br>
-    ALL RELEASES ARE SUBJECT TO AVAILABILITY
+
+    SIMPLEPI · RELEASE CATALOG · 2026
+    <br>
+    AUTHORIZED RELEASES ONLY
+
   </footer>
 
 </div>
 
 
+
 <script>
 
-/*
-====================================================
-PUT YOUR OWN AUTHORIZED LINKS HERE
-====================================================
-
-INSTALL_URL:
-Your installation/manifest URL.
-
-IPA_URL:
-Your direct IPA download URL.
-
-Replace the example values with your own URLs.
-*/
+/* =================================================
+   YOUR APPLICATION LINKS
+================================================= */
 
 const APPS = {
 
@@ -953,42 +1999,78 @@ const APPS = {
   korea:{
     install:"",
     ipa:""
+  },
+
+  taiwan:{
+    install:"",
+    ipa:""
+  },
+
+  ultraPro:{
+    install:"",
+    ipa:""
+  },
+
+  vng:{
+    install:"",
+    ipa:""
+  },
+
+  global:{
+    install:"",
+    ipa:""
   }
 
 };
 
 
-/* INSTALL */
+/* =================================================
+   INSTALL
+================================================= */
 
 function installApp(app){
 
   const url = APPS[app]?.install;
 
   if(!url){
-    alert("Add the authorized installation URL for this app in index.html.");
+
+    alert(
+      "Add the authorized installation URL for this application."
+    );
+
     return;
   }
 
   window.location.href = url;
+
 }
 
 
-/* DOWNLOAD IPA */
+/* =================================================
+   DOWNLOAD IPA
+================================================= */
 
 function downloadApp(app){
 
   const url = APPS[app]?.ipa;
 
   if(!url){
-    alert("Add the authorized IPA download URL for this app in index.html.");
+
+    alert(
+      "Add the authorized IPA URL for this application."
+    );
+
     return;
   }
 
   window.location.href = url;
+
 }
 
 
-/* COPY INDIVIDUAL LINK */
+/* =================================================
+   COPY LINK
+================================================= */
 
 function copyAppLink(app){
 
@@ -996,37 +2078,27 @@ function copyAppLink(app){
     APPS[app]?.install ||
     window.location.href;
 
-  navigator.clipboard.writeText(url)
+  navigator.clipboard
+    .writeText(url)
     .then(()=>{
+
       alert("Installation link copied!");
+
     })
     .catch(()=>{
+
       alert("Unable to copy link.");
+
     });
 
 }
 
 
-/* COPY WEBSITE LINK */
+/* =================================================
+   SEARCH + REGION
+================================================= */
 
-function copyLink(){
-
-  navigator.clipboard.writeText(
-    window.location.href
-  )
-  .then(()=>{
-    alert("Catalog link copied!");
-  })
-  .catch(()=>{
-    alert("Unable to copy link.");
-  });
-
-}
-
-
-/* SEARCH + REGION FILTER */
-
-function searchApps(){
+function filterApps(){
 
   const search =
     document
@@ -1035,50 +2107,106 @@ function searchApps(){
       .toLowerCase()
       .trim();
 
+
   const region =
     document
       .getElementById("regionFilter")
       .value;
 
-  const apps =
+
+  const cards =
     document.querySelectorAll(".app");
+
 
   let visible = 0;
 
-  apps.forEach(app=>{
+
+  cards.forEach(card=>{
 
     const name =
-      app.dataset.name.toLowerCase();
+      card.dataset.name
+        .toLowerCase();
 
-    const appRegion =
-      app.dataset.region;
 
-    const matchesSearch =
+    const cardRegion =
+      card.dataset.region;
+
+
+    const searchMatch =
       name.includes(search);
 
-    const matchesRegion =
+
+    const regionMatch =
       region === "all" ||
-      appRegion === region;
+      cardRegion === region;
 
-    if(matchesSearch && matchesRegion){
 
-      app.style.display = "";
+    if(
+      searchMatch &&
+      regionMatch
+    ){
+
+      card.style.display = "";
 
       visible++;
 
     }else{
 
-      app.style.display = "none";
+      card.style.display = "none";
 
     }
 
   });
 
-  document.getElementById("noResults")
+
+  document
+    .getElementById("noResults")
     .style.display =
-      visible === 0 ? "block" : "none";
+      visible === 0
+      ? "block"
+      : "none";
 
 }
+
+
+/* =================================================
+   AUTOMATIC LIVE COUNTER
+================================================= */
+
+function updateCounters(){
+
+  const liveApps =
+    document.querySelectorAll(
+      '.app[data-live="true"]'
+    );
+
+
+  const regions =
+    new Set();
+
+
+  liveApps.forEach(app=>{
+
+    regions.add(
+      app.dataset.region
+    );
+
+  });
+
+
+  document.getElementById("liveCount")
+    .textContent =
+      liveApps.length;
+
+
+  document.getElementById("regionCount")
+    .textContent =
+      regions.size;
+
+}
+
+
+updateCounters();
 
 </script>
 
