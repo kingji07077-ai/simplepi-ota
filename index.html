@@ -2,53 +2,104 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#030605">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#020604">
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <title>Rorito India • App Catalog</title>
 
 <style>
+
 *{
   box-sizing:border-box;
   margin:0;
-  padding:0
+  padding:0;
 }
 
 :root{
-  --bg:#020605;
-  --panel:#07100d;
-  --panel2:#091410;
-  --border:#17251f;
-  --text:#f1f7f4;
-  --muted:#788881;
+  --bg:#020604;
+  --panel:#07100c;
+  --panel2:#0a1510;
+  --border:#193025;
+  --border2:#263d30;
+  --text:#eef8f2;
+  --muted:#788980;
   --green:#35ef83;
   --green2:#20c96b;
+  --danger:#ff5f6d;
 }
 
 html{
-  scroll-behavior:smooth
+  scroll-behavior:smooth;
 }
 
 body{
-  background:
-    radial-gradient(circle at 50% -10%,rgba(44,239,126,.12),transparent 35%),
-    var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(
+      circle at 50% -10%,
+      rgba(53,239,131,.14),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 100% 45%,
+      rgba(53,239,131,.055),
+      transparent 25%
+    ),
+    var(--bg);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
+
+/* GRID BACKGROUND */
 
 body:before{
   content:"";
   position:fixed;
   inset:0;
+  z-index:-1;
   pointer-events:none;
+
   background-image:
-    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+    linear-gradient(
+      rgba(255,255,255,.012) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.012) 1px,
+      transparent 1px
+    );
+
   background-size:45px 45px;
-  mask-image:linear-gradient(to bottom,black,transparent 75%);
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent 80%
+    );
+}
+
+/* TOP GLOW */
+
+body:after{
+  content:"";
+  position:fixed;
+  width:400px;
+  height:400px;
+  top:-250px;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--green);
+  opacity:.035;
+  filter:blur(80px);
+  border-radius:50%;
+  pointer-events:none;
 }
 
 /* HEADER */
@@ -56,10 +107,13 @@ body:before{
 header{
   width:min(1180px,calc(100% - 30px));
   margin:auto;
-  padding:25px 0;
+
+  padding:22px 0;
+
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   border-bottom:1px solid rgba(255,255,255,.05);
 }
 
@@ -67,17 +121,22 @@ header{
   display:flex;
   align-items:center;
   gap:12px;
-  font-weight:800;
+
+  font-weight:850;
   letter-spacing:2px;
 }
 
 .logo-mark{
-  width:42px;
-  height:42px;
-  border-radius:13px;
+  width:44px;
+  height:44px;
+
+  border-radius:14px;
   overflow:hidden;
+
   border:1px solid rgba(53,239,131,.35);
-  box-shadow:0 0 25px rgba(53,239,131,.15);
+
+  box-shadow:
+    0 0 20px rgba(53,239,131,.15);
 }
 
 .logo-mark img{
@@ -86,23 +145,48 @@ header{
   object-fit:cover;
 }
 
-.logo span{
+.logo-text span{
   color:var(--green);
+}
+
+.logo-text small{
+  display:block;
+  margin-top:3px;
+
+  color:#65756c;
+
+  font:9px monospace;
+  letter-spacing:2px;
 }
 
 .nav{
   display:flex;
-  gap:24px;
+  align-items:center;
+  gap:25px;
 }
 
 .nav a{
-  color:#9ba9a3;
+  color:#8a9991;
   text-decoration:none;
   font-size:13px;
+
+  transition:.2s;
 }
 
 .nav a:hover{
   color:var(--green);
+}
+
+.telegram-small{
+  padding:9px 13px;
+
+  border:1px solid #21412e;
+  border-radius:10px;
+
+  color:var(--green) !important;
+
+  font:10px monospace !important;
+  letter-spacing:1px;
 }
 
 /* HERO */
@@ -110,241 +194,490 @@ header{
 .hero{
   width:min(1180px,calc(100% - 30px));
   margin:auto;
-  padding:95px 0 70px;
+
   text-align:center;
+
+  padding:95px 0 70px;
 }
 
 .kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
   color:var(--green);
+
   font:700 11px monospace;
-  letter-spacing:5px;
+  letter-spacing:4px;
+
   margin-bottom:24px;
 }
 
+.kicker-dot{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+  background:var(--green);
+
+  box-shadow:0 0 15px var(--green);
+
+  animation:pulse 1.6s infinite;
+}
+
 .hero h1{
-  font-size:clamp(48px,9vw,100px);
-  line-height:.9;
-  letter-spacing:-5px;
-  max-width:900px;
+  max-width:950px;
   margin:auto;
+
+  font-size:clamp(48px,9vw,102px);
+
+  line-height:.88;
+  letter-spacing:-6px;
 }
 
 .hero h1 span{
   color:var(--green);
-  text-shadow:0 0 35px rgba(53,239,131,.3);
+
+  text-shadow:
+    0 0 30px rgba(53,239,131,.22);
 }
 
 .hero p{
   max-width:650px;
-  margin:28px auto 0;
-  color:#89968f;
-  line-height:1.7;
+
+  margin:30px auto 0;
+
+  color:#84928a;
+
   font-size:15px;
+  line-height:1.7;
 }
 
 .hero-buttons{
   margin-top:35px;
+
   display:flex;
   justify-content:center;
-  gap:12px;
   flex-wrap:wrap;
+  gap:11px;
 }
 
 .hero-btn{
-  text-decoration:none;
-  padding:15px 25px;
-  border-radius:13px;
-  border:1px solid #20352b;
-  color:#dce8e2;
-  background:#08100d;
-  font:700 12px monospace;
-  letter-spacing:2px;
-  transition:.25s;
-}
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 
-.hero-btn.primary{
-  background:var(--green);
-  color:#031008;
-  border-color:var(--green);
-  box-shadow:0 0 30px rgba(53,239,131,.2);
+  min-width:145px;
+  height:48px;
+
+  padding:0 20px;
+
+  border:1px solid #21382a;
+  border-radius:13px;
+
+  background:#07100c;
+
+  color:#d8e5de;
+  text-decoration:none;
+
+  font:700 11px monospace;
+  letter-spacing:1.5px;
+
+  transition:.25s;
 }
 
 .hero-btn:hover{
   transform:translateY(-3px);
+  border-color:#398353;
+}
+
+.hero-btn.primary{
+  color:#031008;
+  background:var(--green);
+  border-color:var(--green);
+
+  box-shadow:
+    0 0 28px rgba(53,239,131,.18);
+}
+
+/* LIVE BAR */
+
+.live-bar{
+  width:min(900px,calc(100% - 30px));
+  margin:0 auto 50px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+
+  padding:12px;
+
+  border:1px solid var(--border);
+  border-radius:13px;
+
+  background:rgba(7,16,12,.75);
+
+  color:#75847c;
+
+  font:10px monospace;
+  letter-spacing:2px;
+}
+
+.live-bar strong{
+  color:var(--green);
 }
 
 /* STATS */
 
 .stats{
   width:min(900px,calc(100% - 30px));
-  margin:0 auto 70px;
+  margin:0 auto 80px;
+
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:repeat(4,1fr);
+
   border:1px solid var(--border);
   border-radius:20px;
+
   overflow:hidden;
-  background:rgba(7,16,13,.8);
+
+  background:rgba(7,16,12,.8);
+
+  backdrop-filter:blur(15px);
 }
 
 .stat{
-  padding:25px;
+  padding:24px 15px;
+
   text-align:center;
+
   border-right:1px solid var(--border);
 }
 
 .stat:last-child{
-  border:0;
+  border-right:0;
 }
 
 .stat strong{
   display:block;
+
   color:var(--green);
-  font:800 25px monospace;
+
+  font:800 24px monospace;
+
+  text-shadow:0 0 15px rgba(53,239,131,.12);
 }
 
 .stat span{
   display:block;
+
   margin-top:7px;
-  color:#718079;
-  font:11px monospace;
-  letter-spacing:2px;
+
+  color:#68766f;
+
+  font:9px monospace;
+  letter-spacing:1.5px;
 }
 
-/* CATALOG */
+/* SECTION */
 
-.catalog{
+.section{
   width:min(1180px,calc(100% - 30px));
   margin:auto;
 }
 
-.section-top{
+.section-header{
   display:flex;
-  align-items:end;
   justify-content:space-between;
-  gap:20px;
+  align-items:end;
+
   margin-bottom:25px;
 }
 
 .section-label{
   color:var(--green);
-  font:700 11px monospace;
+
+  font:700 10px monospace;
   letter-spacing:4px;
-  margin-bottom:10px;
+
+  margin-bottom:9px;
 }
 
-.section-top h2{
-  font-size:42px;
+.section-header h2{
+  font-size:40px;
   letter-spacing:-2px;
 }
 
-.live{
-  color:#788780;
-  font:11px monospace;
-  letter-spacing:2px;
+.section-side{
+  color:#68776f;
+  font:10px monospace;
+  letter-spacing:1px;
 }
 
-.live b{
+/* FEATURED */
+
+.featured{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+
+  margin-bottom:75px;
+}
+
+.feature-card{
+  position:relative;
+  overflow:hidden;
+
+  padding:22px;
+
+  border:1px solid var(--border);
+  border-radius:19px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10,25,17,.95),
+      rgba(4,10,7,.98)
+    );
+
+  transition:.3s;
+}
+
+.feature-card:hover{
+  transform:translateY(-4px);
+
+  border-color:#2b563a;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.25);
+}
+
+.feature-card:after{
+  content:"";
+
+  position:absolute;
+
+  width:150px;
+  height:150px;
+
+  right:-80px;
+  top:-80px;
+
+  border-radius:50%;
+
+  background:var(--green);
+  opacity:.05;
+
+  filter:blur(30px);
+}
+
+.feature-icon{
+  width:55px;
+  height:55px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:15px;
+
+  background:#101c15;
+  border:1px solid #243c2d;
+
   color:var(--green);
+
+  font-size:24px;
+
+  margin-bottom:17px;
 }
 
-/* SEARCH */
+.feature-card h3{
+  font-size:17px;
+}
+
+.feature-card p{
+  color:#718078;
+
+  margin-top:8px;
+
+  font-size:12px;
+  line-height:1.6;
+}
+
+.feature-tag{
+  display:inline-block;
+
+  margin-top:15px;
+
+  padding:5px 8px;
+
+  border-radius:20px;
+
+  border:1px solid #253c2e;
+
+  color:#788980;
+
+  font:9px monospace;
+}
+
+/* CONTROLS */
 
 .controls{
   display:flex;
-  gap:10px;
-  margin-bottom:25px;
   flex-wrap:wrap;
+  gap:9px;
+
+  margin-bottom:23px;
+}
+
+.search-wrap{
+  flex:1;
+  min-width:220px;
+  position:relative;
 }
 
 .search{
-  flex:1;
-  min-width:220px;
+  width:100%;
   height:48px;
-  border-radius:13px;
-  border:1px solid var(--border);
-  outline:none;
+
   padding:0 16px;
-  background:#07100d;
+
+  outline:none;
+
+  border:1px solid var(--border);
+  border-radius:13px;
+
+  background:#07100c;
+
   color:white;
+
+  font-size:13px;
 }
 
 .search:focus{
-  border-color:#2a9e60;
+  border-color:#2c7547;
+
+  box-shadow:
+    0 0 20px rgba(53,239,131,.06);
 }
 
 .filter{
   height:48px;
-  padding:0 17px;
-  border-radius:13px;
+
+  padding:0 16px;
+
   border:1px solid var(--border);
-  background:#07100d;
-  color:#9eaaa5;
-  font:11px monospace;
+  border-radius:13px;
+
+  background:#07100c;
+
+  color:#87958e;
+
+  font:10px monospace;
+  letter-spacing:1px;
+
   cursor:pointer;
+
+  transition:.2s;
+}
+
+.filter:hover{
+  border-color:#315d42;
 }
 
 .filter.active{
-  color:#031008;
   background:var(--green);
+  color:#031008;
   border-color:var(--green);
 }
 
-/* GRID */
+/* APP GRID */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:18px;
+  gap:17px;
 }
 
-/* CARD */
+/* APP CARD */
 
 .card{
   position:relative;
   overflow:hidden;
-  border:1px solid var(--border);
-  border-radius:21px;
-  padding:23px;
-  background:
-    linear-gradient(145deg,rgba(9,20,16,.96),rgba(4,9,7,.98));
-  transition:.3s;
-}
 
-.card:before{
-  content:"";
-  position:absolute;
-  width:170px;
-  height:170px;
-  right:-100px;
-  top:-100px;
-  background:var(--green);
-  opacity:.04;
-  filter:blur(30px);
-  border-radius:50%;
+  padding:22px;
+
+  border:1px solid var(--border);
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(9,21,15,.96),
+      rgba(4,10,7,.98)
+    );
+
+  transition:.3s;
+
+  animation:cardIn .4s ease both;
 }
 
 .card:hover{
   transform:translateY(-4px);
-  border-color:#244334;
-  box-shadow:0 15px 45px rgba(0,0,0,.3);
+
+  border-color:#285239;
+
+  box-shadow:
+    0 18px 45px rgba(0,0,0,.3),
+    0 0 30px rgba(53,239,131,.025);
+}
+
+.card:after{
+  content:"";
+
+  position:absolute;
+
+  width:180px;
+  height:180px;
+
+  top:-100px;
+  right:-100px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  opacity:.04;
+
+  filter:blur(35px);
 }
 
 .card-top{
   display:flex;
-  gap:15px;
   align-items:center;
+  gap:14px;
 }
 
 .app-icon{
-  width:68px;
-  height:68px;
-  border-radius:18px;
-  overflow:hidden;
+  width:67px;
+  height:67px;
+
   flex:none;
-  background:#111b17;
-  border:1px solid #24342c;
+
   display:grid;
   place-items:center;
+
+  overflow:hidden;
+
+  border-radius:17px;
+
+  border:1px solid #25392d;
+
+  background:#111b16;
+
+  color:var(--green);
+
+  font-size:25px;
 }
 
 .app-icon img{
@@ -353,97 +686,121 @@ header{
   object-fit:cover;
 }
 
-.placeholder{
-  font-size:25px;
-  color:var(--green);
-}
-
 .app-info{
   min-width:0;
 }
 
 .badges{
   display:flex;
+  align-items:center;
   gap:7px;
-  margin-bottom:8px;
+
+  margin-bottom:7px;
 }
 
 .badge{
-  border:1px solid #26382f;
-  border-radius:20px;
   padding:4px 8px;
-  color:#8b9a92;
-  font:10px monospace;
+
+  border:1px solid #263b2e;
+  border-radius:20px;
+
+  color:#819088;
+
+  font:9px monospace;
+  letter-spacing:.5px;
 }
 
 .version{
-  color:#6e7d75;
-  font:10px monospace;
-  padding-top:5px;
+  color:#617169;
+
+  font:9px monospace;
 }
 
 .app-name{
   font-size:18px;
   font-weight:700;
+
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
 .release{
-  margin-top:15px;
   display:flex;
   align-items:center;
-  gap:7px;
-  color:#6e7c75;
-  font:10px monospace;
+  justify-content:space-between;
+
+  margin-top:15px;
+
+  color:#697870;
+
+  font:9px monospace;
   letter-spacing:1px;
 }
 
-.green-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 12px var(--green);
-  animation:pulse 1.7s infinite;
+.live-status{
+  color:var(--green);
 }
 
-@keyframes pulse{
-  0%,100%{opacity:1;box-shadow:0 0 5px var(--green)}
-  50%{opacity:.45;box-shadow:0 0 18px var(--green)}
+.dot{
+  display:inline-block;
+
+  width:7px;
+  height:7px;
+
+  margin-right:6px;
+
+  border-radius:50%;
+
+  background:var(--green);
+
+  box-shadow:0 0 11px var(--green);
+
+  animation:pulse 1.7s infinite;
 }
 
 .divider{
   height:1px;
-  background:#16231e;
-  margin:20px 0;
+
+  margin:18px 0;
+
+  background:#17271e;
 }
 
 .details{
   display:flex;
   justify-content:space-between;
-  color:#85928b;
-  font:10px monospace;
+
+  color:#7d8b84;
+
+  font:9px monospace;
   letter-spacing:1px;
 }
 
 .actions{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:20px;
+
+  gap:8px;
+
+  margin-top:19px;
 }
 
 .actions button{
-  height:45px;
+  height:44px;
+
+  border:1px solid #24372b;
   border-radius:12px;
-  border:1px solid #24362d;
-  background:#07100d;
-  color:#cbd6d0;
-  font:700 10px monospace;
+
+  background:#07100c;
+
+  color:#c1cec6;
+
+  font:700 9px monospace;
   letter-spacing:1px;
+
   cursor:pointer;
+
   transition:.2s;
 }
 
@@ -454,10 +811,14 @@ header{
 
 .actions .install{
   grid-column:1/-1;
+
   background:var(--green);
   border-color:var(--green);
+
   color:#031008;
-  box-shadow:0 0 20px rgba(53,239,131,.12);
+
+  box-shadow:
+    0 0 20px rgba(53,239,131,.1);
 }
 
 .actions .install:hover{
@@ -465,29 +826,160 @@ header{
   transform:translateY(-2px);
 }
 
+/* EMPTY */
+
+.empty{
+  grid-column:1/-1;
+
+  padding:70px 20px;
+
+  text-align:center;
+
+  border:1px dashed #20352a;
+  border-radius:18px;
+
+  color:#66756d;
+
+  font:11px monospace;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  display:none;
+  align-items:center;
+  justify-content:center;
+
+  padding:20px;
+
+  background:rgba(0,0,0,.75);
+
+  backdrop-filter:blur(12px);
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(470px,100%);
+
+  padding:27px;
+
+  border:1px solid #294533;
+  border-radius:22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #091610,
+      #040b07
+    );
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.55),
+    0 0 40px rgba(53,239,131,.05);
+}
+
+.modal-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.modal-title{
+  font-size:22px;
+  font-weight:750;
+}
+
+.close{
+  width:34px;
+  height:34px;
+
+  border:1px solid #263c2e;
+  border-radius:10px;
+
+  background:#07100c;
+
+  color:#9baa9f;
+
+  cursor:pointer;
+}
+
+.modal-content{
+  margin-top:20px;
+
+  color:#7e8d84;
+
+  font:11px monospace;
+
+  line-height:1.8;
+}
+
+.modal-content strong{
+  color:var(--green);
+}
+
 /* FOOTER */
 
 footer{
   width:min(1180px,calc(100% - 30px));
-  margin:80px auto 0;
+
+  margin:85px auto 0;
+
   padding:35px 0 45px;
-  border-top:1px solid var(--border);
+
   text-align:center;
-  color:#52615a;
+
+  border-top:1px solid var(--border);
+
+  color:#4e5d55;
+
   font:10px monospace;
-  letter-spacing:2px;
+  letter-spacing:1.5px;
 }
 
 footer strong{
   color:var(--green);
 }
 
+/* ANIMATIONS */
+
+@keyframes pulse{
+  0%,100%{
+    opacity:1;
+    transform:scale(1);
+  }
+
+  50%{
+    opacity:.45;
+    transform:scale(.8);
+  }
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 /* MOBILE */
 
-@media(max-width:760px){
+@media(max-width:800px){
 
   header{
-    padding:18px 0;
+    padding:17px 0;
   }
 
   .nav{
@@ -499,282 +991,1287 @@ footer strong{
   }
 
   .hero h1{
-    letter-spacing:-3px;
+    letter-spacing:-4px;
   }
 
   .stats{
-    grid-template-columns:1fr;
+    grid-template-columns:1fr 1fr;
   }
 
   .stat{
-    border-right:0;
+    border-right:1px solid var(--border);
     border-bottom:1px solid var(--border);
   }
 
-  .stat:last-child{
+  .stat:nth-child(2){
+    border-right:0;
+  }
+
+  .stat:nth-child(3),
+  .stat:nth-child(4){
     border-bottom:0;
+  }
+
+  .stat:nth-child(4){
+    border-right:0;
+  }
+
+  .featured{
+    grid-template-columns:1fr;
   }
 
   .grid{
     grid-template-columns:1fr;
   }
 
-  .section-top{
+  .section-header{
     display:block;
   }
 
-  .live{
-    margin-top:15px;
+  .section-side{
+    margin-top:12px;
   }
 }
+
+@media(max-width:480px){
+
+  .hero h1{
+    font-size:50px;
+  }
+
+  .hero p{
+    font-size:13px;
+  }
+
+  .hero-btn{
+    width:100%;
+  }
+
+  .stats{
+    width:calc(100% - 24px);
+  }
+
+  .section{
+    width:calc(100% - 24px);
+  }
+
+  .section-header h2{
+    font-size:34px;
+  }
+
+  .controls{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .search-wrap{
+    grid-column:1/-1;
+  }
+
+  .filter{
+    width:100%;
+  }
+}
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- HEADER -->
 
 <header>
 
 <div class="logo">
-  <div class="logo-mark">
-    <img src="rorito.png" alt="Rorito">
-  </div>
-  RORITO <span>INDIA</span>
+
+<div class="logo-mark">
+<img src="rorito.png" alt="Rorito Dev">
 </div>
 
+<div class="logo-text">
+RORITO <span>INDIA</span>
+<small>DEVELOPMENT CATALOG</small>
+</div>
+
+</div>
+
+
 <nav class="nav">
-  <a href="#apps">Apps</a>
-  <a href="#featured">Featured</a>
-  <a href="#about">About</a>
+
+<a href="#featured">
+Featured
+</a>
+
+<a href="#apps">
+Applications
+</a>
+
+<a href="#about">
+About
+</a>
+
+<a
+class="telegram-small"
+href="https://t.me/ItsRorito"
+target="_blank"
+rel="noopener">
+TELEGRAM
+</a>
+
 </nav>
 
 </header>
 
 
+<!-- HERO -->
+
 <section class="hero">
 
 <div class="kicker">
+<span class="kicker-dot"></span>
 RORITO DEVELOPMENT
 </div>
+
 
 <h1>
 YOUR APPS.<br>
 <span>YOUR WAY.</span>
 </h1>
 
+
 <p>
-A premium release catalog built for the Rorito India community.
-Fast access, clean design and an experience made for mobile devices.
+Welcome to Rorito India — a modern release
+catalog built for a fast, clean and premium
+mobile experience.
 </p>
 
+
 <div class="hero-buttons">
-<a href="#apps" class="hero-btn primary">EXPLORE APPS</a>
-<a href="#featured" class="hero-btn">FEATURED RELEASES</a>
+
+<a
+href="#apps"
+class="hero-btn primary">
+EXPLORE APPS
+</a>
+
+
+<a
+href="https://t.me/ItsRorito"
+target="_blank"
+rel="noopener"
+class="hero-btn">
+JOIN TELEGRAM
+</a>
+
+
+<a
+href="#featured"
+class="hero-btn">
+FEATURED
+</a>
+
 </div>
 
 </section>
 
+
+<!-- LIVE BAR -->
+
+<div class="live-bar">
+
+<span class="dot"></span>
+
+SYSTEM STATUS:
+
+<strong>ONLINE</strong>
+
+·
+
+LAST SYNC:
+
+<strong id="clock">
+--:--:--
+</strong>
+
+</div>
+
+
+<!-- STATS -->
 
 <div class="stats">
 
 <div class="stat">
-<strong id="appCount">50+</strong>
-<span>APPLICATIONS</span>
+
+<strong id="appCount">
+50+
+</strong>
+
+<span>
+APPLICATIONS
+</span>
+
 </div>
+
 
 <div class="stat">
-<strong id="liveCount">0</strong>
-<span>LIVE RELEASES</span>
+
+<strong id="liveCount">
+0
+</strong>
+
+<span>
+LIVE RELEASES
+</span>
+
 </div>
+
 
 <div class="stat">
-<strong>8</strong>
-<span>REGIONS</span>
+
+<strong>
+08
+</strong>
+
+<span>
+REGIONS
+</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+24/7
+</strong>
+
+<span>
+CATALOG
+</span>
+
 </div>
 
 </div>
 
 
-<section class="catalog" id="apps">
+<!-- FEATURED -->
 
-<div class="section-top">
+<section
+class="section"
+id="featured">
+
+<div class="section-header">
 
 <div>
+
 <div class="section-label">
-01 / THE CATALOG
+00 / FEATURED
 </div>
 
-<h2>Latest Releases</h2>
-</div>
-
-<div class="live">
-<span class="green-dot"></span>
-&nbsp; <b>LIVE</b> · UPDATED NOW
-</div>
+<h2>
+Featured
+</h2>
 
 </div>
 
-
-<div class="controls">
-
-<input
-  id="search"
-  class="search"
-  type="search"
-  placeholder="Search applications..."
->
-
-<button class="filter active" data-filter="all">
-ALL
-</button>
-
-<button class="filter" data-filter="ios">
-iOS
-</button>
-
-<button class="filter" data-filter="android">
-ANDROID
-</button>
-
-<button class="filter" data-filter="new">
-NEW
-</button>
+<div class="section-side">
+HAND-PICKED RELEASES
+</div>
 
 </div>
 
 
-<div class="grid" id="appGrid"></div>
+<div class="featured">
+
+
+<div class="feature-card">
+
+<div class="feature-icon">
+⚡
+</div>
+
+<h3>
+Fast Releases
+</h3>
+
+<p>
+Keep your catalog organized with
+clear versions and release times.
+</p>
+
+<span class="feature-tag">
+LIVE UPDATES
+</span>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">
+◉
+</div>
+
+<h3>
+Mobile First
+</h3>
+
+<p>
+Designed for iPhone, iPad and
+small-screen browsing.
+</p>
+
+<span class="feature-tag">
+RESPONSIVE UI
+</span>
+
+</div>
+
+
+<div class="feature-card">
+
+<div class="feature-icon">
+✦
+</div>
+
+<h3>
+Rorito Network
+</h3>
+
+<p>
+Follow the latest catalog news
+and announcements on Telegram.
+</p>
+
+<span class="feature-tag">
+TELEGRAM
+</span>
+
+</div>
+
+
+</div>
 
 </section>
 
 
+<!-- APPLICATIONS -->
+
+<section
+class="section"
+id="apps">
+
+
+<div class="section-header">
+
+<div>
+
+<div class="section-label">
+01 / THE CATALOG
+</div>
+
+<h2>
+Latest Releases
+</h2>
+
+</div>
+
+<div class="section-side">
+<span class="dot"></span>
+LIVE CATALOG
+</div>
+
+</div>
+
+
+<!-- CONTROLS -->
+
+<div class="controls">
+
+<div class="search-wrap">
+
+<input
+id="search"
+class="search"
+type="search"
+placeholder="Search applications..."
+>
+
+</div>
+
+
+<button
+class="filter active"
+data-filter="all">
+ALL
+</button>
+
+
+<button
+class="filter"
+data-filter="iOS">
+iOS
+</button>
+
+
+<button
+class="filter"
+data-filter="Android">
+ANDROID
+</button>
+
+
+<button
+class="filter"
+data-filter="new">
+NEW
+</button>
+
+
+<button
+class="filter"
+data-filter="Games">
+GAMES
+</button>
+
+
+<button
+class="filter"
+data-filter="Social">
+SOCIAL
+</button>
+
+</div>
+
+
+<div
+id="appGrid"
+class="grid">
+</div>
+
+
+</section>
+
+
+<!-- FOOTER -->
+
 <footer id="about">
 
-<strong>RORITO INDIA</strong><br><br>
+<strong>RORITO INDIA</strong>
 
-RELEASE CATALOG · 2026<br><br>
+<br><br>
+
+APP RELEASE CATALOG · 2026
+
+<br><br>
+
+Telegram:
+@ItsRorito
+
+<br><br>
 
 © 2026 MADE BY RORITO · ALL RIGHTS RESERVED
 
 </footer>
 
 
+<!-- MODAL -->
+
+<div
+id="modal"
+class="modal">
+
+<div class="modal-box">
+
+<div class="modal-top">
+
+<div
+id="modalTitle"
+class="modal-title">
+Application
+</div>
+
+<button
+class="close"
+onclick="closeModal()">
+×
+</button>
+
+</div>
+
+
+<div
+id="modalContent"
+class="modal-content">
+</div>
+
+</div>
+
+</div>
+
+
 <script>
 
 /*
 ========================================================
-RORITO INDIA APP DATABASE
+RORITO INDIA APPLICATION DATABASE
 ========================================================
 
-Replace icon filenames with your own authorized icons.
+IMPORTANT:
 
-Example:
+The links below are placeholders.
 
-icon:"icons/netflix.png"
+Add only apps/files that you are authorized
+to distribute.
 
-Replace install/download URLs with files you
-are authorized to distribute.
+You can later add:
+
+install:"YOUR_INSTALL_URL",
+download:"YOUR_IPA_URL"
+
+========================================================
 */
+
 
 const apps = [
 
-["Netflix","Entertainment","iOS","v8.1","2 hours ago","1.2 GB","netflix.png"],
-["Spotify","Music","iOS","v4.8","3 hours ago","85 MB","spotify.png"],
-["Discord","Social","iOS","v3.7","5 hours ago","120 MB","discord.png"],
-["Telegram","Social","iOS","v2.9","6 hours ago","110 MB","telegram.png"],
-["YouTube","Video","iOS","v7.4","8 hours ago","240 MB","youtube.png"],
-["Instagram","Social","iOS","v6.2","9 hours ago","180 MB","instagram.png"],
-["Facebook","Social","iOS","v5.4","10 hours ago","210 MB","facebook.png"],
-["WhatsApp","Social","iOS","v4.9","12 hours ago","160 MB","whatsapp.png"],
-["Pinterest","Social","iOS","v4.1","1 day ago","95 MB","pinterest.png"],
-["X","Social","iOS","v3.8","1 day ago","140 MB","x.png"],
+{
+name:"Netflix",
+category:"Entertainment",
+platform:"iOS",
+version:"8.1",
+time:"2 hours ago",
+size:"1.2 GB",
+icon:"netflix.png"
+},
 
-["Google","Utilities","Android","v9.1","1 day ago","210 MB","google.png"],
-["Chrome","Utilities","Android","v8.2","1 day ago","190 MB","chrome.png"],
-["Drive","Utilities","Android","v7.4","1 day ago","160 MB","drive.png"],
-["Gmail","Utilities","Android","v6.8","1 day ago","150 MB","gmail.png"],
-["Maps","Utilities","Android","v5.9","1 day ago","180 MB","maps.png"],
+{
+name:"Spotify",
+category:"Music",
+platform:"iOS",
+version:"4.8",
+time:"3 hours ago",
+size:"85 MB",
+icon:"spotify.png"
+},
 
-["Minecraft","Games","iOS","v4.0","1 day ago","700 MB","minecraft.png"],
-["Roblox","Games","iOS","v3.5","1 day ago","280 MB","roblox.png"],
-["Brawl Stars","Games","iOS","v2.8","2 days ago","450 MB","brawl.png"],
-["Clash Royale","Games","iOS","v2.1","2 days ago","300 MB","clash.png"],
-["Among Us","Games","iOS","v1.9","2 days ago","180 MB","amongus.png"],
+{
+name:"Discord",
+category:"Social",
+platform:"iOS",
+version:"3.7",
+time:"5 hours ago",
+size:"120 MB",
+icon:"discord.png"
+},
 
-["PUBG Mobile","Games","Android","v5.4","2 days ago","3.4 GB","pubg.png"],
-["BGMI","Games","Android","v5.2","2 days ago","3.5 GB","bgmi.png"],
-["Call of Duty","Games","Android","v4.7","2 days ago","2.8 GB","cod.png"],
-["Free Fire","Games","Android","v4.3","3 days ago","1.1 GB","freefire.png"],
-["Asphalt","Games","Android","v3.9","3 days ago","2.2 GB","asphalt.png"],
+{
+name:"Telegram",
+category:"Social",
+platform:"iOS",
+version:"2.9",
+time:"6 hours ago",
+size:"110 MB",
+icon:"telegram.png"
+},
 
-["Procreate","Creative","iOS","v3.2","3 days ago","500 MB","procreate.png"],
-["Canva","Creative","iOS","v4.4","3 days ago","230 MB","canva.png"],
-["CapCut","Creative","iOS","v5.1","3 days ago","310 MB","capcut.png"],
-["Lightroom","Creative","iOS","v4.6","3 days ago","420 MB","lightroom.png"],
-["Photoshop","Creative","iOS","v4.0","4 days ago","650 MB","photoshop.png"],
+{
+name:"YouTube",
+category:"Video",
+platform:"iOS",
+version:"7.4",
+time:"8 hours ago",
+size:"240 MB",
+icon:"youtube.png"
+},
 
-["Prime Video","Entertainment","iOS","v6.0","4 days ago","220 MB","prime.png"],
-["Disney+","Entertainment","iOS","v5.3","4 days ago","190 MB","disney.png"],
-["JioHotstar","Entertainment","iOS","v4.9","4 days ago","240 MB","jio.png"],
-["Crunchyroll","Entertainment","iOS","v4.1","4 days ago","170 MB","crunchyroll.png"],
-["Twitch","Entertainment","iOS","v3.7","5 days ago","180 MB","twitch.png"],
+{
+name:"Instagram",
+category:"Social",
+platform:"iOS",
+version:"6.2",
+time:"9 hours ago",
+size:"180 MB",
+icon:"instagram.png"
+},
 
-["GitHub","Developer","iOS","v3.0","5 days ago","80 MB","github.png"],
-["Termius","Developer","iOS","v2.8","5 days ago","90 MB","termius.png"],
-["Code Editor","Developer","iOS","v2.4","5 days ago","70 MB","code.png"],
-["Python","Developer","iOS","v2.1","6 days ago","120 MB","python.png"],
-["GitLab","Developer","iOS","v1.9","6 days ago","100 MB","gitlab.png"],
+{
+name:"Facebook",
+category:"Social",
+platform:"iOS",
+version:"5.4",
+time:"10 hours ago",
+size:"210 MB",
+icon:"facebook.png"
+},
 
-["ESign","Tools","iOS","v2.9","6 days ago","60 MB","esign.png"],
-["TrollStore","Tools","iOS","v2.7","6 days ago","40 MB","trollstore.png"],
-["Documents","Tools","iOS","v2.4","7 days ago","130 MB","documents.png"],
-["File Manager","Tools","iOS","v2.0","7 days ago","75 MB","files.png"],
-["Shortcuts","Tools","iOS","v1.8","7 days ago","55 MB","shortcuts.png"],
+{
+name:"WhatsApp",
+category:"Social",
+platform:"iOS",
+version:"4.9",
+time:"12 hours ago",
+size:"160 MB",
+icon:"whatsapp.png"
+},
 
-["Reddit","Social","iOS","v3.1","7 days ago","130 MB","reddit.png"],
-["Snapchat","Social","iOS","v3.8","7 days ago","190 MB","snapchat.png"],
-["LinkedIn","Social","iOS","v2.6","8 days ago","150 MB","linkedin.png"],
-["Threads","Social","iOS","v2.1","8 days ago","110 MB","threads.png"],
-["Tumblr","Social","iOS","v1.9","8 days ago","100 MB","tumblr.png"],
+{
+name:"Pinterest",
+category:"Social",
+platform:"iOS",
+version:"4.1",
+time:"1 day ago",
+size:"95 MB",
+icon:"pinterest.png"
+},
 
-["Notion","Productivity","iOS","v4.2","8 days ago","140 MB","notion.png"],
-["Trello","Productivity","iOS","v3.4","9 days ago","120 MB","trello.png"],
-["Evernote","Productivity","iOS","v3.1","9 days ago","150 MB","evernote.png"],
-["Dropbox","Productivity","iOS","v2.9","9 days ago","130 MB","dropbox.png"],
-["Microsoft 365","Productivity","iOS","v2.5","10 days ago","250 MB","office.png"]
+{
+name:"X",
+category:"Social",
+platform:"iOS",
+version:"3.8",
+time:"1 day ago",
+size:"140 MB",
+icon:"x.png"
+},
+
+{
+name:"Google",
+category:"Utilities",
+platform:"Android",
+version:"9.1",
+time:"1 day ago",
+size:"210 MB",
+icon:"google.png"
+},
+
+{
+name:"Chrome",
+category:"Utilities",
+platform:"Android",
+version:"8.2",
+time:"1 day ago",
+size:"190 MB",
+icon:"chrome.png"
+},
+
+{
+name:"Drive",
+category:"Utilities",
+platform:"Android",
+version:"7.4",
+time:"1 day ago",
+size:"160 MB",
+icon:"drive.png"
+},
+
+{
+name:"Gmail",
+category:"Utilities",
+platform:"Android",
+version:"6.8",
+time:"1 day ago",
+size:"150 MB",
+icon:"gmail.png"
+},
+
+{
+name:"Maps",
+category:"Utilities",
+platform:"Android",
+version:"5.9",
+time:"1 day ago",
+size:"180 MB",
+icon:"maps.png"
+},
+
+{
+name:"Minecraft",
+category:"Games",
+platform:"iOS",
+version:"4.0",
+time:"1 day ago",
+size:"700 MB",
+icon:"minecraft.png"
+},
+
+{
+name:"Roblox",
+category:"Games",
+platform:"iOS",
+version:"3.5",
+time:"1 day ago",
+size:"280 MB",
+icon:"roblox.png"
+},
+
+{
+name:"Brawl Stars",
+category:"Games",
+platform:"iOS",
+version:"2.8",
+time:"2 days ago",
+size:"450 MB",
+icon:"brawl.png"
+},
+
+{
+name:"Clash Royale",
+category:"Games",
+platform:"iOS",
+version:"2.1",
+time:"2 days ago",
+size:"300 MB",
+icon:"clash.png"
+},
+
+{
+name:"Among Us",
+category:"Games",
+platform:"iOS",
+version:"1.9",
+time:"2 days ago",
+size:"180 MB",
+icon:"amongus.png"
+},
+
+{
+name:"PUBG Mobile",
+category:"Games",
+platform:"Android",
+version:"5.4",
+time:"2 days ago",
+size:"3.4 GB",
+icon:"pubg.png"
+},
+
+{
+name:"BGMI",
+category:"Games",
+platform:"Android",
+version:"5.2",
+time:"2 days ago",
+size:"3.5 GB",
+icon:"bgmi.png"
+},
+
+{
+name:"Call of Duty",
+category:"Games",
+platform:"Android",
+version:"4.7",
+time:"2 days ago",
+size:"2.8 GB",
+icon:"cod.png"
+},
+
+{
+name:"Free Fire",
+category:"Games",
+platform:"Android",
+version:"4.3",
+time:"3 days ago",
+size:"1.1 GB",
+icon:"freefire.png"
+},
+
+{
+name:"Asphalt",
+category:"Games",
+platform:"Android",
+version:"3.9",
+time:"3 days ago",
+size:"2.2 GB",
+icon:"asphalt.png"
+},
+
+{
+name:"Procreate",
+category:"Creative",
+platform:"iOS",
+version:"3.2",
+time:"3 days ago",
+size:"500 MB",
+icon:"procreate.png"
+},
+
+{
+name:"Canva",
+category:"Creative",
+platform:"iOS",
+version:"4.4",
+time:"3 days ago",
+size:"230 MB",
+icon:"canva.png"
+},
+
+{
+name:"CapCut",
+category:"Creative",
+platform:"iOS",
+version:"5.1",
+time:"3 days ago",
+size:"310 MB",
+icon:"capcut.png"
+},
+
+{
+name:"Lightroom",
+category:"Creative",
+platform:"iOS",
+version:"4.6",
+time:"3 days ago",
+size:"420 MB",
+icon:"lightroom.png"
+},
+
+{
+name:"Photoshop",
+category:"Creative",
+platform:"iOS",
+version:"4.0",
+time:"4 days ago",
+size:"650 MB",
+icon:"photoshop.png"
+},
+
+{
+name:"Prime Video",
+category:"Entertainment",
+platform:"iOS",
+version:"6.0",
+time:"4 days ago",
+size:"220 MB",
+icon:"prime.png"
+},
+
+{
+name:"Disney+",
+category:"Entertainment",
+platform:"iOS",
+version:"5.3",
+time:"4 days ago",
+size:"190 MB",
+icon:"disney.png"
+},
+
+{
+name:"JioHotstar",
+category:"Entertainment",
+platform:"iOS",
+version:"4.9",
+time:"4 days ago",
+size:"240 MB",
+icon:"jio.png"
+},
+
+{
+name:"Crunchyroll",
+category:"Entertainment",
+platform:"iOS",
+version:"4.1",
+time:"4 days ago",
+size:"170 MB",
+icon:"crunchyroll.png"
+},
+
+{
+name:"Twitch",
+category:"Entertainment",
+platform:"iOS",
+version:"3.7",
+time:"5 days ago",
+size:"180 MB",
+icon:"twitch.png"
+},
+
+{
+name:"GitHub",
+category:"Developer",
+platform:"iOS",
+version:"3.0",
+time:"5 days ago",
+size:"80 MB",
+icon:"github.png"
+},
+
+{
+name:"Termius",
+category:"Developer",
+platform:"iOS",
+version:"2.8",
+time:"5 days ago",
+size:"90 MB",
+icon:"termius.png"
+},
+
+{
+name:"Code Editor",
+category:"Developer",
+platform:"iOS",
+version:"2.4",
+time:"5 days ago",
+size:"70 MB",
+icon:"code.png"
+},
+
+{
+name:"Python",
+category:"Developer",
+platform:"iOS",
+version:"2.1",
+time:"6 days ago",
+size:"120 MB",
+icon:"python.png"
+},
+
+{
+name:"GitLab",
+category:"Developer",
+platform:"iOS",
+version:"1.9",
+time:"6 days ago",
+size:"100 MB",
+icon:"gitlab.png"
+},
+
+{
+name:"ESign",
+category:"Tools",
+platform:"iOS",
+version:"2.9",
+time:"6 days ago",
+size:"60 MB",
+icon:"esign.png"
+},
+
+{
+name:"TrollStore",
+category:"Tools",
+platform:"iOS",
+version:"2.7",
+time:"6 days ago",
+size:"40 MB",
+icon:"trollstore.png"
+},
+
+{
+name:"Documents",
+category:"Tools",
+platform:"iOS",
+version:"2.4",
+time:"7 days ago",
+size:"130 MB",
+icon:"documents.png"
+},
+
+{
+name:"File Manager",
+category:"Tools",
+platform:"iOS",
+version:"2.0",
+time:"7 days ago",
+size:"75 MB",
+icon:"files.png"
+},
+
+{
+name:"Shortcuts",
+category:"Tools",
+platform:"iOS",
+version:"1.8",
+time:"7 days ago",
+size:"55 MB",
+icon:"shortcuts.png"
+},
+
+{
+name:"Reddit",
+category:"Social",
+platform:"iOS",
+version:"3.1",
+time:"7 days ago",
+size:"130 MB",
+icon:"reddit.png"
+},
+
+{
+name:"Snapchat",
+category:"Social",
+platform:"iOS",
+version:"3.8",
+time:"7 days ago",
+size:"190 MB",
+icon:"snapchat.png"
+},
+
+{
+name:"LinkedIn",
+category:"Social",
+platform:"iOS",
+version:"2.6",
+time:"8 days ago",
+size:"150 MB",
+icon:"linkedin.png"
+},
+
+{
+name:"Threads",
+category:"Social",
+platform:"iOS",
+version:"2.1",
+time:"8 days ago",
+size:"110 MB",
+icon:"threads.png"
+},
+
+{
+name:"Tumblr",
+category:"Social",
+platform:"iOS",
+version:"1.9",
+time:"8 days ago",
+size:"100 MB",
+icon:"tumblr.png"
+},
+
+{
+name:"Notion",
+category:"Productivity",
+platform:"iOS",
+version:"4.2",
+time:"8 days ago",
+size:"140 MB",
+icon:"notion.png"
+},
+
+{
+name:"Trello",
+category:"Productivity",
+platform:"iOS",
+version:"3.4",
+time:"9 days ago",
+size:"120 MB",
+icon:"trello.png"
+},
+
+{
+name:"Evernote",
+category:"Productivity",
+platform:"iOS",
+version:"3.1",
+time:"9 days ago",
+size:"150 MB",
+icon:"evernote.png"
+},
+
+{
+name:"Dropbox",
+category:"Productivity",
+platform:"iOS",
+version:"2.9",
+time:"9 days ago",
+size:"130 MB",
+icon:"dropbox.png"
+},
+
+{
+name:"Microsoft 365",
+category:"Productivity",
+platform:"iOS",
+version:"2.5",
+time:"10 days ago",
+size:"250 MB",
+icon:"office.png"
+},
+
+{
+name:"Zoom",
+category:"Productivity",
+platform:"iOS",
+version:"2.2",
+time:"10 days ago",
+size:"190 MB",
+icon:"zoom.png"
+},
+
+{
+name:"Microsoft Teams",
+category:"Productivity",
+platform:"iOS",
+version:"2.0",
+time:"10 days ago",
+size:"180 MB",
+icon:"teams.png"
+}
 
 ];
 
 
 /*
 ========================================================
-CARD RENDERER
+ICON RENDERING
 ========================================================
 */
 
-const grid = document.getElementById("appGrid");
+function iconHTML(app){
 
-function renderApps(list){
+return `
+
+<img
+src="${app.icon}"
+alt="${app.name}"
+onerror="
+this.style.display='none';
+this.parentElement.querySelector('.fallback').style.display='block';
+">
+
+<span
+class="fallback"
+style="display:none">
+✦
+</span>
+
+`;
+
+}
+
+
+/*
+========================================================
+RENDER
+========================================================
+*/
+
+const grid=
+document.getElementById("appGrid");
+
+const search=
+document.getElementById("search");
+
+let currentFilter="all";
+
+
+function getFilteredApps(){
+
+const query=
+search.value
+.trim()
+.toLowerCase();
+
+
+return apps.filter(app=>{
+
+const matchesSearch=
+
+app.name
+.toLowerCase()
+.includes(query)
+
+||
+
+app.category
+.toLowerCase()
+.includes(query)
+
+||
+
+app.platform
+.toLowerCase()
+.includes(query);
+
+
+let matchesFilter=true;
+
+
+if(currentFilter==="iOS"){
+
+matchesFilter=
+app.platform==="iOS";
+
+}
+
+
+if(currentFilter==="Android"){
+
+matchesFilter=
+app.platform==="Android";
+
+}
+
+
+if(currentFilter==="new"){
+
+matchesFilter=
+apps.indexOf(app)<15;
+
+}
+
+
+if(currentFilter==="Games"){
+
+matchesFilter=
+app.category==="Games";
+
+}
+
+
+if(currentFilter==="Social"){
+
+matchesFilter=
+app.category==="Social";
+
+}
+
+
+return matchesSearch && matchesFilter;
+
+});
+
+}
+
+
+function renderApps(){
+
+const list=
+getFilteredApps();
+
 
 grid.innerHTML="";
 
+
+if(!list.length){
+
+grid.innerHTML=`
+
+<div class="empty">
+
+NO APPLICATIONS FOUND
+
+<br><br>
+
+Try another search.
+
+</div>
+
+`;
+
+}
+
+else{
+
 list.forEach((app,index)=>{
 
-const [
-name,
-category,
-platform,
-version,
-time,
-size,
-icon
-] = app;
-
-const card=document.createElement("article");
+const card=
+document.createElement("article");
 
 card.className="card";
 
-card.dataset.platform=platform.toLowerCase();
-card.dataset.new=index<12 ? "new" : "";
+card.style.animationDelay=
+(index*0.025)+"s";
+
 
 card.innerHTML=`
 
@@ -782,122 +2279,109 @@ card.innerHTML=`
 
 <div class="app-icon">
 
-<img
-src="${icon}"
-alt="${name}"
-onerror="this.style.display='none';this.parentElement.innerHTML='<span class=placeholder>✦</span>'"
->
+${iconHTML(app)}
 
 </div>
+
 
 <div class="app-info">
 
 <div class="badges">
 
-<span class="badge">${platform.toUpperCase()}</span>
+<span class="badge">
+${app.platform.toUpperCase()}
+</span>
 
-<span class="version">${version}</span>
+<span class="version">
+${app.version}
+</span>
 
 </div>
+
 
 <div class="app-name">
-${name}
+${app.name}
 </div>
 
 </div>
 
 </div>
+
 
 <div class="release">
 
-<span class="green-dot"></span>
+<span class="live-status">
 
-RELEASED ${time.toUpperCase()}
+<span class="dot"></span>
+
+LIVE RELEASE
+
+</span>
+
+<span>
+${app.time.toUpperCase()}
+</span>
 
 </div>
+
 
 <div class="divider"></div>
 
+
 <div class="details">
 
-<span>${category.toUpperCase()}</span>
+<span>
+${app.category.toUpperCase()}
+</span>
 
-<span>${size}</span>
+<span>
+${app.size}
+</span>
 
 </div>
+
 
 <div class="actions">
 
 <button
 class="install"
-onclick="installApp('${name}')">
+onclick="installApp('${escapeName(app.name)}')">
 INSTALL
 </button>
 
 <button
-onclick="downloadApp('${name}')">
+onclick="downloadApp('${escapeName(app.name)}')">
 DOWNLOAD
 </button>
 
 <button
-onclick="copyAppLink('${name}')">
-COPY LINK
+onclick="openDetails('${escapeName(app.name)}')">
+DETAILS
 </button>
 
 </div>
 
 `;
 
+
 grid.appendChild(card);
 
 });
 
-document.getElementById("liveCount").textContent=list.length;
+}
+
+
+document.getElementById("liveCount")
+.textContent=list.length;
 
 }
 
 
-/*
-========================================================
-SEARCH
-========================================================
-*/
+function escapeName(name){
 
-const search=document.getElementById("search");
-
-let currentFilter="all";
-
-function update(){
-
-const term=search.value.toLowerCase();
-
-const filtered=apps.filter(app=>{
-
-const name=app[0].toLowerCase();
-const category=app[1].toLowerCase();
-const platform=app[2].toLowerCase();
-
-const matchesSearch=
-name.includes(term) ||
-category.includes(term) ||
-platform.includes(term);
-
-let matchesFilter=true;
-
-if(currentFilter==="ios")
-matchesFilter=platform==="ios";
-
-if(currentFilter==="android")
-matchesFilter=platform==="android";
-
-if(currentFilter==="new")
-matchesFilter=apps.indexOf(app)<12;
-
-return matchesSearch && matchesFilter;
-
-});
-
-renderApps(filtered);
+return name
+.replace(/\\/g,"\\\\")
+.replace(/'/g,"\\'");
 
 }
 
@@ -908,81 +2392,256 @@ FILTERS
 ========================================================
 */
 
-document.querySelectorAll(".filter").forEach(button=>{
+document
+.querySelectorAll(".filter")
+.forEach(button=>{
 
 button.addEventListener("click",()=>{
 
-document.querySelectorAll(".filter")
-.forEach(x=>x.classList.remove("active"));
+document
+.querySelectorAll(".filter")
+.forEach(b=>
+b.classList.remove("active")
+);
 
 button.classList.add("active");
 
-currentFilter=button.dataset.filter;
+currentFilter=
+button.dataset.filter;
 
-update();
+renderApps();
 
 });
 
 });
 
-search.addEventListener("input",update);
+
+search.addEventListener(
+"input",
+renderApps
+);
 
 
 /*
 ========================================================
-BUTTONS
+INSTALL / DOWNLOAD
 ========================================================
 
-Replace the alert/placeholder logic below with
-your authorized URLs.
+Add your authorized links here later.
+
+Example:
+
+const links = {
+
+"Netflix":{
+install:"YOUR_INSTALL_URL",
+download:"YOUR_DOWNLOAD_URL"
+}
+
+};
+
+========================================================
 */
+
+const links={};
+
 
 function installApp(name){
 
-alert(
-"Install link for " +
-name +
-" has not been configured yet."
+if(
+links[name] &&
+links[name].install
+){
+
+location.href=
+links[name].install;
+
+return;
+
+}
+
+
+openModal(
+name,
+"INSTALL LINK NOT CONFIGURED",
+"Add an authorized installation URL for this application in the <strong>links</strong> section of the code."
 );
 
 }
+
 
 function downloadApp(name){
 
-alert(
-"Download link for " +
-name +
-" has not been configured yet."
-);
+if(
+links[name] &&
+links[name].download
+){
+
+location.href=
+links[name].download;
+
+return;
 
 }
 
-function copyAppLink(name){
 
-const url=location.href+"#"+encodeURIComponent(name);
-
-navigator.clipboard
-?.writeText(url)
-.then(()=>{
-alert("Link copied for "+name);
-})
-.catch(()=>{
-alert("Copy failed.");
-});
+openModal(
+name,
+"DOWNLOAD LINK NOT CONFIGURED",
+"Add an authorized download URL for this application in the <strong>links</strong> section of the code."
+);
 
 }
 
 
 /*
 ========================================================
-START
+DETAIL MODAL
 ========================================================
 */
 
-document.getElementById("appCount")
-.textContent=apps.length+"+";
+function openDetails(name){
 
-renderApps(apps);
+const app=
+apps.find(
+x=>x.name===name
+);
+
+if(!app)
+return;
+
+
+openModal(
+
+app.name,
+
+"RELEASE INFORMATION",
+
+`
+
+<strong>PLATFORM:</strong>
+${app.platform}
+<br>
+
+<strong>VERSION:</strong>
+${app.version}
+<br>
+
+<strong>CATEGORY:</strong>
+${app.category}
+<br>
+
+<strong>SIZE:</strong>
+${app.size}
+<br>
+
+<strong>RELEASED:</strong>
+${app.time}
+<br><br>
+
+<strong>STATUS:</strong>
+LIVE RELEASE
+
+`
+
+);
+
+}
+
+
+function openModal(title,heading,content){
+
+document
+.getElementById("modalTitle")
+.textContent=title;
+
+
+document
+.getElementById("modalContent")
+.innerHTML=
+"<strong>"+heading+
+"</strong><br><br>"+
+content;
+
+
+document
+.getElementById("modal")
+.classList.add("show");
+
+}
+
+
+function closeModal(){
+
+document
+.getElementById("modal")
+.classList.remove("show");
+
+}
+
+
+document
+.getElementById("modal")
+.addEventListener(
+"click",
+function(e){
+
+if(e.target===this){
+
+closeModal();
+
+}
+
+});
+
+
+/*
+========================================================
+LIVE CLOCK
+========================================================
+*/
+
+function updateClock(){
+
+const now=
+new Date();
+
+document
+.getElementById("clock")
+.textContent=
+now.toLocaleTimeString(
+[],
+{
+hour:"2-digit",
+minute:"2-digit",
+second:"2-digit"
+}
+);
+
+}
+
+
+setInterval(
+updateClock,
+1000
+);
+
+updateClock();
+
+
+/*
+========================================================
+INITIALIZE
+========================================================
+*/
+
+document
+.getElementById("appCount")
+.textContent=
+apps.length+"+";
+
+
+renderApps();
 
 </script>
 
