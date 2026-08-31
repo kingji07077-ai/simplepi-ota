@@ -1,38 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport"
-      content="width=device-width,initial-scale=1,viewport-fit=cover">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#05070d">
 
-<title>Khandu OS • Release Center</title>
+<title>Khandu Don • Release Hub</title>
 
 <style>
-
 :root{
   --bg:#05070d;
-  --bg2:#080b14;
-  --glass:rgba(15,19,32,.72);
-  --glass2:rgba(255,255,255,.045);
-
+  --panel:rgba(13,17,29,.82);
+  --panel2:#0b101b;
+  --border:rgba(255,255,255,.10);
   --text:#f5f7ff;
-  --muted:#7f879b;
-
-  --cyan:#61e7ff;
-  --purple:#9b7cff;
-  --pink:#ff68c8;
-  --green:#53f5a5;
-  --orange:#ffb45e;
-
-  --border:rgba(255,255,255,.09);
-
-  --radius:24px;
+  --muted:#788197;
+  --green:#66ff9a;
+  --cyan:#5de7ff;
+  --purple:#a477ff;
+  --red:#ff5575;
+  --yellow:#ffd86b;
+  --shadow:0 25px 80px rgba(0,0,0,.45);
 }
-
-/* RESET */
 
 *{
   box-sizing:border-box;
@@ -47,137 +36,41 @@ html{
 body{
   min-height:100vh;
   color:var(--text);
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    sans-serif;
-
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display",
+  "Segoe UI",Roboto,Arial,sans-serif;
   background:
-    radial-gradient(
-      circle at 10% 10%,
-      rgba(97,231,255,.14),
-      transparent 28%
-    ),
-
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(155,124,255,.16),
-      transparent 30%
-    ),
-
-    radial-gradient(
-      circle at 50% 90%,
-      rgba(255,104,200,.09),
-      transparent 30%
-    ),
-
+    radial-gradient(circle at 15% 0%,rgba(102,255,154,.12),transparent 30%),
+    radial-gradient(circle at 85% 10%,rgba(164,119,255,.12),transparent 30%),
+    radial-gradient(circle at 50% 70%,rgba(93,231,255,.06),transparent 35%),
     var(--bg);
-
   overflow-x:hidden;
 }
 
-/* AURORA */
-
-body::before{
+body:before{
   content:"";
-
-  position:fixed;
-
-  width:600px;
-  height:600px;
-
-  left:50%;
-  top:20%;
-
-  transform:translate(-50%,-50%);
-
-  background:
-    conic-gradient(
-      from 0deg,
-      var(--cyan),
-      var(--purple),
-      var(--pink),
-      var(--cyan)
-    );
-
-  filter:blur(130px);
-
-  opacity:.07;
-
-  animation:
-    aurora 18s linear infinite;
-
-  pointer-events:none;
-
-  z-index:-2;
-}
-
-@keyframes aurora{
-
-  0%{
-    transform:
-      translate(-50%,-50%)
-      rotate(0deg)
-      scale(1);
-  }
-
-  50%{
-    transform:
-      translate(-50%,-50%)
-      rotate(180deg)
-      scale(1.25);
-  }
-
-  100%{
-    transform:
-      translate(-50%,-50%)
-      rotate(360deg)
-      scale(1);
-  }
-
-}
-
-/* GRID */
-
-body::after{
-  content:"";
-
   position:fixed;
   inset:0;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.025) 1px,
-      transparent 1px
-    );
-
-  background-size:45px 45px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent 80%
-    );
-
   pointer-events:none;
-
-  z-index:-1;
+  opacity:.35;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,#000,transparent);
 }
 
-/* LINKS */
-
-a{
-  color:inherit;
-  text-decoration:none;
+body:after{
+  content:"";
+  position:fixed;
+  width:450px;
+  height:450px;
+  left:50%;
+  top:35%;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:rgba(102,255,154,.035);
+  filter:blur(80px);
+  pointer-events:none;
 }
 
 button,
@@ -185,45 +78,35 @@ input{
   font:inherit;
 }
 
-/* =========================================
-   TOP NAV
-========================================= */
+button{
+  cursor:pointer;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+/* ================================
+   NAV
+================================ */
 
 .nav{
-
-  width:min(1280px,calc(100% - 28px));
-
-  height:68px;
-
-  margin:14px auto 0;
-
-  padding:0 15px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
   position:sticky;
-
-  top:12px;
-
+  top:14px;
   z-index:100;
-
+  width:min(1240px,calc(100% - 28px));
+  height:70px;
+  margin:14px auto 0;
+  padding:0 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
   border:1px solid var(--border);
-
-  border-radius:20px;
-
-  background:
-    rgba(7,10,18,.72);
-
-  backdrop-filter:
-    blur(25px)
-    saturate(150%);
-
-  box-shadow:
-    0 20px 70px rgba(0,0,0,.35);
+  border-radius:22px;
+  background:rgba(7,10,17,.72);
+  backdrop-filter:blur(24px);
+  box-shadow:var(--shadow);
 }
 
 .brand{
@@ -232,991 +115,762 @@ input{
   gap:12px;
 }
 
-.brand-logo{
-
-  width:42px;
-  height:42px;
-
-  border-radius:14px;
-
-  display:grid;
-  place-items:center;
-
+.avatar{
+  width:46px;
+  height:46px;
+  border-radius:15px;
   overflow:hidden;
-
-  border:1px solid rgba(97,231,255,.25);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(97,231,255,.15),
-      rgba(155,124,255,.12)
-    );
-
+  border:1px solid rgba(102,255,154,.45);
+  background:#101522;
   box-shadow:
-    0 0 30px rgba(97,231,255,.12);
+    0 0 25px rgba(102,255,154,.16),
+    inset 0 0 20px rgba(255,255,255,.04);
 }
 
-.brand-logo img{
+.avatar img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
 
-.brand-name{
-  font-weight:800;
-  letter-spacing:-.4px;
+.brand-title{
+  font-size:15px;
+  font-weight:850;
+  letter-spacing:-.3px;
 }
 
 .brand-sub{
-  color:#687187;
-  font:9px monospace;
-  letter-spacing:2px;
   margin-top:3px;
+  color:#68738a;
+  font:9px monospace;
+  letter-spacing:2.5px;
 }
 
-.nav-actions{
+.nav-right{
   display:flex;
   gap:8px;
+  align-items:center;
 }
 
 .nav-btn{
-
-  height:40px;
-
-  padding:0 13px;
-
-  border-radius:12px;
-
+  height:42px;
+  padding:0 15px;
   border:1px solid var(--border);
-
-  background:
-    rgba(255,255,255,.035);
-
-  color:#aeb6c8;
-
-  cursor:pointer;
-
+  border-radius:13px;
+  background:#0b1019;
+  color:#aab4c7;
   font:10px monospace;
-
-  letter-spacing:1px;
-
+  letter-spacing:1.5px;
   transition:.2s;
 }
 
 .nav-btn:hover{
-  color:white;
-  border-color:rgba(97,231,255,.35);
+  color:var(--green);
+  border-color:rgba(102,255,154,.4);
   transform:translateY(-2px);
 }
 
-/* =========================================
-   MAIN
-========================================= */
+/* ================================
+   WRAPPER
+================================ */
 
-.container{
-
-  width:min(1280px,calc(100% - 28px));
-
+.wrap{
+  width:min(1240px,calc(100% - 28px));
   margin:auto;
-
-  padding:
-    70px
-    0
-    100px;
+  padding:85px 0 70px;
 }
 
-/* =========================================
+/* ================================
    HERO
-========================================= */
+================================ */
 
 .hero{
-
   display:grid;
-
-  grid-template-columns:
-    1.4fr
-    .6fr;
-
-  gap:25px;
-
+  grid-template-columns:1.35fr .65fr;
+  gap:30px;
   align-items:stretch;
 }
 
-.hero-main{
-
-  min-height:390px;
-
-  padding:40px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  border:
-    1px solid
-    rgba(255,255,255,.09);
-
-  border-radius:32px;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(17,23,40,.88),
-      rgba(8,11,20,.68)
-    );
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.3);
-}
-
-.hero-main::before{
-
-  content:"";
-
-  position:absolute;
-
-  width:400px;
-  height:400px;
-
-  right:-150px;
-  top:-170px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(97,231,255,.18),
-      transparent 65%
-    );
-
-  filter:blur(20px);
-}
-
 .eyebrow{
-
-  color:var(--cyan);
-
-  font:10px monospace;
-
-  letter-spacing:4px;
-
-  margin-bottom:25px;
-}
-
-h1{
-
-  font-size:
-    clamp(52px,7vw,92px);
-
-  line-height:.88;
-
-  letter-spacing:-6px;
-
-  max-width:750px;
-}
-
-.gradient-text{
-
-  background:
-    linear-gradient(
-      100deg,
-      #fff,
-      var(--cyan),
-      var(--purple),
-      #fff
-    );
-
-  background-size:300%;
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  color:transparent;
-
-  animation:
-    textflow 8s ease infinite;
-}
-
-@keyframes textflow{
-
-  0%,100%{
-    background-position:0%;
-  }
-
-  50%{
-    background-position:100%;
-  }
-
-}
-
-.hero-description{
-
-  max-width:600px;
-
-  margin-top:25px;
-
-  color:#858da0;
-
-  line-height:1.7;
-
-  font-size:14px;
-}
-
-.hero-tags{
-
-  display:flex;
-
-  flex-wrap:wrap;
-
-  gap:8px;
-
-  margin-top:30px;
-}
-
-.tag{
-
-  padding:8px 12px;
-
-  border:1px solid var(--border);
-
-  border-radius:30px;
-
-  background:
-    rgba(255,255,255,.035);
-
-  color:#929caf;
-
-  font:9px monospace;
-
-  letter-spacing:1px;
-}
-
-/* =========================================
-   KHANDU CARD
-========================================= */
-
-.khandu{
-
-  min-height:390px;
-
-  padding:25px;
-
-  position:relative;
-
-  overflow:hidden;
-
-  border-radius:32px;
-
-  border:1px solid rgba(255,255,255,.09);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(21,17,34,.9),
-      rgba(10,12,21,.72)
-    );
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:space-between;
-}
-
-.khandu::after{
-
-  content:"";
-
-  position:absolute;
-
-  width:240px;
-  height:240px;
-
-  right:-100px;
-  bottom:-100px;
-
-  border-radius:50%;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(255,104,200,.2),
-      transparent 70%
-    );
-
-  filter:blur(20px);
-}
-
-.khandu-top{
-
-  display:flex;
-
-  justify-content:space-between;
-
+  display:inline-flex;
   align-items:center;
-}
-
-.khandu-label{
-
-  color:#a3aabd;
-
-  font:9px monospace;
-
+  gap:8px;
+  padding:7px 11px;
+  border:1px solid rgba(102,255,154,.2);
+  border-radius:30px;
+  background:rgba(102,255,154,.045);
+  color:var(--green);
+  font:10px monospace;
   letter-spacing:2px;
 }
 
-.online{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:7px;
-
-  color:var(--green);
-
-  font:9px monospace;
-}
-
-.online-dot{
-
+.pulse{
   width:7px;
   height:7px;
-
   border-radius:50%;
-
   background:var(--green);
-
-  box-shadow:
-    0 0 15px var(--green);
-
+  box-shadow:0 0 14px var(--green);
   animation:pulse 1.6s infinite;
 }
 
 @keyframes pulse{
-
-  0%,100%{
-    opacity:1;
-    transform:scale(1);
-  }
-
-  50%{
-    opacity:.35;
-    transform:scale(.65);
-  }
-
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.4;transform:scale(.7)}
 }
 
-.dog{
-
-  width:145px;
-  height:145px;
-
-  margin:auto;
-
-  border-radius:38px;
-
-  overflow:hidden;
-
-  border:1px solid rgba(255,255,255,.13);
-
-  box-shadow:
-    0 20px 50px rgba(0,0,0,.5),
-    0 0 50px rgba(255,104,200,.12);
-
-  transform:
-    rotate(-2deg);
-
-  transition:.4s;
-}
-
-.khandu:hover .dog{
-
-  transform:
-    rotate(2deg)
-    scale(1.05);
-}
-
-.dog img{
-
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-}
-
-.khandu-name{
-
-  text-align:center;
-
-  font-size:28px;
-
-  font-weight:900;
-
-  letter-spacing:-1px;
-}
-
-.khandu-role{
-
-  text-align:center;
-
-  color:#70788c;
-
-  margin-top:5px;
-
-  font:9px monospace;
-
-  letter-spacing:2px;
-}
-
-/* =========================================
-   CONTROL BAR
-========================================= */
-
-.control{
-
+h1{
   margin-top:25px;
+  max-width:850px;
+  font-size:clamp(50px,8vw,105px);
+  line-height:.87;
+  letter-spacing:-7px;
+}
 
-  padding:13px;
+.gradient-text{
+  background:linear-gradient(
+    100deg,
+    #fff,
+    #c9ffe0 40%,
+    #7beaff 75%,
+    #a477ff
+  );
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
 
-  border:1px solid var(--border);
+.hero-text{
+  max-width:650px;
+  margin-top:25px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.75;
+}
 
-  border-radius:20px;
-
-  background:
-    rgba(11,15,25,.75);
-
-  backdrop-filter:blur(20px);
-
+.hero-buttons{
   display:flex;
-
   gap:10px;
-
+  margin-top:30px;
   flex-wrap:wrap;
 }
 
-.search{
-
-  flex:1;
-
-  min-width:220px;
-
-  height:50px;
-
-  padding:0 17px;
-
-  border:1px solid var(--border);
-
+.primary{
+  min-height:48px;
+  padding:0 20px;
+  border:0;
   border-radius:14px;
-
-  outline:none;
-
-  color:white;
-
-  background:
-    rgba(255,255,255,.035);
-}
-
-.search::placeholder{
-  color:#606a7e;
-}
-
-.search:focus{
-
-  border-color:
-    rgba(97,231,255,.4);
-
-  box-shadow:
-    0 0 30px rgba(97,231,255,.06);
-}
-
-.filter{
-
-  height:50px;
-
-  padding:0 16px;
-
-  border:1px solid var(--border);
-
-  border-radius:14px;
-
-  color:#788298;
-
-  background:
-    rgba(255,255,255,.03);
-
-  cursor:pointer;
-
-  font:9px monospace;
-
-  letter-spacing:1px;
-
+  background:linear-gradient(135deg,var(--green),#35dfff);
+  color:#04100a;
+  font:900 11px monospace;
+  letter-spacing:1.8px;
+  box-shadow:0 0 35px rgba(102,255,154,.12);
   transition:.2s;
 }
 
-.filter:hover,
-.filter.active{
-
-  color:white;
-
-  border-color:
-    rgba(97,231,255,.35);
-
-  background:
-    rgba(97,231,255,.07);
-
-  box-shadow:
-    0 0 20px rgba(97,231,255,.05);
+.primary:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 45px rgba(102,255,154,.25);
 }
 
-/* =========================================
-   SYSTEM BAR
-========================================= */
-
-.system{
-
-  margin:25px 0 17px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
+.ghost{
+  min-height:48px;
+  padding:0 20px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(255,255,255,.025);
+  color:#aeb8c9;
+  font:900 11px monospace;
+  letter-spacing:1.8px;
+  transition:.2s;
 }
 
-.system-title{
-
-  color:#788298;
-
-  font:10px monospace;
-
-  letter-spacing:3px;
-}
-
-.system-right{
-
-  display:flex;
-
-  align-items:center;
-
-  gap:15px;
-
-  color:#6e788d;
-
-  font:9px monospace;
-}
-
-.scan{
-
+.ghost:hover{
+  border-color:rgba(93,231,255,.4);
   color:var(--cyan);
 }
 
-/* =========================================
-   APP GRID
-========================================= */
+/* ================================
+   DON CARD
+================================ */
 
-.grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:16px;
-}
-
-/* =========================================
-   APP CARD
-========================================= */
-
-.card{
-
+.don-card{
   position:relative;
-
+  min-height:360px;
   overflow:hidden;
-
   padding:20px;
-
-  border:1px solid var(--border);
-
-  border-radius:24px;
-
+  border:1px solid rgba(102,255,154,.18);
+  border-radius:28px;
   background:
-    linear-gradient(
-      145deg,
-      rgba(16,21,34,.82),
-      rgba(8,11,19,.72)
-    );
-
-  transition:
-    transform .3s,
-    border-color .3s,
-    box-shadow .3s;
+    radial-gradient(circle at 50% 0%,rgba(102,255,154,.12),transparent 45%),
+    linear-gradient(145deg,#101725,#080c14);
+  box-shadow:var(--shadow);
 }
 
-.card::before{
-
+.don-card:before{
   content:"";
-
   position:absolute;
-
-  width:170px;
-  height:170px;
-
-  right:-100px;
-  top:-100px;
-
-  border-radius:50%;
-
+  inset:0;
   background:
-    radial-gradient(
-      circle,
-      rgba(97,231,255,.13),
-      transparent 70%
-    );
-
-  filter:blur(15px);
-
-  transition:.4s;
+    linear-gradient(120deg,transparent 30%,rgba(255,255,255,.04),transparent 70%);
+  transform:translateX(-100%);
+  animation:scan 5s infinite;
 }
 
-.card:hover{
-
-  transform:
-    translateY(-7px);
-
-  border-color:
-    rgba(97,231,255,.25);
-
-  box-shadow:
-    0 25px 70px rgba(0,0,0,.4),
-    0 0 35px rgba(97,231,255,.04);
+@keyframes scan{
+  0%,65%{transform:translateX(-100%)}
+  100%{transform:translateX(100%)}
 }
 
-.card:hover::before{
-
-  transform:scale(1.5);
-
-  opacity:1.5;
-}
-
-.card-top{
-
+.don-top{
+  position:relative;
+  z-index:2;
   display:flex;
-
+  justify-content:space-between;
   align-items:center;
-
-  gap:14px;
 }
 
-.icon{
+.don-status{
+  color:var(--green);
+  font:9px monospace;
+  letter-spacing:2px;
+}
 
-  width:64px;
-  height:64px;
-
-  flex:none;
-
-  overflow:hidden;
-
-  border-radius:18px;
-
+.don-chip{
+  padding:6px 9px;
   border:1px solid rgba(255,255,255,.1);
-
-  background:#111622;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,.3);
+  border-radius:20px;
+  color:#8792a8;
+  font:9px monospace;
 }
 
-.icon img{
+.don-image{
+  position:absolute;
+  width:240px;
+  height:240px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-45%);
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid rgba(102,255,154,.4);
+  box-shadow:
+    0 0 0 10px rgba(102,255,154,.025),
+    0 0 60px rgba(102,255,154,.16);
+}
 
+.don-image img{
   width:100%;
   height:100%;
-
   object-fit:cover;
 }
 
-.info{
-
-  min-width:0;
+.don-name{
+  position:absolute;
+  left:20px;
+  bottom:20px;
+  z-index:3;
 }
 
-.title{
-
-  font-size:17px;
-
-  font-weight:750;
-
-  white-space:nowrap;
-
-  overflow:hidden;
-
-  text-overflow:ellipsis;
-}
-
-.meta{
-
-  color:#6f788b;
-
+.don-name small{
+  color:#718098;
   font:9px monospace;
+  letter-spacing:3px;
+}
 
+.don-name h2{
+  margin-top:4px;
+  font-size:30px;
+  letter-spacing:-1px;
+}
+
+.don-card .corner{
+  position:absolute;
+  width:25px;
+  height:25px;
+  border-color:rgba(102,255,154,.5);
+}
+
+.corner.one{
+  left:15px;
+  top:15px;
+  border-left:1px solid;
+  border-top:1px solid;
+}
+
+.corner.two{
+  right:15px;
+  bottom:15px;
+  border-right:1px solid;
+  border-bottom:1px solid;
+}
+
+/* ================================
+   STATS
+================================ */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:25px;
+}
+
+.stat{
+  padding:19px;
+  border:1px solid var(--border);
+  border-radius:18px;
+  background:rgba(10,14,23,.72);
+  backdrop-filter:blur(15px);
+}
+
+.stat-label{
+  color:#68748a;
+  font:9px monospace;
+  letter-spacing:2px;
+}
+
+.stat-number{
+  margin-top:8px;
+  font-size:27px;
+  font-weight:850;
+}
+
+.stat-line{
+  width:100%;
+  height:2px;
+  margin-top:12px;
+  background:#182030;
+  overflow:hidden;
+}
+
+.stat-line span{
+  display:block;
+  width:75%;
+  height:100%;
+  background:linear-gradient(90deg,var(--green),var(--cyan));
+}
+
+/* ================================
+   TOOLBAR
+================================ */
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin:70px 0 20px;
+}
+
+.section-label{
+  color:#68748a;
+  font:10px monospace;
+  letter-spacing:3px;
+}
+
+.section-title{
   margin-top:7px;
+  font-size:30px;
+  letter-spacing:-1px;
+}
 
+.system{
+  color:var(--green);
+  font:9px monospace;
+  letter-spacing:1.5px;
+}
+
+.toolbar{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+
+.search{
+  flex:1;
+  min-width:230px;
+  height:48px;
+  padding:0 16px;
+  outline:none;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:#090e17;
+  color:white;
+}
+
+.search::placeholder{
+  color:#566176;
+}
+
+.search:focus{
+  border-color:rgba(93,231,255,.35);
+  box-shadow:0 0 25px rgba(93,231,255,.06);
+}
+
+.filter{
+  height:48px;
+  padding:0 14px;
+  border:1px solid var(--border);
+  border-radius:13px;
+  background:#090e17;
+  color:#778298;
+  font:10px monospace;
+  letter-spacing:1px;
+  transition:.2s;
+}
+
+.filter.active,
+.filter:hover{
+  color:var(--green);
+  border-color:rgba(102,255,154,.35);
+  background:rgba(102,255,154,.035);
+}
+
+/* ================================
+   GRID
+================================ */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.card{
+  position:relative;
+  overflow:hidden;
+  padding:20px;
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:
+    linear-gradient(145deg,rgba(15,20,31,.95),rgba(7,10,17,.96));
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  border-color:rgba(102,255,154,.25);
+  box-shadow:0 25px 60px rgba(0,0,0,.35);
+}
+
+.card:after{
+  content:"";
+  position:absolute;
+  width:160px;
+  height:160px;
+  right:-90px;
+  bottom:-90px;
+  border-radius:50%;
+  background:rgba(102,255,154,.07);
+  filter:blur(40px);
+}
+
+.card-top{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.icon{
+  width:64px;
+  height:64px;
+  flex:none;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.1);
+  background:#111827;
+}
+
+.icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.card-title{
+  font-size:18px;
+  font-weight:800;
+}
+
+.card-meta{
+  margin-top:6px;
+  color:#69758b;
+  font:9px monospace;
+  letter-spacing:1px;
+}
+
+.badge{
+  display:inline-block;
+  margin-bottom:7px;
+  padding:4px 8px;
+  border-radius:10px;
+  border:1px solid rgba(102,255,154,.2);
+  color:var(--green);
+  font:8px monospace;
   letter-spacing:1px;
 }
 
 .status{
-
+  position:relative;
+  z-index:2;
   display:flex;
-
   align-items:center;
-
   gap:7px;
-
-  margin-top:18px;
-
-  color:#7d8799;
-
+  margin-top:17px;
+  color:#6d7890;
   font:9px monospace;
-
-  letter-spacing:1px;
+  letter-spacing:1.5px;
 }
 
 .status-dot{
-
   width:6px;
   height:6px;
-
   border-radius:50%;
-
   background:var(--green);
-
-  box-shadow:
-    0 0 10px var(--green);
+  box-shadow:0 0 12px var(--green);
 }
 
 .divider{
-
   height:1px;
-
   margin:17px 0;
-
-  background:
-    rgba(255,255,255,.06);
+  background:rgba(255,255,255,.07);
 }
 
 .card-info{
-
   display:flex;
-
   justify-content:space-between;
-
-  color:#687286;
-
-  font:8px monospace;
-
+  color:#67738a;
+  font:9px monospace;
   letter-spacing:1px;
 }
 
 .actions{
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
   gap:8px;
-
   margin-top:17px;
 }
 
 .install{
-
   grid-column:1/-1;
-
   height:44px;
-
   border:0;
-
-  border-radius:13px;
-
-  cursor:pointer;
-
-  color:#02060a;
-
-  font:900 10px monospace;
-
-  letter-spacing:2px;
-
-  background:
-    linear-gradient(
-      100deg,
-      var(--cyan),
-      #82cfff,
-      var(--purple)
-    );
-
-  background-size:200%;
-
-  transition:.3s;
-
-  box-shadow:
-    0 10px 30px rgba(97,231,255,.08);
-}
-
-.install:hover{
-
-  background-position:100%;
-
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 10px 35px rgba(97,231,255,.18);
-}
-
-.secondary{
-
-  height:40px;
-
-  border:1px solid var(--border);
-
   border-radius:12px;
-
-  background:
-    rgba(255,255,255,.025);
-
-  color:#8d96a8;
-
-  cursor:pointer;
-
-  font:8px monospace;
-
-  letter-spacing:1px;
-
+  background:linear-gradient(135deg,var(--green),#48dfff);
+  color:#041009;
+  font:900 10px monospace;
+  letter-spacing:2px;
   transition:.2s;
 }
 
-.secondary:hover{
-
-  color:white;
-
-  border-color:
-    rgba(155,124,255,.35);
+.install:hover{
+  transform:translateY(-2px);
 }
 
-/* =========================================
-   EMPTY
-========================================= */
+.secondary{
+  height:40px;
+  border:1px solid var(--border);
+  border-radius:11px;
+  background:#0a0f18;
+  color:#8a95a8;
+  font:9px monospace;
+  letter-spacing:1px;
+}
 
-.empty{
+.secondary:hover{
+  color:var(--cyan);
+  border-color:rgba(93,231,255,.3);
+}
 
+/* ================================
+   MODAL
+================================ */
+
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:300;
   display:none;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(15px);
+}
 
-  padding:70px 20px;
+.modal.show{
+  display:grid;
+}
 
-  text-align:center;
+.modal-box{
+  width:min(520px,100%);
+  padding:25px;
+  border:1px solid rgba(102,255,154,.25);
+  border-radius:25px;
+  background:#0a0f18;
+  box-shadow:0 30px 100px rgba(0,0,0,.7);
+  animation:modalIn .25s ease;
+}
 
-  border:1px dashed var(--border);
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:scale(.94) translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
 
-  border-radius:24px;
+.modal-head{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
 
-  color:#646e82;
+.modal-avatar{
+  width:58px;
+  height:58px;
+  border-radius:17px;
+  overflow:hidden;
+  border:1px solid rgba(102,255,154,.3);
+}
 
+.modal-avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.modal h3{
+  font-size:21px;
+}
+
+.modal p{
+  margin-top:18px;
+  color:#788399;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.close{
+  width:100%;
+  height:44px;
+  margin-top:20px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#111722;
+  color:#9ca7b9;
   font:10px monospace;
-
   letter-spacing:2px;
 }
 
-/* =========================================
+/* ================================
+   EMPTY
+================================ */
+
+.empty{
+  display:none;
+  padding:65px 20px;
+  text-align:center;
+  border:1px dashed #273044;
+  border-radius:20px;
+  color:#68748a;
+  font:10px monospace;
+  letter-spacing:2px;
+}
+
+/* ================================
    FOOTER
-========================================= */
+================================ */
 
 footer{
-
   margin-top:80px;
-
-  padding:35px 0 20px;
-
-  border-top:
-    1px solid
-    rgba(255,255,255,.06);
-
+  padding:35px 0 15px;
+  border-top:1px solid rgba(255,255,255,.07);
   text-align:center;
 }
 
-.footer-logo{
-
-  font-size:18px;
-
-  font-weight:900;
-
-  letter-spacing:3px;
+.footer-dp{
+  width:58px;
+  height:58px;
+  margin:auto;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(102,255,154,.3);
 }
 
-.footer-text{
+.footer-dp img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-  margin-top:8px;
+.footer-title{
+  margin-top:13px;
+  font-weight:850;
+}
 
-  color:#596276;
-
-  font:8px monospace;
-
+.footer-sub{
+  margin-top:7px;
+  color:#59657a;
+  font:9px monospace;
   letter-spacing:2px;
 }
 
 .footer-links{
-
-  margin-top:20px;
-
   display:flex;
-
   justify-content:center;
-
-  gap:20px;
+  gap:18px;
+  margin-top:18px;
 }
 
 .footer-links a{
-
-  color:#70798c;
-
+  color:#707c91;
   font:9px monospace;
-
-  transition:.2s;
+  letter-spacing:1px;
 }
 
 .footer-links a:hover{
-  color:var(--cyan);
+  color:var(--green);
 }
 
-/* =========================================
+/* ================================
    MOBILE
-========================================= */
+================================ */
 
-@media(max-width:1000px){
+@media(max-width:850px){
 
   .hero{
-
     grid-template-columns:1fr;
   }
 
-  .grid{
-
-    grid-template-columns:
-      repeat(2,1fr);
+  .don-card{
+    min-height:330px;
   }
 
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
-@media(max-width:650px){
+@media(max-width:520px){
 
   .nav{
+    height:62px;
+    border-radius:18px;
+  }
 
-    height:60px;
-
-    width:
-      calc(100% - 18px);
+  .avatar{
+    width:40px;
+    height:40px;
   }
 
   .brand-sub{
@@ -1227,402 +881,470 @@ footer{
     padding:0 10px;
   }
 
-  .container{
-
-    width:
-      calc(100% - 18px);
-
-    padding-top:45px;
-  }
-
-  .hero-main{
-
-    min-height:390px;
-
-    padding:28px;
+  .wrap{
+    padding-top:60px;
   }
 
   h1{
-
-    font-size:
-      clamp(48px,15vw,70px);
-
     letter-spacing:-4px;
   }
 
-  .khandu{
-
-    min-height:350px;
+  .hero-text{
+    font-size:14px;
   }
 
-  .grid{
-
-    grid-template-columns:1fr;
+  .don-image{
+    width:205px;
+    height:205px;
   }
 
-  .control{
-
-    padding:10px;
+  .don-name h2{
+    font-size:25px;
   }
 
-  .filter{
+  .stats{
+    gap:8px;
+  }
 
-    flex:1;
+  .stat{
+    padding:15px;
+  }
+
+  .stat-number{
+    font-size:23px;
+  }
+
+  .section-head{
+    display:block;
   }
 
   .system{
-
-    align-items:flex-start;
-    gap:10px;
+    margin-top:10px;
   }
 
+  .toolbar{
+    flex-direction:row;
+  }
+
+  .search{
+    width:100%;
+    min-width:100%;
+  }
+
+  .filter{
+    flex:1;
+    min-width:70px;
+  }
+
+  .actions{
+    grid-template-columns:1fr;
+  }
+
+  .install{
+    grid-column:auto;
+  }
 }
-
-@media(max-width:430px){
-
-  .nav-btn:first-child{
-    display:none;
-  }
-
-  .hero-main{
-    padding:24px;
-  }
-
-  .hero-tags{
-    gap:6px;
-  }
-
-  .tag{
-    padding:7px 9px;
-  }
-
-}
-
-/* =========================================
-   LOADING
-========================================= */
-
-.card{
-
-  animation:
-    cardIn .5s both;
-}
-
-@keyframes cardIn{
-
-  from{
-    opacity:0;
-    transform:translateY(15px);
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-
-}
-
 </style>
-
 </head>
 
 <body>
 
-
-<!-- ================= NAV ================= -->
+<!-- NAVBAR -->
 
 <nav class="nav">
 
   <div class="brand">
 
-    <div class="brand-logo">
-
-      <img
-        src="khandu-don.png"
-        alt="Khandu Don"
-      >
-
+    <div class="avatar">
+      <img src="./khandu-don.png" alt="Khandu Don">
     </div>
 
     <div>
-
-      <div class="brand-name">
-        KHANDU OS
+      <div class="brand-title">
+        KHANDU DON
       </div>
 
       <div class="brand-sub">
-        FUTURE RELEASE NETWORK
+        FUTURE RELEASE HUB
       </div>
-
     </div>
 
   </div>
 
-
-  <div class="nav-actions">
+  <div class="nav-right">
 
     <a
       class="nav-btn"
       href="https://t.me/ItsRorito"
       target="_blank"
+      rel="noopener"
     >
       TELEGRAM ↗
     </a>
-
-    <button
-      class="nav-btn"
-      onclick="systemScan()"
-    >
-      SCAN
-    </button>
 
   </div>
 
 </nav>
 
 
+<main class="wrap">
 
-<main class="container">
+  <!-- HERO -->
 
+  <section class="hero">
 
-<!-- ================= HERO ================= -->
+    <div>
 
-<section class="hero">
+      <div class="eyebrow">
+        <span class="pulse"></span>
+        SYSTEM ONLINE
+      </div>
 
+      <h1>
+        Your apps.<br>
+        <span class="gradient-text">Your future.</span>
+      </h1>
 
-  <div class="hero-main">
+      <p class="hero-text">
+        Welcome to the Khandu Don Release Hub.
+        Explore applications, builds and authorized releases
+        through a futuristic interface designed for speed.
+      </p>
 
-    <div class="eyebrow">
-      KHANDU NETWORK / 01
-    </div>
+      <div class="hero-buttons">
 
-    <h1>
+        <a
+          href="#catalog"
+          class="primary"
+        >
+          EXPLORE RELEASES ↓
+        </a>
 
-      THE
-      <span class="gradient-text">
-        FUTURE
-      </span>
+        <button
+          class="ghost"
+          onclick="openAbout()"
+        >
+          ABOUT KHANDU DON
+        </button>
 
-      <br>
-
-      IS HERE.
-
-    </h1>
-
-    <p class="hero-description">
-
-      A next-generation application release
-      center engineered for fast access,
-      clean distribution and a futuristic
-      experience across iPhone, iPad and
-      desktop.
-
-    </p>
-
-
-    <div class="hero-tags">
-
-      <span class="tag">
-        ⚡ FAST DELIVERY
-      </span>
-
-      <span class="tag">
-        ◉ LIVE SYSTEM
-      </span>
-
-      <span class="tag">
-        ◇ IOS READY
-      </span>
-
-      <span class="tag">
-        24/7 NETWORK
-      </span>
-
-    </div>
-
-  </div>
-
-
-
-  <!-- KHANDU -->
-
-  <aside class="khandu">
-
-    <div class="khandu-top">
-
-      <span class="khandu-label">
-        NETWORK MASCOT
-      </span>
-
-      <span class="online">
-
-        <span class="online-dot"></span>
-
-        ONLINE
-
-      </span>
+      </div>
 
     </div>
 
 
-    <div class="dog">
+    <!-- KHANDU DON -->
+
+    <div class="don-card">
+
+      <span class="corner one"></span>
+      <span class="corner two"></span>
+
+      <div class="don-top">
+
+        <span class="don-status">
+          ● VERIFIED PROFILE
+        </span>
+
+        <span class="don-chip">
+          2026
+        </span>
+
+      </div>
+
+      <div class="don-image">
+
+        <img
+          src="./khandu-don.png"
+          alt="Khandu Don"
+        >
+
+      </div>
+
+      <div class="don-name">
+
+        <small>
+          RELEASE ARCHITECT
+        </small>
+
+        <h2>
+          Khandu Don
+        </h2>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- STATS -->
+
+  <section class="stats">
+
+    <div class="stat">
+
+      <div class="stat-label">
+        LIVE BUILDS
+      </div>
+
+      <div
+        class="stat-number"
+        id="liveCount"
+      >
+        0
+      </div>
+
+      <div class="stat-line">
+        <span></span>
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-label">
+        TOTAL APPS
+      </div>
+
+      <div
+        class="stat-number"
+        id="appCount"
+      >
+        0
+      </div>
+
+      <div class="stat-line">
+        <span></span>
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-label">
+        CATEGORIES
+      </div>
+
+      <div
+        class="stat-number"
+        id="categoryCount"
+      >
+        0
+      </div>
+
+      <div class="stat-line">
+        <span></span>
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-label">
+        STATUS
+      </div>
+
+      <div class="stat-number">
+        100%
+      </div>
+
+      <div class="stat-line">
+        <span></span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CATALOG -->
+
+  <section id="catalog">
+
+    <div class="section-head">
+
+      <div>
+
+        <div class="section-label">
+          RELEASE DATABASE / 01
+        </div>
+
+        <div class="section-title">
+          Application Catalog
+        </div>
+
+      </div>
+
+      <div class="system">
+        ● ALL SYSTEMS OPERATIONAL
+      </div>
+
+    </div>
+
+
+    <div class="toolbar">
+
+      <input
+        id="search"
+        class="search"
+        type="search"
+        placeholder="Search applications..."
+      >
+
+      <button
+        class="filter active"
+        data-filter="all"
+      >
+        ALL
+      </button>
+
+      <button
+        class="filter"
+        data-filter="social"
+      >
+        SOCIAL
+      </button>
+
+      <button
+        class="filter"
+        data-filter="media"
+      >
+        MEDIA
+      </button>
+
+      <button
+        class="filter"
+        data-filter="tools"
+      >
+        TOOLS
+      </button>
+
+      <button
+        class="filter"
+        data-filter="games"
+      >
+        GAMES
+      </button>
+
+    </div>
+
+
+    <section
+      class="grid"
+      id="appGrid"
+    ></section>
+
+
+    <div
+      class="empty"
+      id="empty"
+    >
+      NO RELEASES FOUND
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-dp">
 
       <img
-        src="khandu-don.png"
+        src="./khandu-don.png"
         alt="Khandu Don"
       >
 
     </div>
 
+    <div class="footer-title">
+      KHANDU DON RELEASE HUB
+    </div>
 
-    <div>
+    <div class="footer-sub">
+      BUILT FOR THE NEXT GENERATION · © 2026
+    </div>
 
-      <div class="khandu-name">
-        Khandu Don
+    <div class="footer-links">
+
+      <a
+        href="https://t.me/ItsRorito"
+        target="_blank"
+        rel="noopener"
+      >
+        TELEGRAM
+      </a>
+
+      <a href="#">
+        PRIVACY
+      </a>
+
+      <a href="#">
+        TERMS
+      </a>
+
+    </div>
+
+  </footer>
+
+</main>
+
+
+<!-- MODAL -->
+
+<div
+  class="modal"
+  id="aboutModal"
+  onclick="closeOutside(event)"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-avatar">
+
+        <img
+          src="./khandu-don.png"
+          alt="Khandu Don"
+        >
+
       </div>
 
-      <div class="khandu-role">
-        CHIEF SYSTEM GUARDIAN
+      <div>
+
+        <h3>
+          Khandu Don
+        </h3>
+
+        <div class="card-meta">
+          RELEASE HUB PROFILE
+        </div>
+
       </div>
 
     </div>
 
-  </aside>
+    <p>
+      Welcome to the Khandu Don Release Hub.
+      This catalog provides a clean futuristic interface
+      for browsing your authorized application releases.
+    </p>
 
-
-</section>
-
-
-
-<!-- ================= CONTROL ================= -->
-
-<section class="control">
-
-  <input
-    id="search"
-    class="search"
-    type="search"
-    placeholder="⌕  Search the release network..."
-  >
-
-
-  <button
-    class="filter active"
-    data-filter="all"
-  >
-    ALL
-  </button>
-
-  <button
-    class="filter"
-    data-filter="social"
-  >
-    SOCIAL
-  </button>
-
-  <button
-    class="filter"
-    data-filter="media"
-  >
-    MEDIA
-  </button>
-
-  <button
-    class="filter"
-    data-filter="tools"
-  >
-    TOOLS
-  </button>
-
-  <button
-    class="filter"
-    data-filter="games"
-  >
-    GAMES
-  </button>
-
-</section>
-
-
-
-<!-- ================= SYSTEM ================= -->
-
-<div class="system">
-
-  <div class="system-title">
-    RELEASE MATRIX
-  </div>
-
-  <div class="system-right">
-
-    <span id="scanStatus">
-      NETWORK READY
-    </span>
-
-    <span class="scan">
-      ● SYSTEM ONLINE
-    </span>
-
-  </div>
-
-</div>
-
-
-
-<!-- ================= APPS ================= -->
-
-<section
-  class="grid"
-  id="appGrid"
-></section>
-
-
-<div
-  class="empty"
-  id="empty"
->
-  NO RELEASES MATCH YOUR SEARCH
-</div>
-
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-  <div class="footer-logo">
-    KHANDU OS
-  </div>
-
-  <div class="footer-text">
-    RORITO NETWORK · FUTURE RELEASE CENTER · 2026
-  </div>
-
-
-  <div class="footer-links">
-
-    <a
-      href="https://t.me/ItsRorito"
-      target="_blank"
+    <button
+      class="close"
+      onclick="closeAbout()"
     >
-      TELEGRAM
-    </a>
-
-    <a href="#">
-      PRIVACY
-    </a>
-
-    <a href="#">
-      TERMS
-    </a>
+      CLOSE
+    </button>
 
   </div>
 
-</footer>
-
-
-</main>
-
+</div>
 
 
 <script>
@@ -1636,12 +1358,12 @@ const apps = [
   {
     name:"Instagram",
     category:"social",
-    icon:"instagram",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"2h ago",
+    region:"GLOBAL",
+    time:"2 HOURS AGO",
     size:"—",
+    icon:"instagram",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1649,12 +1371,12 @@ const apps = [
   {
     name:"TikTok",
     category:"social",
-    icon:"tiktok",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"4h ago",
+    region:"GLOBAL",
+    time:"4 HOURS AGO",
     size:"—",
+    icon:"tiktok",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1662,12 +1384,12 @@ const apps = [
   {
     name:"Telegram",
     category:"social",
-    icon:"telegram",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"telegram",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1675,12 +1397,12 @@ const apps = [
   {
     name:"WhatsApp",
     category:"social",
-    icon:"whatsapp",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"whatsapp",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1688,12 +1410,25 @@ const apps = [
   {
     name:"Discord",
     category:"social",
-    icon:"discord",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Yesterday",
+    region:"GLOBAL",
+    time:"YESTERDAY",
     size:"—",
+    icon:"discord",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
+
+  {
+    name:"X",
+    category:"social",
+    version:"v1.0",
+    region:"GLOBAL",
+    time:"YESTERDAY",
+    size:"—",
+    icon:"x",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1701,12 +1436,12 @@ const apps = [
   {
     name:"YouTube",
     category:"media",
-    icon:"youtube",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"1h ago",
+    region:"GLOBAL",
+    time:"1 HOUR AGO",
     size:"—",
+    icon:"youtube",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1714,12 +1449,12 @@ const apps = [
   {
     name:"Spotify",
     category:"media",
-    icon:"spotify",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"spotify",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1727,12 +1462,12 @@ const apps = [
   {
     name:"Netflix",
     category:"media",
-    icon:"netflix",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"netflix",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1740,12 +1475,12 @@ const apps = [
   {
     name:"Twitch",
     category:"media",
-    icon:"twitch",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Yesterday",
+    region:"GLOBAL",
+    time:"YESTERDAY",
     size:"—",
+    icon:"twitch",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1753,25 +1488,25 @@ const apps = [
   {
     name:"Google Drive",
     category:"tools",
-    icon:"googledrive",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"googledrive",
+    status:"LIVE",
     install:"",
     ipa:""
   },
 
   {
-    name:"Chrome",
+    name:"Google Chrome",
     category:"tools",
-    icon:"googlechrome",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"googlechrome",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1779,25 +1514,25 @@ const apps = [
   {
     name:"GitHub",
     category:"tools",
-    icon:"github",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Yesterday",
+    region:"GLOBAL",
+    time:"YESTERDAY",
     size:"—",
+    icon:"github",
+    status:"LIVE",
     install:"",
     ipa:""
   },
 
   {
-    name:"Notion",
+    name:"Canva",
     category:"tools",
-    icon:"notion",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"2d ago",
+    region:"GLOBAL",
+    time:"2 DAYS AGO",
     size:"—",
+    icon:"canva",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1805,12 +1540,12 @@ const apps = [
   {
     name:"Minecraft",
     category:"games",
-    icon:"minecraft",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"minecraft",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1818,12 +1553,12 @@ const apps = [
   {
     name:"Roblox",
     category:"games",
-    icon:"roblox",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"Today",
+    region:"GLOBAL",
+    time:"TODAY",
     size:"—",
+    icon:"roblox",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1831,12 +1566,12 @@ const apps = [
   {
     name:"Brawl Stars",
     category:"games",
-    icon:"brawlstars",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"2d ago",
+    region:"GLOBAL",
+    time:"YESTERDAY",
     size:"—",
+    icon:"brawlstars",
+    status:"LIVE",
     install:"",
     ipa:""
   },
@@ -1844,12 +1579,38 @@ const apps = [
   {
     name:"PUBG",
     category:"games",
-    icon:"pubg",
-    region:"GLOBAL",
     version:"v1.0",
-    status:"LIVE",
-    time:"3d ago",
+    region:"GLOBAL",
+    time:"2 DAYS AGO",
     size:"—",
+    icon:"pubg",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
+
+  {
+    name:"Call of Duty",
+    category:"games",
+    version:"v1.0",
+    region:"GLOBAL",
+    time:"3 DAYS AGO",
+    size:"—",
+    icon:"callofduty",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
+
+  {
+    name:"Threads",
+    category:"social",
+    version:"v1.0",
+    region:"GLOBAL",
+    time:"3 DAYS AGO",
+    size:"—",
+    icon:"threads",
+    status:"LIVE",
     install:"",
     ipa:""
   }
@@ -1863,10 +1624,9 @@ const apps = [
 
 function iconURL(name){
 
-  return
-    "https://cdn.simpleicons.org/"
-    + name +
-    "/ffffff";
+  return "https://cdn.simpleicons.org/" +
+         name +
+         "/ffffff";
 
 }
 
@@ -1884,9 +1644,6 @@ const empty =
 const search =
   document.getElementById("search");
 
-const scanStatus =
-  document.getElementById("scanStatus");
-
 let currentFilter = "all";
 
 
@@ -1900,7 +1657,6 @@ function render(){
     search.value
       .toLowerCase()
       .trim();
-
 
   const filtered =
     apps.filter(app => {
@@ -1922,17 +1678,15 @@ function render(){
   grid.innerHTML = "";
 
 
-  filtered.forEach((app,index)=>{
+  filtered.forEach(app => {
+
+    const realIndex =
+      apps.indexOf(app);
 
     const card =
       document.createElement("article");
 
-
     card.className = "card";
-
-
-    card.style.animationDelay =
-      `${index * 0.045}s`;
 
 
     card.innerHTML = `
@@ -1945,19 +1699,23 @@ function render(){
             src="${iconURL(app.icon)}"
             alt="${app.name}"
             loading="lazy"
+            onerror="this.style.display='none'"
           >
 
         </div>
 
+        <div>
 
-        <div class="info">
+          <div class="badge">
+            ${app.region}
+          </div>
 
-          <div class="title">
+          <div class="card-title">
             ${app.name}
           </div>
 
-          <div class="meta">
-            ${app.region} · ${app.version}
+          <div class="card-meta">
+            ${app.version} · ${app.category.toUpperCase()}
           </div>
 
         </div>
@@ -1969,8 +1727,11 @@ function render(){
 
         <span class="status-dot"></span>
 
-        ${app.status}
-        RELEASE · ${app.time}
+        ${app.status === "LIVE"
+          ? "LIVE RELEASE"
+          : "COMING SOON"}
+
+        · ${app.time}
 
       </div>
 
@@ -1981,7 +1742,9 @@ function render(){
       <div class="card-info">
 
         <span>
-          AUTHORIZED
+          ${app.status === "LIVE"
+            ? "AUTHORIZED BUILD"
+            : "NOT AVAILABLE"}
         </span>
 
         <span>
@@ -1995,28 +1758,23 @@ function render(){
 
         <button
           class="install"
-          onclick="
-            installApp(
-              ${index},
-              '${app.name.replace(/'/g,"\\'")}'
-            )
-          "
+          onclick="installApp(${realIndex})"
         >
-          INSTALL RELEASE
+          ${app.status === "LIVE"
+            ? "INSTALL RELEASE"
+            : "COMING SOON"}
         </button>
-
 
         <button
           class="secondary"
-          onclick="downloadApp(${index})"
+          onclick="downloadApp(${realIndex})"
         >
           DOWNLOAD IPA
         </button>
 
-
         <button
           class="secondary"
-          onclick="copyLink(${index})"
+          onclick="copyLink(${realIndex})"
         >
           COPY LINK
         </button>
@@ -2036,6 +1794,36 @@ function render(){
       ? "none"
       : "block";
 
+  updateStats();
+
+}
+
+
+/* ==========================================
+   STATS
+========================================== */
+
+function updateStats(){
+
+  const live =
+    apps.filter(
+      app => app.status === "LIVE"
+    ).length;
+
+  const categories =
+    new Set(
+      apps.map(app => app.category)
+    ).size;
+
+  document.getElementById("liveCount")
+    .textContent = live;
+
+  document.getElementById("appCount")
+    .textContent = apps.length;
+
+  document.getElementById("categoryCount")
+    .textContent = categories;
+
 }
 
 
@@ -2043,23 +1831,32 @@ function render(){
    INSTALL
 ========================================== */
 
-function installApp(index,name){
+function installApp(index){
 
   const app =
     apps[index];
+
+  if(app.status !== "LIVE"){
+
+    alert(
+      app.name +
+      "\\n\\nThis release is coming soon."
+    );
+
+    return;
+
+  }
 
 
   if(!app.install){
 
     alert(
-      "KHANDU OS\n\n" +
-      "No authorized installation URL has " +
-      "been configured for " +
-      name +
-      "."
+      app.name +
+      "\\n\\nAdd your authorized installation URL in the app database."
     );
 
     return;
+
   }
 
 
@@ -2070,7 +1867,7 @@ function installApp(index,name){
 
 
 /* ==========================================
-   DOWNLOAD
+   DOWNLOAD IPA
 ========================================== */
 
 function downloadApp(index){
@@ -2078,17 +1875,16 @@ function downloadApp(index){
   const app =
     apps[index];
 
-
   if(!app.ipa){
 
     alert(
-      "No authorized IPA URL has been " +
-      "configured for " +
+      "No authorized IPA URL has been added for " +
       app.name +
       "."
     );
 
     return;
+
   }
 
 
@@ -2099,14 +1895,13 @@ function downloadApp(index){
 
 
 /* ==========================================
-   COPY
+   COPY LINK
 ========================================== */
 
 function copyLink(index){
 
   const app =
     apps[index];
-
 
   const link =
     app.install ||
@@ -2123,24 +1918,21 @@ function copyLink(index){
       .writeText(link)
       .then(()=>{
 
-        scanStatus.textContent =
-          "LINK COPIED";
+        alert(
+          app.name +
+          " link copied!"
+        );
 
-        setTimeout(()=>{
+      })
+      .catch(()=>{
 
-          scanStatus.textContent =
-            "NETWORK READY";
-
-        },1800);
+        alert(link);
 
       });
 
   }else{
 
-    prompt(
-      "Copy release link:",
-      link
-    );
+    alert(link);
 
   }
 
@@ -2163,25 +1955,22 @@ search.addEventListener(
 
 document
   .querySelectorAll(".filter")
-  .forEach(button=>{
+  .forEach(button => {
 
     button.addEventListener(
       "click",
-      ()=>{
+      () => {
 
         document
           .querySelectorAll(".filter")
-          .forEach(x =>
-            x.classList.remove("active")
+          .forEach(item =>
+            item.classList.remove("active")
           );
-
 
         button.classList.add("active");
 
-
         currentFilter =
           button.dataset.filter;
-
 
         render();
 
@@ -2192,39 +1981,50 @@ document
 
 
 /* ==========================================
-   SYSTEM SCAN
+   MODAL
 ========================================== */
 
-function systemScan(){
+function openAbout(){
 
-  scanStatus.textContent =
-    "SCANNING NETWORK...";
-
-
-  setTimeout(()=>{
-
-    scanStatus.textContent =
-      "CHECKING RELEASES...";
-
-  },700);
-
-
-  setTimeout(()=>{
-
-    scanStatus.textContent =
-      "SYSTEM SECURE ✓";
-
-  },1500);
-
-
-  setTimeout(()=>{
-
-    scanStatus.textContent =
-      "NETWORK READY";
-
-  },2800);
+  document
+    .getElementById("aboutModal")
+    .classList.add("show");
 
 }
+
+
+function closeAbout(){
+
+  document
+    .getElementById("aboutModal")
+    .classList.remove("show");
+
+}
+
+
+function closeOutside(event){
+
+  if(event.target.id === "aboutModal"){
+
+    closeAbout();
+
+  }
+
+}
+
+
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Escape"){
+
+      closeAbout();
+
+    }
+
+  }
+);
 
 
 /* ==========================================
