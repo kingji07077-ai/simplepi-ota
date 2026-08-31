@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#020609">
 
-<title>Rorito India • App Catalog</title>
+<title>Rorito Dev • Future Release System</title>
 
 <style>
 :root{
@@ -19,6 +19,7 @@
   --green2:#20c866;
   --cyan:#55d9ff;
   --danger:#ff5666;
+  --yellow:#ffd45a;
 }
 
 *{
@@ -33,23 +34,49 @@ html{
 
 body{
   background:
-    radial-gradient(circle at 50% -10%,rgba(43,232,121,.10),transparent 35%),
+    radial-gradient(circle at 50% -10%,rgba(43,232,121,.13),transparent 35%),
+    radial-gradient(circle at 100% 40%,rgba(85,217,255,.06),transparent 30%),
     var(--bg);
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
   min-height:100vh;
+  overflow-x:hidden;
 }
+
+/* FUTURE GRID */
 
 body:before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
+  z-index:-2;
   background:
-    linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
   background-size:40px 40px;
-  mask-image:linear-gradient(to bottom,#000,transparent 80%);
+  mask-image:linear-gradient(to bottom,#000,transparent 90%);
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  width:450px;
+  height:450px;
+  border-radius:50%;
+  left:50%;
+  top:25%;
+  transform:translate(-50%,-50%);
+  background:rgba(56,232,121,.035);
+  filter:blur(100px);
+  pointer-events:none;
+  z-index:-1;
+  animation:ambient 8s ease-in-out infinite;
+}
+
+@keyframes ambient{
+  0%,100%{transform:translate(-50%,-50%) scale(1)}
+  50%{transform:translate(-50%,-50%) scale(1.25)}
 }
 
 a{
@@ -62,9 +89,7 @@ input{
   font:inherit;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* NAV */
 
 .nav{
   width:min(1200px,calc(100% - 32px));
@@ -72,15 +97,15 @@ input{
   height:64px;
   border:1px solid var(--border);
   border-radius:18px;
-  background:rgba(5,12,17,.82);
-  backdrop-filter:blur(18px);
+  background:rgba(5,12,17,.78);
+  backdrop-filter:blur(20px);
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:0 18px;
   position:sticky;
   top:12px;
-  z-index:50;
+  z-index:100;
   box-shadow:0 15px 60px rgba(0,0,0,.35);
 }
 
@@ -100,7 +125,9 @@ input{
     radial-gradient(circle,#53ff9b 0 5%,transparent 6%),
     linear-gradient(135deg,#0b3421,#071015);
   border:1px solid #215638;
-  box-shadow:0 0 25px rgba(56,232,121,.18);
+  box-shadow:
+    0 0 25px rgba(56,232,121,.18),
+    inset 0 0 15px rgba(56,232,121,.08);
   color:var(--green);
   font-weight:900;
 }
@@ -119,27 +146,27 @@ input{
 .nav-right{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
 }
 
-.telegram{
+.nav-btn{
   border:1px solid #244052;
   background:#07151e;
   color:#a9dfff;
-  padding:10px 14px;
+  padding:10px 13px;
   border-radius:12px;
-  font:12px monospace;
+  font:11px monospace;
+  cursor:pointer;
   transition:.2s;
 }
 
-.telegram:hover{
-  border-color:#39a9dc;
+.nav-btn:hover{
   transform:translateY(-2px);
+  border-color:var(--cyan);
+  box-shadow:0 0 20px rgba(85,217,255,.08);
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 .wrap{
   width:min(1200px,calc(100% - 32px));
@@ -168,24 +195,49 @@ h1{
 }
 
 .hero-description{
-  max-width:520px;
+  max-width:560px;
   color:#75838d;
   font-size:14px;
   line-height:1.7;
   margin-top:22px;
 }
 
+.hero-description strong{
+  color:#b8c7ce;
+}
+
+/* STATS */
+
 .stats{
   display:flex;
-  gap:12px;
+  gap:10px;
 }
 
 .stat{
   min-width:105px;
   border:1px solid var(--border);
-  background:#061016;
+  background:rgba(6,16,22,.8);
   border-radius:15px;
   padding:14px;
+  position:relative;
+  overflow:hidden;
+}
+
+.stat:after{
+  content:"";
+  position:absolute;
+  left:-100%;
+  top:0;
+  width:100%;
+  height:1px;
+  background:var(--green);
+  box-shadow:0 0 15px var(--green);
+  animation:scan 4s linear infinite;
+}
+
+@keyframes scan{
+  0%{left:-100%}
+  100%{left:100%}
 }
 
 .stat-number{
@@ -200,32 +252,36 @@ h1{
   margin-top:5px;
 }
 
-/* =========================
-   FEATURED
-========================= */
+/* KHANDU FEATURE */
 
 .featured{
   margin-top:55px;
-  border:1px solid #244333;
-  border-radius:24px;
-  padding:25px;
+  border:1px solid #285b3d;
+  border-radius:26px;
+  padding:26px;
   background:
-    radial-gradient(circle at 90% 20%,rgba(56,232,121,.12),transparent 35%),
+    radial-gradient(circle at 90% 20%,rgba(56,232,121,.15),transparent 35%),
+    radial-gradient(circle at 10% 100%,rgba(85,217,255,.06),transparent 30%),
     linear-gradient(145deg,#081610,#050b0e);
   position:relative;
   overflow:hidden;
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.3),
+    inset 0 0 50px rgba(56,232,121,.025);
 }
 
-.featured:after{
+.featured:before{
   content:"";
   position:absolute;
-  width:260px;
-  height:260px;
-  border-radius:50%;
-  background:rgba(56,232,121,.06);
-  filter:blur(40px);
-  right:-100px;
-  top:-100px;
+  inset:0;
+  background:
+    linear-gradient(90deg,transparent,rgba(56,232,121,.035),transparent);
+  transform:translateX(-100%);
+  animation:featureScan 6s linear infinite;
+}
+
+@keyframes featureScan{
+  to{transform:translateX(100%)}
 }
 
 .featured-top{
@@ -233,7 +289,7 @@ h1{
   justify-content:space-between;
   align-items:center;
   position:relative;
-  z-index:1;
+  z-index:2;
 }
 
 .featured-label{
@@ -257,17 +313,20 @@ h1{
   gap:25px;
   margin-top:22px;
   position:relative;
-  z-index:1;
+  z-index:2;
 }
 
 .featured-icon{
-  width:95px;
-  height:95px;
-  border-radius:24px;
+  width:105px;
+  height:105px;
+  border-radius:25px;
   overflow:hidden;
-  border:1px solid #294238;
-  box-shadow:0 0 35px rgba(56,232,121,.13);
+  border:1px solid #3c654e;
+  box-shadow:
+    0 0 35px rgba(56,232,121,.16),
+    0 15px 35px rgba(0,0,0,.35);
   flex:none;
+  background:#101920;
 }
 
 .featured-icon img{
@@ -277,14 +336,29 @@ h1{
 }
 
 .featured-title{
-  font-size:28px;
-  font-weight:800;
+  font-size:30px;
+  font-weight:850;
 }
 
 .featured-meta{
   color:#74838d;
-  margin-top:7px;
+  margin-top:8px;
   font:12px monospace;
+}
+
+.featured-extra{
+  margin-top:12px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.mini-tag{
+  padding:5px 9px;
+  border-radius:8px;
+  border:1px solid #263a43;
+  color:#78909b;
+  font:9px monospace;
 }
 
 .featured-actions{
@@ -294,37 +368,96 @@ h1{
 .featured-button{
   border:0;
   border-radius:13px;
-  background:var(--green);
+  background:linear-gradient(135deg,#43e980,#2fd16c);
   color:#021007;
   padding:14px 23px;
   font:800 12px monospace;
   letter-spacing:2px;
   cursor:pointer;
   box-shadow:0 0 25px rgba(56,232,121,.12);
+  transition:.2s;
 }
 
-/* =========================
-   TOOLBAR
-========================= */
+.featured-button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 35px rgba(56,232,121,.25);
+}
+
+/* SYSTEM BAR */
+
+.system-bar{
+  margin-top:20px;
+  border:1px solid #172a32;
+  background:rgba(5,13,18,.72);
+  border-radius:15px;
+  padding:12px 15px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  font:10px monospace;
+  color:#62737d;
+}
+
+.system-left{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.system-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px var(--green);
+  animation:pulse 1.7s infinite;
+}
+
+.system-right{
+  color:#52636c;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.45;transform:scale(.72)}
+}
+
+/* TOOLBAR */
 
 .toolbar{
   margin:45px 0 25px;
   display:flex;
-  gap:12px;
+  gap:10px;
   flex-wrap:wrap;
   align-items:center;
 }
 
-.search{
+.search-wrap{
   flex:1;
   min-width:220px;
+  position:relative;
+}
+
+.search{
+  width:100%;
   height:48px;
-  padding:0 17px;
+  padding:0 17px 0 42px;
   border-radius:13px;
   border:1px solid var(--border);
   background:#050c11;
   color:white;
   outline:none;
+}
+
+.search-icon{
+  position:absolute;
+  left:15px;
+  top:50%;
+  transform:translateY(-50%);
+  color:#53646d;
+  font-size:15px;
+  pointer-events:none;
 }
 
 .search:focus{
@@ -340,17 +473,17 @@ h1{
   background:#050c11;
   color:#84929b;
   cursor:pointer;
+  transition:.2s;
 }
 
 .filter.active,
 .filter:hover{
   border-color:#2d6d45;
   color:var(--green);
+  background:#07150e;
 }
 
-/* =========================
-   CATALOG HEADER
-========================= */
+/* CATALOG HEADER */
 
 .catalog-header{
   display:flex;
@@ -373,23 +506,7 @@ h1{
   gap:7px;
 }
 
-.live-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 12px var(--green);
-  animation:pulse 1.7s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.45;transform:scale(.72)}
-}
-
-/* =========================
-   GRID
-========================= */
+/* GRID */
 
 .grid{
   display:grid;
@@ -397,9 +514,7 @@ h1{
   gap:18px;
 }
 
-/* =========================
-   CARD
-========================= */
+/* CARD */
 
 .card{
   border:1px solid var(--border);
@@ -428,6 +543,23 @@ h1{
   transition:.3s;
 }
 
+.card:after{
+  content:"";
+  position:absolute;
+  width:1px;
+  height:100%;
+  left:0;
+  top:-100%;
+  background:linear-gradient(transparent,var(--green),transparent);
+  opacity:.35;
+  animation:cardScan 7s linear infinite;
+}
+
+@keyframes cardScan{
+  0%{top:-100%}
+  100%{top:100%}
+}
+
 .card:hover{
   transform:translateY(-5px);
   border-color:#2b4737;
@@ -444,6 +576,8 @@ h1{
   display:flex;
   gap:16px;
   align-items:center;
+  position:relative;
+  z-index:2;
 }
 
 .icon{
@@ -471,8 +605,9 @@ h1{
 .badges{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
   margin-bottom:7px;
+  flex-wrap:wrap;
 }
 
 .badge{
@@ -482,6 +617,12 @@ h1{
   border-radius:15px;
   font:9px monospace;
   letter-spacing:1px;
+}
+
+.badge.new{
+  border-color:#32684a;
+  color:var(--green);
+  background:rgba(56,232,121,.06);
 }
 
 .version{
@@ -505,6 +646,8 @@ h1{
   color:#687780;
   font:10px monospace;
   letter-spacing:1.8px;
+  position:relative;
+  z-index:2;
 }
 
 .line{
@@ -520,6 +663,8 @@ h1{
   color:#788790;
   font:10px monospace;
   letter-spacing:1.5px;
+  position:relative;
+  z-index:2;
 }
 
 .actions{
@@ -527,6 +672,8 @@ h1{
   grid-template-columns:1fr 1fr;
   gap:9px;
   margin-top:18px;
+  position:relative;
+  z-index:2;
 }
 
 .install{
@@ -565,27 +712,29 @@ h1{
   color:var(--green);
 }
 
-.coming{
-  opacity:.66;
+.favorite{
+  position:absolute;
+  top:18px;
+  right:18px;
+  z-index:5;
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  border:1px solid #263640;
+  background:#061016;
+  color:#697982;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.coming .live-dot{
-  background:#56636b;
-  box-shadow:none;
-  animation:none;
+.favorite:hover,
+.favorite.active{
+  color:var(--yellow);
+  border-color:#665b2d;
+  box-shadow:0 0 15px rgba(255,212,90,.08);
 }
 
-.coming .install{
-  background:transparent;
-  border:1px dashed #26343c;
-  color:#586770;
-  box-shadow:none;
-  cursor:not-allowed;
-}
-
-/* =========================
-   EMPTY
-========================= */
+/* EMPTY */
 
 .empty{
   display:none;
@@ -597,9 +746,135 @@ h1{
   font:12px monospace;
 }
 
-/* =========================
-   FOOTER
-========================= */
+.empty button{
+  margin-top:15px;
+  padding:10px 15px;
+  border:1px solid #263640;
+  background:#071016;
+  color:var(--green);
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* MODAL */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(12px);
+  z-index:500;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-box{
+  width:min(520px,100%);
+  border:1px solid #294238;
+  border-radius:23px;
+  background:
+    radial-gradient(circle at 90% 0%,rgba(56,232,121,.10),transparent 35%),
+    #061016;
+  padding:25px;
+  box-shadow:
+    0 30px 100px rgba(0,0,0,.6),
+    0 0 40px rgba(56,232,121,.06);
+  animation:modalIn .25s ease;
+}
+
+@keyframes modalIn{
+  from{
+    opacity:0;
+    transform:translateY(15px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.modal-head{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.modal-icon{
+  width:70px;
+  height:70px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid #293b43;
+}
+
+.modal-icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.modal-title{
+  font-size:23px;
+  font-weight:800;
+}
+
+.modal-sub{
+  margin-top:5px;
+  color:#667680;
+  font:10px monospace;
+}
+
+.modal-close{
+  margin-left:auto;
+  width:35px;
+  height:35px;
+  border-radius:10px;
+  border:1px solid #263640;
+  background:#071016;
+  color:#829099;
+  cursor:pointer;
+}
+
+.modal-grid{
+  margin-top:24px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.modal-item{
+  padding:13px;
+  border:1px solid #182830;
+  background:#050c11;
+  border-radius:12px;
+}
+
+.modal-label{
+  color:#52636c;
+  font:9px monospace;
+  letter-spacing:1px;
+}
+
+.modal-value{
+  color:#d9e4e8;
+  margin-top:5px;
+  font:12px monospace;
+}
+
+.modal-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:20px;
+}
+
+/* FOOTER */
 
 footer{
   margin-top:70px;
@@ -637,9 +912,7 @@ footer{
   color:var(--green);
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -649,10 +922,6 @@ footer{
 
   .brand-sub{
     display:none;
-  }
-
-  .telegram{
-    padding:9px 11px;
   }
 
   .wrap{
@@ -706,6 +975,11 @@ footer{
     height:35px;
   }
 
+  .nav-btn{
+    padding:8px 9px;
+    font-size:9px;
+  }
+
   .featured{
     padding:18px;
   }
@@ -715,8 +989,8 @@ footer{
   }
 
   .featured-icon{
-    width:78px;
-    height:78px;
+    width:82px;
+    height:82px;
   }
 
   .featured-title{
@@ -739,6 +1013,14 @@ footer{
   .stat-number{
     font-size:21px;
   }
+
+  .system-right{
+    display:none;
+  }
+
+  .modal-grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -751,26 +1033,23 @@ footer{
 
   <div class="brand">
 
-    <div class="brand-logo">
-      R
-    </div>
+    <div class="brand-logo">R</div>
 
     <div>
-      <div class="brand-name">
-        Rorito India
-      </div>
-
-      <div class="brand-sub">
-        RELEASE CATALOG
-      </div>
+      <div class="brand-name">Rorito India</div>
+      <div class="brand-sub">FUTURE RELEASE SYSTEM</div>
     </div>
 
   </div>
 
   <div class="nav-right">
 
+    <button class="nav-btn" onclick="refreshSystem()">
+      ↻ REFRESH
+    </button>
+
     <a
-      class="telegram"
+      class="nav-btn"
       href="https://t.me/ItsRorito"
       target="_blank"
       rel="noopener"
@@ -786,7 +1065,7 @@ footer{
 <main class="wrap">
 
   <div class="eyebrow">
-    01 / THE CATALOG
+    01 / SYSTEM CATALOG
   </div>
 
 
@@ -795,14 +1074,15 @@ footer{
     <div>
 
       <h1>
-        Latest<br>
+        Future<br>
         releases
       </h1>
 
       <p class="hero-description">
-        A premium release catalog by Rorito Dev.
-        Browse applications, versions and availability
-        from one clean interface.
+        A futuristic application release system by
+        <strong>Rorito Dev</strong>.
+        Browse applications, versions and authorized
+        releases from one interface.
       </p>
 
     </div>
@@ -811,44 +1091,18 @@ footer{
     <div class="stats">
 
       <div class="stat">
-        <div
-          class="stat-number"
-          id="liveCount"
-        >
-          0
-        </div>
-
-        <div class="stat-label">
-          LIVE
-        </div>
+        <div class="stat-number" id="liveCount">0</div>
+        <div class="stat-label">LIVE</div>
       </div>
 
-
       <div class="stat">
-        <div
-          class="stat-number"
-          id="regionCount"
-        >
-          8
-        </div>
-
-        <div class="stat-label">
-          REGIONS
-        </div>
+        <div class="stat-number" id="regionCount">8</div>
+        <div class="stat-label">REGIONS</div>
       </div>
 
-
       <div class="stat">
-        <div
-          class="stat-number"
-          id="appCount"
-        >
-          0
-        </div>
-
-        <div class="stat-label">
-          APPS
-        </div>
+        <div class="stat-number" id="appCount">0</div>
+        <div class="stat-label">APPS</div>
       </div>
 
     </div>
@@ -856,18 +1110,18 @@ footer{
   </section>
 
 
-  <!-- FEATURED -->
+  <!-- KHANDU DON -->
 
   <section class="featured">
 
     <div class="featured-top">
 
       <div class="featured-label">
-        FEATURED RELEASE
+        ★ SPECIAL FEATURE
       </div>
 
       <div class="featured-badge">
-        ● AVAILABLE
+        ● KHANDU ONLINE
       </div>
 
     </div>
@@ -878,8 +1132,8 @@ footer{
       <div class="featured-icon">
 
         <img
-          src="https://cdn.simpleicons.org/telegram/ffffff"
-          alt="Featured"
+          src="KhanduDon.gif"
+          alt="Khandu Don"
         >
 
       </div>
@@ -888,11 +1142,27 @@ footer{
       <div>
 
         <div class="featured-title">
-          Rorito Telegram
+          Khandu Don
         </div>
 
         <div class="featured-meta">
-          OFFICIAL COMMUNITY · LIVE NOW · UPDATED TODAY
+          SPECIAL RELEASE · RORITO DEV · SYSTEM READY
+        </div>
+
+        <div class="featured-extra">
+
+          <span class="mini-tag">
+            FUTURE BUILD
+          </span>
+
+          <span class="mini-tag">
+            VERIFIED
+          </span>
+
+          <span class="mini-tag">
+            INDIA
+          </span>
+
         </div>
 
       </div>
@@ -900,14 +1170,12 @@ footer{
 
       <div class="featured-actions">
 
-        <a
+        <button
           class="featured-button"
-          href="https://t.me/ItsRorito"
-          target="_blank"
-          rel="noopener"
+          onclick="showKhandu()"
         >
-          OPEN TELEGRAM
-        </a>
+          VIEW RELEASE
+        </button>
 
       </div>
 
@@ -916,49 +1184,62 @@ footer{
   </section>
 
 
+  <!-- SYSTEM BAR -->
+
+  <div class="system-bar">
+
+    <div class="system-left">
+
+      <span class="system-dot"></span>
+
+      <span>
+        SYSTEM ONLINE · ALL SERVICES OPERATIONAL
+      </span>
+
+    </div>
+
+    <div class="system-right">
+      NODE: RORITO-INDIA // SECURE
+    </div>
+
+  </div>
+
+
   <!-- SEARCH -->
 
   <div class="toolbar">
 
-    <input
-      class="search"
-      id="search"
-      type="search"
-      placeholder="Search applications..."
-    >
+    <div class="search-wrap">
 
-    <button
-      class="filter active"
-      data-filter="all"
-    >
+      <span class="search-icon">⌕</span>
+
+      <input
+        class="search"
+        id="search"
+        type="search"
+        placeholder="Search applications..."
+      >
+
+    </div>
+
+
+    <button class="filter active" data-filter="all">
       ALL
     </button>
 
-    <button
-      class="filter"
-      data-filter="social"
-    >
+    <button class="filter" data-filter="social">
       SOCIAL
     </button>
 
-    <button
-      class="filter"
-      data-filter="media"
-    >
+    <button class="filter" data-filter="media">
       MEDIA
     </button>
 
-    <button
-      class="filter"
-      data-filter="tools"
-    >
+    <button class="filter" data-filter="tools">
       TOOLS
     </button>
 
-    <button
-      class="filter"
-      data-filter="games"
-    >
+    <button class="filter" data-filter="games">
       GAMES
     </button>
 
@@ -979,8 +1260,6 @@ footer{
   </div>
 
 
-  <!-- CARDS -->
-
   <section
     class="grid"
     id="appGrid"
@@ -992,6 +1271,13 @@ footer{
     id="empty"
   >
     NO APPLICATIONS FOUND
+
+    <br>
+
+    <button onclick="resetSearch()">
+      RESET SEARCH
+    </button>
+
   </div>
 
 
@@ -1002,7 +1288,7 @@ footer{
     </div>
 
     <div class="footer-text">
-      RORITO INDIA · RELEASE CATALOG · © 2026
+      RORITO INDIA · FUTURE RELEASE SYSTEM · © 2026
     </div>
 
     <div class="footer-links">
@@ -1026,708 +1312,479 @@ footer{
 </main>
 
 
+<!-- DETAILS MODAL -->
+
+<div
+  class="modal"
+  id="modal"
+  onclick="closeModalOutside(event)"
+>
+
+  <div class="modal-box">
+
+    <div class="modal-head">
+
+      <div class="modal-icon">
+        <img id="modalIcon" src="" alt="">
+      </div>
+
+      <div>
+
+        <div
+          class="modal-title"
+          id="modalTitle"
+        ></div>
+
+        <div
+          class="modal-sub"
+          id="modalSub"
+        ></div>
+
+      </div>
+
+      <button
+        class="modal-close"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="modal-grid">
+
+      <div class="modal-item">
+        <div class="modal-label">VERSION</div>
+        <div class="modal-value" id="modalVersion"></div>
+      </div>
+
+      <div class="modal-item">
+        <div class="modal-label">REGION</div>
+        <div class="modal-value" id="modalRegion"></div>
+      </div>
+
+      <div class="modal-item">
+        <div class="modal-label">CATEGORY</div>
+        <div class="modal-value" id="modalCategory"></div>
+      </div>
+
+      <div class="modal-item">
+        <div class="modal-label">STATUS</div>
+        <div class="modal-value" id="modalStatus"></div>
+      </div>
+
+      <div class="modal-item">
+        <div class="modal-label">RELEASE</div>
+        <div class="modal-value" id="modalTime"></div>
+      </div>
+
+      <div class="modal-item">
+        <div class="modal-label">SIZE</div>
+        <div class="modal-value" id="modalSize"></div>
+      </div>
+
+    </div>
+
+
+    <div class="modal-actions">
+
+      <button
+        class="install"
+        id="modalInstall"
+      >
+        INSTALL
+      </button>
+
+      <button
+        class="secondary"
+        id="modalDownload"
+      >
+        DOWNLOAD IPA
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
 <script>
 
-/*
-=================================================
- RORITO DEV APP DATABASE
-=================================================
-
- Add your authorized URLs here.
-
- install = installation/manifest URL
- ipa     = direct IPA URL
-
- Example:
-
- install:"https://your-domain.com/manifest.plist",
- ipa:"https://your-domain.com/MyApp.ipa"
-
-=================================================
-*/
-
+/* ==================================================
+   RORITO DEV APPLICATION DATABASE
+================================================== */
 
 const apps = [
 
-/* SOCIAL */
+  {
+    id:"instagram",
+    name:"Instagram",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"2 hours ago",
+    size:"—",
+    icon:"instagram",
+    status:"LIVE",
+    install:"",
+    ipa:"",
+    isNew:true
+  },
 
-{
- name:"Instagram",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 hours ago",
- size:"—",
- icon:"instagram",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"tiktok",
+    name:"TikTok",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"4 hours ago",
+    size:"—",
+    icon:"tiktok",
+    status:"LIVE",
+    install:"",
+    ipa:"",
+    isNew:true
+  },
 
-{
- name:"TikTok",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"4 hours ago",
- size:"—",
- icon:"tiktok",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"facebook",
+    name:"Facebook",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"facebook",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Facebook",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"facebook",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"telegram",
+    name:"Telegram",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"telegram",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Telegram",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"telegram",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"whatsapp",
+    name:"WhatsApp",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"whatsapp",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"WhatsApp",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"whatsapp",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"discord",
+    name:"Discord",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Yesterday",
+    size:"—",
+    icon:"discord",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Discord",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"discord",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"x",
+    name:"X",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Yesterday",
+    size:"—",
+    icon:"x",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"X",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"x",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"reddit",
+    name:"Reddit",
+    category:"social",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"2 days ago",
+    size:"—",
+    icon:"reddit",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Reddit",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"reddit",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"youtube",
+    name:"YouTube",
+    category:"media",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"1 hour ago",
+    size:"—",
+    icon:"youtube",
+    status:"LIVE",
+    install:"",
+    ipa:"",
+    isNew:true
+  },
 
-{
- name:"Pinterest",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"pinterest",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"spotify",
+    name:"Spotify",
+    category:"media",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"spotify",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"LinkedIn",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"linkedin",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"netflix",
+    name:"Netflix",
+    category:"media",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"netflix",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-/* MEDIA */
+  {
+    id:"twitch",
+    name:"Twitch",
+    category:"media",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Yesterday",
+    size:"—",
+    icon:"twitch",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"YouTube",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"1 hour ago",
- size:"—",
- icon:"youtube",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"soundcloud",
+    name:"SoundCloud",
+    category:"media",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"2 days ago",
+    size:"—",
+    icon:"soundcloud",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"YouTube Music",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"youtubemusic",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"googlechrome",
+    name:"Google Chrome",
+    category:"tools",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"googlechrome",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Spotify",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"spotify",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"googledrive",
+    name:"Google Drive",
+    category:"tools",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"googledrive",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Netflix",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"netflix",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"github",
+    name:"GitHub",
+    category:"tools",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"2 days ago",
+    size:"—",
+    icon:"github",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Twitch",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"twitch",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"notion",
+    name:"Notion",
+    category:"tools",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"2 days ago",
+    size:"—",
+    icon:"notion",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Prime Video",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"primevideo",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"canva",
+    name:"Canva",
+    category:"tools",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"3 days ago",
+    size:"—",
+    icon:"canva",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"SoundCloud",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"soundcloud",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"minecraft",
+    name:"Minecraft",
+    category:"games",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"minecraft",
+    status:"LIVE",
+    install:"",
+    ipa:"",
+    isNew:true
+  },
 
-{
- name:"VLC",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"vlcmediaplayer",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"roblox",
+    name:"Roblox",
+    category:"games",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Today",
+    size:"—",
+    icon:"roblox",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Shazam",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"shazam",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"amongus",
+    name:"Among Us",
+    category:"games",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Yesterday",
+    size:"—",
+    icon:"amongus",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Crunchyroll",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"crunchyroll",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  {
+    id:"fortnite",
+    name:"Fortnite",
+    category:"games",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"Yesterday",
+    size:"—",
+    icon:"fortnite",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-/* TOOLS */
+  {
+    id:"brawlstars",
+    name:"Brawl Stars",
+    category:"games",
+    region:"GLOBAL",
+    version:"v1.0",
+    time:"2 days ago",
+    size:"—",
+    icon:"brawlstars",
+    status:"LIVE",
+    install:"",
+    ipa:""
+  },
 
-{
- name:"Google Drive",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"googledrive",
- status:"LIVE",
- install:"",
- ipa:""
-},
+  /* KHANDU DON */
 
-{
- name:"Google Chrome",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"googlechrome",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Firefox",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"firefoxbrowser",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Dropbox",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"dropbox",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Notion",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"notion",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"GitHub",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"github",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Figma",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"figma",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Canva",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"canva",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Slack",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"4 days ago",
- size:"—",
- icon:"slack",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Zoom",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"4 days ago",
- size:"—",
- icon:"zoom",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-/* GAMES */
-
-{
- name:"Minecraft",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"minecraft",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Roblox",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"roblox",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Among Us",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"amongus",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Fortnite",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"fortnite",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Brawl Stars",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"brawlstars",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Clash Royale",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"clashroyale",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Clash of Clans",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"clashofclans",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"PUBG",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"pubg",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Call of Duty",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"4 days ago",
- size:"—",
- icon:"callofduty",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Subway Surfers",
- category:"games",
- region:"GLOBAL",
- version:"v1.0",
- time:"4 days ago",
- size:"—",
- icon:"subwaysurfers",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-/* EXTRA */
-
-{
- name:"Google Maps",
- category:"tools",
- region:"INDIA",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"googlemaps",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Gmail",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"Today",
- size:"—",
- icon:"gmail",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Google Photos",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"googlephotos",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"CapCut",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"Yesterday",
- size:"—",
- icon:"capcut",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Lightroom",
- category:"media",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"adobelightroom",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Procreate",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"2 days ago",
- size:"—",
- icon:"procreate",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"1Password",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"1password",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Duolingo",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"3 days ago",
- size:"—",
- icon:"duolingo",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Shoppy",
- category:"tools",
- region:"GLOBAL",
- version:"v1.0",
- time:"4 days ago",
- size:"—",
- icon:"shopify",
- status:"LIVE",
- install:"",
- ipa:""
-},
-
-{
- name:"Threads",
- category:"social",
- region:"GLOBAL",
- version:"v1.0",
- time:"4 days ago",
- size:"—",
- icon:"threads",
- status:"LIVE",
- install:"",
- ipa:""
-}
+  {
+    id:"khandu-don",
+    name:"Khandu Don",
+    category:"tools",
+    region:"INDIA",
+    version:"FUTURE",
+    time:"Just now",
+    size:"—",
+    icon:"khandu-local",
+    customIcon:"KhanduDon.gif",
+    status:"LIVE",
+    install:"",
+    ipa:"",
+    isNew:true,
+    special:true
+  }
 
 ];
 
 
-/* ==========================================
+/* ==================================================
    ICON SYSTEM
-========================================== */
+================================================== */
 
-function iconURL(name){
+function iconURL(app){
+
+  if(app.customIcon){
+    return app.customIcon;
+  }
 
   return "https://cdn.simpleicons.org/" +
-         name +
+         app.icon +
          "/ffffff";
-
 }
 
 
-/* ==========================================
-   RENDER
-========================================== */
+/* ==================================================
+   ELEMENTS
+================================================== */
 
 const grid =
   document.getElementById("appGrid");
@@ -1741,6 +1798,57 @@ const search =
 let currentFilter = "all";
 
 
+/* ==================================================
+   FAVORITES
+================================================== */
+
+function getFavorites(){
+
+  try{
+    return JSON.parse(
+      localStorage.getItem("roritoFavorites") || "[]"
+    );
+  }catch{
+    return [];
+  }
+
+}
+
+function isFavorite(id){
+
+  return getFavorites().includes(id);
+
+}
+
+function toggleFavorite(id){
+
+  let favorites = getFavorites();
+
+  if(favorites.includes(id)){
+
+    favorites =
+      favorites.filter(x => x !== id);
+
+  }else{
+
+    favorites.push(id);
+
+  }
+
+  localStorage.setItem(
+    "roritoFavorites",
+    JSON.stringify(favorites)
+  );
+
+  render();
+
+}
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
 function render(){
 
   const query =
@@ -1750,7 +1858,17 @@ function render(){
     apps.filter(app => {
 
       const matchesSearch =
-        app.name.toLowerCase().includes(query);
+        (
+          app.name +
+          " " +
+          app.category +
+          " " +
+          app.region +
+          " " +
+          app.version
+        )
+        .toLowerCase()
+        .includes(query);
 
       const matchesFilter =
         currentFilter === "all" ||
@@ -1764,7 +1882,7 @@ function render(){
   grid.innerHTML = "";
 
 
-  filtered.forEach((app,index)=>{
+  filtered.forEach(app => {
 
     const card =
       document.createElement("article");
@@ -1776,13 +1894,22 @@ function render(){
 
     card.innerHTML = `
 
+      <button
+        class="favorite ${isFavorite(app.id) ? "active" : ""}"
+        onclick="toggleFavorite('${app.id}')"
+        title="Favorite"
+      >
+        ${isFavorite(app.id) ? "★" : "☆"}
+      </button>
+
+
       <div class="card-top">
 
         <div class="icon">
 
           <img
-            src="${iconURL(app.icon)}"
-            alt="${app.name}"
+            src="${iconURL(app)}"
+            alt="${escapeHTML(app.name)}"
             loading="lazy"
             onerror="this.style.display='none'"
           >
@@ -1795,18 +1922,24 @@ function render(){
           <div class="badges">
 
             <span class="badge">
-              ${app.region}
+              ${escapeHTML(app.region)}
             </span>
 
+            ${app.isNew ? `
+              <span class="badge new">
+                NEW
+              </span>
+            ` : ""}
+
             <span class="version">
-              ${app.version}
+              ${escapeHTML(app.version)}
             </span>
 
           </div>
 
 
           <div class="title">
-            ${app.name}
+            ${escapeHTML(app.name)}
           </div>
 
         </div>
@@ -1822,7 +1955,7 @@ function render(){
           ? "LIVE RELEASE"
           : "COMING SOON"}
 
-        · ${app.time}
+        · ${escapeHTML(app.time)}
 
       </div>
 
@@ -1839,7 +1972,7 @@ function render(){
         </span>
 
         <span>
-          ${app.size}
+          ${escapeHTML(app.size)}
         </span>
 
       </div>
@@ -1850,7 +1983,7 @@ function render(){
         <button
           class="install"
           ${app.status !== "LIVE" ? "disabled" : ""}
-          onclick="installApp(${index}, '${app.name.replace(/'/g,"\\'")}')"
+          onclick="installApp('${app.id}')"
         >
           ${app.status === "LIVE"
             ? "INSTALL"
@@ -1860,7 +1993,7 @@ function render(){
 
         <button
           class="secondary"
-          onclick="downloadApp(${index})"
+          onclick="downloadApp('${app.id}')"
         >
           DOWNLOAD IPA
         </button>
@@ -1868,9 +2001,9 @@ function render(){
 
         <button
           class="secondary"
-          onclick="copyAppLink(${index})"
+          onclick="showDetails('${app.id}')"
         >
-          COPY LINK
+          DETAILS
         </button>
 
       </div>
@@ -1892,9 +2025,9 @@ function render(){
 }
 
 
-/* ==========================================
+/* ==================================================
    STATS
-========================================== */
+================================================== */
 
 function updateStats(){
 
@@ -1910,21 +2043,35 @@ function updateStats(){
 }
 
 
-/* ==========================================
+/* ==================================================
+   FIND APP
+================================================== */
+
+function findApp(id){
+
+  return apps.find(
+    app => app.id === id
+  );
+
+}
+
+
+/* ==================================================
    INSTALL
-========================================== */
+================================================== */
 
-function installApp(index,name){
+function installApp(id){
 
-  const app =
-    apps[index];
+  const app = findApp(id);
+
+  if(!app) return;
 
   if(!app.install){
 
     alert(
-      name +
-      "\\n\\nAdd your authorized installation URL " +
-      "to this app's install field in index.html."
+      app.name +
+      "\n\nAdd your authorized installation URL " +
+      "to this app's install field."
     );
 
     return;
@@ -1937,14 +2084,15 @@ function installApp(index,name){
 }
 
 
-/* ==========================================
-   DOWNLOAD
-========================================== */
+/* ==================================================
+   DOWNLOAD IPA
+================================================== */
 
-function downloadApp(index){
+function downloadApp(id){
 
-  const app =
-    apps[index];
+  const app = findApp(id);
+
+  if(!app) return;
 
   if(!app.ipa){
 
@@ -1963,46 +2111,106 @@ function downloadApp(index){
 }
 
 
-/* ==========================================
-   COPY LINK
-========================================== */
+/* ==================================================
+   DETAILS
+================================================== */
 
-function copyAppLink(index){
+function showDetails(id){
 
-  const app =
-    apps[index];
+  const app = findApp(id);
 
-  const link =
-    app.install ||
-    app.ipa ||
-    window.location.href;
+  if(!app) return;
 
 
-  if(navigator.clipboard){
+  document.getElementById("modalIcon")
+    .src = iconURL(app);
 
-    navigator.clipboard
-      .writeText(link)
-      .then(()=>{
+  document.getElementById("modalTitle")
+    .textContent = app.name;
 
-        alert(
-          app.name +
-          " link copied!"
-        );
+  document.getElementById("modalSub")
+    .textContent =
+      "RORITO DEV · " +
+      app.status;
 
-      });
+  document.getElementById("modalVersion")
+    .textContent = app.version;
 
-  }else{
+  document.getElementById("modalRegion")
+    .textContent = app.region;
 
-    alert(link);
+  document.getElementById("modalCategory")
+    .textContent = app.category.toUpperCase();
 
+  document.getElementById("modalStatus")
+    .textContent = app.status;
+
+  document.getElementById("modalTime")
+    .textContent = app.time;
+
+  document.getElementById("modalSize")
+    .textContent = app.size;
+
+
+  document.getElementById("modalInstall")
+    .onclick = () =>
+      installApp(app.id);
+
+  document.getElementById("modalDownload")
+    .onclick = () =>
+      downloadApp(app.id);
+
+
+  document.getElementById("modal")
+    .classList.add("show");
+
+}
+
+
+function closeModal(){
+
+  document
+    .getElementById("modal")
+    .classList.remove("show");
+
+}
+
+
+function closeModalOutside(event){
+
+  if(event.target.id === "modal"){
+    closeModal();
   }
 
 }
 
 
-/* ==========================================
+document.addEventListener(
+  "keydown",
+  event => {
+
+    if(event.key === "Escape"){
+      closeModal();
+    }
+
+  }
+);
+
+
+/* ==================================================
+   KHANDU DON
+================================================== */
+
+function showKhandu(){
+
+  showDetails("khandu-don");
+
+}
+
+
+/* ==================================================
    SEARCH
-========================================== */
+================================================== */
 
 search.addEventListener(
   "input",
@@ -2010,17 +2218,17 @@ search.addEventListener(
 );
 
 
-/* ==========================================
+/* ==================================================
    FILTERS
-========================================== */
+================================================== */
 
 document
   .querySelectorAll(".filter")
-  .forEach(button=>{
+  .forEach(button => {
 
     button.addEventListener(
       "click",
-      ()=>{
+      () => {
 
         document
           .querySelectorAll(".filter")
@@ -2041,9 +2249,81 @@ document
   });
 
 
-/* ==========================================
+/* ==================================================
+   RESET SEARCH
+================================================== */
+
+function resetSearch(){
+
+  search.value = "";
+
+  currentFilter = "all";
+
+  document
+    .querySelectorAll(".filter")
+    .forEach(x =>
+      x.classList.remove("active")
+    );
+
+  document
+    .querySelector('[data-filter="all"]')
+    .classList.add("active");
+
+  render();
+
+}
+
+
+/* ==================================================
+   REFRESH
+================================================== */
+
+function refreshSystem(){
+
+  const button =
+    document.querySelector(".nav-btn");
+
+  button.textContent =
+    "↻ SCANNING...";
+
+  setTimeout(() => {
+
+    render();
+
+    button.textContent =
+      "✓ ONLINE";
+
+    setTimeout(() => {
+
+      button.textContent =
+        "↻ REFRESH";
+
+    },1200);
+
+  },600);
+
+}
+
+
+/* ==================================================
+   HTML ESCAPE
+================================================== */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==================================================
    INITIALIZE
-========================================== */
+================================================== */
 
 render();
 
