@@ -3,26 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="theme-color" content="#090014">
+<meta name="theme-color" content="#070313">
 
-<title>KHANDU DON • Gaming App Hub</title>
+<title>KHANDU DON • IPA HUB</title>
 
 <style>
 :root{
-  --bg:#07000f;
-  --bg2:#0d0119;
-  --panel:#11021f;
-  --panel2:#160426;
+  --bg:#06020d;
+  --panel:#0d0718;
+  --panel2:#130a20;
+  --border:#2b1742;
   --purple:#a855f7;
   --purple2:#7c3aed;
-  --violet:#c084fc;
   --pink:#ec4899;
   --cyan:#22d3ee;
   --text:#f8f4ff;
-  --muted:#8e7aa5;
-  --border:rgba(168,85,247,.22);
-  --green:#39ff9a;
-  --red:#ff477e;
+  --muted:#8d829b;
 }
 
 *{
@@ -38,98 +34,45 @@ html{
 body{
   min-height:100vh;
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
   background:
-    radial-gradient(circle at 50% -10%,rgba(168,85,247,.28),transparent 35%),
-    radial-gradient(circle at 0% 40%,rgba(236,72,153,.09),transparent 28%),
-    radial-gradient(circle at 100% 70%,rgba(34,211,238,.06),transparent 25%),
+    radial-gradient(circle at 50% -10%,rgba(168,85,247,.25),transparent 35%),
+    radial-gradient(circle at 100% 40%,rgba(236,72,153,.10),transparent 30%),
     var(--bg);
   overflow-x:hidden;
 }
 
-/* =========================
-   CYBER GRID
-========================= */
-
-body::before{
+body:before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
-  z-index:-2;
-  background-image:
-    linear-gradient(rgba(168,85,247,.035) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(168,85,247,.035) 1px,transparent 1px);
-  background-size:45px 45px;
-  mask-image:linear-gradient(to bottom,#000 20%,transparent 95%);
-}
-
-body::after{
-  content:"";
-  position:fixed;
-  width:600px;
-  height:600px;
-  border-radius:50%;
-  left:50%;
-  top:10%;
-  transform:translateX(-50%);
-  background:rgba(124,58,237,.08);
-  filter:blur(100px);
-  pointer-events:none;
-  z-index:-3;
-}
-
-/* =========================
-   SCANLINE
-========================= */
-
-.scanline{
-  position:fixed;
-  left:0;
-  right:0;
-  height:2px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    rgba(192,132,252,.45),
-    transparent
-  );
-  box-shadow:0 0 18px rgba(168,85,247,.5);
   opacity:.35;
-  animation:scan 7s linear infinite;
-  pointer-events:none;
-  z-index:999;
+  background-image:
+    linear-gradient(rgba(168,85,247,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(168,85,247,.04) 1px,transparent 1px);
+  background-size:45px 45px;
+  mask-image:linear-gradient(to bottom,#000,transparent);
 }
 
-@keyframes scan{
-  from{top:-5%}
-  to{top:105%}
-}
-
-/* =========================
-   NAVBAR
-========================= */
+/* NAV */
 
 .nav{
-  width:min(1250px,calc(100% - 28px));
+  width:min(1200px,calc(100% - 28px));
   height:70px;
-  margin:14px auto 0;
-  padding:0 16px;
+  margin:15px auto 0;
+  padding:0 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:rgba(10,5,18,.78);
+  backdrop-filter:blur(20px);
   position:sticky;
   top:12px;
   z-index:100;
-
-  background:rgba(13,1,25,.78);
-  border:1px solid var(--border);
-  border-radius:20px;
-  backdrop-filter:blur(20px);
-
-  box-shadow:
-    0 15px 50px rgba(0,0,0,.45),
-    inset 0 0 30px rgba(168,85,247,.025);
+  box-shadow:0 20px 70px rgba(0,0,0,.45);
 }
 
 .brand{
@@ -138,23 +81,15 @@ body::after{
   gap:12px;
 }
 
-.dp{
-  width:46px;
-  height:46px;
-  border-radius:15px;
-  overflow:hidden;
-  border:1px solid rgba(192,132,252,.55);
-  background:#170528;
-  box-shadow:
-    0 0 15px rgba(168,85,247,.45),
-    0 0 35px rgba(168,85,247,.18);
-}
-
-.dp img{
-  width:100%;
-  height:100%;
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:14px;
   object-fit:cover;
-  display:block;
+  border:2px solid var(--purple);
+  box-shadow:
+    0 0 18px rgba(168,85,247,.55),
+    0 0 40px rgba(168,85,247,.15);
 }
 
 .brand-title{
@@ -164,485 +99,330 @@ body::after{
 }
 
 .brand-sub{
-  margin-top:3px;
-  color:var(--muted);
+  margin-top:2px;
+  color:#776786;
   font:9px monospace;
-  letter-spacing:2px;
+  letter-spacing:3px;
 }
 
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:8px;
+.nav-button{
+  padding:11px 15px;
+  border-radius:12px;
+  color:white;
+  text-decoration:none;
+  font:11px monospace;
+  border:1px solid #392052;
+  background:#12091d;
 }
 
-.online{
-  display:flex;
-  align-items:center;
-  gap:7px;
-  padding:9px 12px;
-  border:1px solid rgba(57,255,154,.2);
-  background:rgba(57,255,154,.045);
-  border-radius:11px;
-  color:#8fffc4;
-  font:10px monospace;
-  letter-spacing:1px;
-}
-
-.online-dot{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 12px var(--green);
-  animation:pulse 1.4s infinite;
-}
-
-@keyframes pulse{
-  50%{
-    opacity:.35;
-    transform:scale(.65);
-  }
-}
-
-.telegram{
-  padding:10px 13px;
-  border-radius:11px;
-  border:1px solid rgba(168,85,247,.3);
-  background:rgba(168,85,247,.08);
-  color:#d8b4fe;
-  font:10px monospace;
-  letter-spacing:1px;
-  transition:.2s;
-}
-
-.telegram:hover{
+.nav-button:hover{
   border-color:var(--purple);
-  box-shadow:0 0 22px rgba(168,85,247,.22);
-  transform:translateY(-2px);
+  box-shadow:0 0 20px rgba(168,85,247,.18);
 }
 
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 
 .wrap{
-  width:min(1250px,calc(100% - 28px));
+  width:min(1200px,calc(100% - 28px));
   margin:auto;
-  padding:75px 0 60px;
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-  position:relative;
-  padding:42px;
-  border:1px solid var(--border);
-  border-radius:30px;
-  overflow:hidden;
-
-  background:
-    radial-gradient(
-      circle at 85% 20%,
-      rgba(168,85,247,.19),
-      transparent 30%
-    ),
-    linear-gradient(
-      145deg,
-      rgba(24,3,40,.96),
-      rgba(9,1,17,.96)
-    );
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,.4),
-    inset 0 0 70px rgba(168,85,247,.025);
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  width:250px;
-  height:250px;
-  right:-100px;
-  top:-100px;
-  border:1px solid rgba(192,132,252,.2);
-  border-radius:50%;
-  box-shadow:
-    0 0 0 35px rgba(168,85,247,.025),
-    0 0 0 70px rgba(168,85,247,.018);
-}
-
-.hero-grid{
-  display:grid;
-  grid-template-columns:1.4fr .6fr;
-  gap:30px;
-  align-items:center;
+  padding:85px 0 60px;
 }
 
 .kicker{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:7px 11px;
-  border-radius:8px;
-  border:1px solid rgba(168,85,247,.25);
-  background:rgba(168,85,247,.06);
-  color:#c084fc;
-  font:10px monospace;
-  letter-spacing:2px;
+  color:var(--purple);
+  font:700 11px monospace;
+  letter-spacing:5px;
+  margin-bottom:18px;
 }
 
-.kicker span{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--purple);
-  box-shadow:0 0 10px var(--purple);
+.hero{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:35px;
 }
 
 h1{
-  margin-top:22px;
-  font-size:clamp(48px,7vw,90px);
+  font-size:clamp(52px,8vw,92px);
   line-height:.86;
-  letter-spacing:-5px;
-  font-weight:950;
+  letter-spacing:-6px;
 }
 
-.gradient-text{
-  background:linear-gradient(
-    90deg,
-    #fff,
-    #c084fc 45%,
-    #ec4899
-  );
+.gradient{
+  background:linear-gradient(90deg,#fff,var(--purple),var(--pink));
   -webkit-background-clip:text;
-  background-clip:text;
   color:transparent;
-  text-shadow:none;
 }
 
-.hero-description{
-  max-width:650px;
-  margin-top:23px;
-  color:#9b88ad;
+.description{
+  max-width:500px;
+  color:var(--muted);
+  line-height:1.7;
   font-size:14px;
-  line-height:1.8;
+  margin-top:22px;
 }
-
-.hero-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:28px;
-  flex-wrap:wrap;
-}
-
-.hero-btn{
-  padding:13px 17px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#130321;
-  color:#cbb5dc;
-  font:11px monospace;
-  letter-spacing:1.5px;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.hero-btn.primary{
-  background:linear-gradient(
-    135deg,
-    #a855f7,
-    #7c3aed
-  );
-  border-color:#b56bff;
-  color:white;
-  box-shadow:
-    0 0 25px rgba(168,85,247,.2);
-}
-
-.hero-btn:hover{
-  transform:translateY(-2px);
-  border-color:var(--purple);
-}
-
-/* =========================
-   KHANDU PROFILE
-========================= */
-
-.profile{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:25px;
-  border-radius:23px;
-  border:1px solid rgba(168,85,247,.22);
-  background:rgba(168,85,247,.035);
-}
-
-.profile-dp{
-  width:145px;
-  height:145px;
-  padding:4px;
-  border-radius:35px;
-  background:
-    linear-gradient(
-      135deg,
-      #ec4899,
-      #a855f7,
-      #22d3ee
-    );
-  box-shadow:
-    0 0 35px rgba(168,85,247,.38),
-    0 0 80px rgba(168,85,247,.12);
-}
-
-.profile-dp img{
-  width:100%;
-  height:100%;
-  border-radius:31px;
-  object-fit:cover;
-  display:block;
-}
-
-.profile-name{
-  margin-top:17px;
-  font-size:21px;
-  font-weight:900;
-}
-
-.profile-role{
-  margin-top:5px;
-  color:#8d789f;
-  font:10px monospace;
-  letter-spacing:2px;
-}
-
-.profile-status{
-  margin-top:14px;
-  color:#82ffc0;
-  font:10px monospace;
-}
-
-/* =========================
-   STATS
-========================= */
 
 .stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-top:16px;
+  display:flex;
+  gap:10px;
 }
 
 .stat{
-  padding:19px;
+  min-width:105px;
+  padding:16px;
+  border-radius:17px;
   border:1px solid var(--border);
-  border-radius:16px;
-  background:rgba(17,2,31,.78);
-  transition:.25s;
-}
-
-.stat:hover{
-  transform:translateY(-3px);
-  border-color:rgba(168,85,247,.5);
-  box-shadow:0 15px 35px rgba(0,0,0,.25);
+  background:linear-gradient(145deg,#11091c,#09040f);
 }
 
 .stat-number{
-  font-size:27px;
+  font-size:25px;
   font-weight:900;
 }
 
 .stat-label{
   margin-top:5px;
-  color:#766584;
+  color:#776987;
   font:9px monospace;
   letter-spacing:2px;
 }
 
-/* =========================
-   SECTION HEADER
-========================= */
+/* KHANDU FEATURE */
 
-.section-head{
+.feature{
+  margin-top:55px;
+  padding:25px;
+  min-height:190px;
+  border-radius:27px;
+  border:1px solid #48206a;
+  background:
+    radial-gradient(circle at 90% 50%,rgba(168,85,247,.20),transparent 38%),
+    linear-gradient(135deg,#12071d,#08040e);
+  position:relative;
+  overflow:hidden;
+  box-shadow:
+    0 25px 90px rgba(0,0,0,.4),
+    inset 0 0 50px rgba(168,85,247,.035);
+}
+
+.feature:before{
+  content:"";
+  position:absolute;
+  width:350px;
+  height:350px;
+  right:-160px;
+  top:-170px;
+  border-radius:50%;
+  border:1px solid rgba(168,85,247,.18);
+  box-shadow:
+    0 0 0 35px rgba(168,85,247,.03),
+    0 0 0 70px rgba(168,85,247,.025);
+}
+
+.feature-content{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  margin:55px 0 18px;
+  gap:22px;
+  position:relative;
+  z-index:2;
 }
 
-.section-title{
-  font-size:18px;
+.khandu{
+  width:115px;
+  height:115px;
+  border-radius:28px;
+  object-fit:cover;
+  border:2px solid var(--purple);
+  box-shadow:
+    0 0 25px rgba(168,85,247,.5),
+    0 0 70px rgba(168,85,247,.18);
+}
+
+.feature-info{
+  flex:1;
+}
+
+.feature-tag{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  color:#d8b4fe;
+  background:rgba(168,85,247,.10);
+  border:1px solid #54277a;
+  font:9px monospace;
+  letter-spacing:2px;
+}
+
+.feature-title{
+  font-size:30px;
   font-weight:900;
+  margin-top:12px;
 }
 
-.section-sub{
-  margin-top:5px;
-  color:#725f82;
-  font:10px monospace;
+.feature-text{
+  color:#80738d;
+  font:11px monospace;
+  margin-top:7px;
+}
+
+.online{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  margin-top:14px;
+  color:#b7a5c7;
+  font:9px monospace;
+}
+
+.dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#a855f7;
+  box-shadow:0 0 12px #a855f7;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  50%{
+    opacity:.35;
+    transform:scale(.7);
+  }
+}
+
+.feature-button{
+  padding:14px 18px;
+  border-radius:13px;
+  border:1px solid #6834a0;
+  background:linear-gradient(135deg,#9333ea,#c026d3);
+  color:white;
+  font:900 10px monospace;
   letter-spacing:1.5px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(168,85,247,.2);
 }
 
-/* =========================
-   TOOLBAR
-========================= */
+/* TOOLBAR */
 
 .toolbar{
+  margin:45px 0 22px;
   display:flex;
   gap:9px;
   flex-wrap:wrap;
-  margin-bottom:20px;
-}
-
-.search-wrap{
-  flex:1;
-  min-width:230px;
-  position:relative;
-}
-
-.search-icon{
-  position:absolute;
-  left:15px;
-  top:50%;
-  transform:translateY(-50%);
-  color:#755c89;
-  font-size:15px;
 }
 
 .search{
-  width:100%;
+  flex:1;
+  min-width:220px;
   height:48px;
-  padding:0 16px 0 42px;
+  padding:0 16px;
   border-radius:13px;
-  border:1px solid var(--border);
   outline:none;
-  background:#0e0119;
   color:white;
+  border:1px solid var(--border);
+  background:#0a0511;
 }
 
 .search:focus{
-  border-color:rgba(168,85,247,.65);
-  box-shadow:0 0 25px rgba(168,85,247,.08);
+  border-color:var(--purple);
+  box-shadow:0 0 25px rgba(168,85,247,.12);
 }
 
 .filter{
   height:48px;
   padding:0 15px;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:#0e0119;
-  color:#806b91;
+  border-radius:13px;
   cursor:pointer;
+  color:#8d8199;
+  border:1px solid var(--border);
+  background:#0a0511;
   font:10px monospace;
-  letter-spacing:1px;
-  transition:.2s;
 }
 
-.filter:hover,
-.filter.active{
-  color:white;
+.filter.active,
+.filter:hover{
+  color:#d8b4fe;
   border-color:var(--purple);
-  background:rgba(168,85,247,.12);
-  box-shadow:0 0 18px rgba(168,85,247,.08);
+  background:rgba(168,85,247,.08);
 }
 
-/* =========================
-   CATALOG
-========================= */
+/* HEADER */
 
-.catalog-status{
+.catalog{
   display:flex;
   align-items:center;
-  gap:8px;
-  color:#887296;
-  font:10px monospace;
+  justify-content:space-between;
+  margin:28px 0 18px;
 }
 
-.catalog-status b{
-  color:#80ffc0;
+.catalog-title{
+  color:#857991;
+  font:700 11px monospace;
+  letter-spacing:3px;
 }
 
-.catalog-dot{
-  width:6px;
-  height:6px;
-  background:var(--green);
-  border-radius:50%;
-  box-shadow:0 0 10px var(--green);
+.system{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  color:#9f8bab;
+  font:9px monospace;
 }
 
-/* =========================
-   APP GRID
-========================= */
+/* GRID */
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:15px;
+  gap:17px;
 }
-
-/* =========================
-   APP CARD
-========================= */
 
 .card{
   position:relative;
-  padding:21px;
-  border-radius:20px;
+  overflow:hidden;
+  padding:20px;
+  border-radius:22px;
   border:1px solid var(--border);
   background:
-    linear-gradient(
-      145deg,
-      rgba(22,4,38,.94),
-      rgba(10,1,18,.96)
-    );
-  overflow:hidden;
+    linear-gradient(145deg,#10071a,#08040e);
   transition:.25s;
-}
-
-.card::before{
-  content:"";
-  position:absolute;
-  width:180px;
-  height:180px;
-  right:-100px;
-  bottom:-100px;
-  border-radius:50%;
-  background:rgba(168,85,247,.09);
-  filter:blur(40px);
 }
 
 .card:hover{
   transform:translateY(-5px);
-  border-color:rgba(168,85,247,.55);
+  border-color:#5b2b7f;
   box-shadow:
-    0 25px 60px rgba(0,0,0,.4),
-    0 0 30px rgba(168,85,247,.07);
+    0 25px 70px rgba(0,0,0,.45),
+    0 0 35px rgba(168,85,247,.08);
+}
+
+.card:after{
+  content:"";
+  position:absolute;
+  width:170px;
+  height:170px;
+  right:-100px;
+  bottom:-100px;
+  border-radius:50%;
+  background:rgba(168,85,247,.10);
+  filter:blur(40px);
 }
 
 .card-top{
   display:flex;
-  gap:14px;
   align-items:center;
+  gap:15px;
+  position:relative;
+  z-index:2;
 }
 
-.icon{
-  width:67px;
-  height:67px;
-  flex:none;
+.app-icon{
+  width:65px;
+  height:65px;
   border-radius:18px;
-  overflow:hidden;
-  border:1px solid rgba(168,85,247,.25);
-  background:#180528;
-  box-shadow:0 8px 25px rgba(0,0,0,.35);
-}
-
-.icon img{
-  width:100%;
-  height:100%;
   object-fit:cover;
+  background:#171020;
+  border:1px solid #3b2350;
 }
 
 .info-wrap{
@@ -652,64 +432,52 @@ h1{
 
 .badges{
   display:flex;
-  align-items:center;
   gap:7px;
   margin-bottom:7px;
 }
 
 .badge{
   padding:4px 8px;
-  border-radius:20px;
-  background:rgba(168,85,247,.07);
-  border:1px solid rgba(168,85,247,.18);
-  color:#a990b9;
+  border-radius:10px;
+  color:#a994b8;
+  border:1px solid #30203c;
   font:8px monospace;
-  letter-spacing:1px;
-}
-
-.version{
-  color:#6d5a79;
-  font:9px monospace;
 }
 
 .title{
-  font-size:17px;
-  font-weight:850;
+  font-size:18px;
+  font-weight:800;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
 
+.version{
+  color:#74687e;
+  font:9px monospace;
+}
+
 .status{
+  margin-top:15px;
   display:flex;
   align-items:center;
   gap:7px;
-  margin-top:14px;
-  color:#766482;
+  color:#81738c;
   font:9px monospace;
-  letter-spacing:1.5px;
-}
-
-.status-dot{
-  width:6px;
-  height:6px;
-  border-radius:50%;
-  background:var(--green);
-  box-shadow:0 0 10px var(--green);
+  letter-spacing:1.4px;
 }
 
 .line{
   height:1px;
-  background:rgba(168,85,247,.1);
   margin:17px 0;
+  background:#21142c;
 }
 
 .info{
   display:flex;
   justify-content:space-between;
-  color:#796687;
+  color:#786c82;
   font:9px monospace;
-  letter-spacing:1px;
 }
 
 .actions{
@@ -724,308 +492,148 @@ h1{
   height:45px;
   border:0;
   border-radius:12px;
-  background:
-    linear-gradient(
-      135deg,
-      #a855f7,
-      #7c3aed
-    );
-  color:white;
-  font:900 11px monospace;
-  letter-spacing:2px;
   cursor:pointer;
-  box-shadow:
-    0 0 20px rgba(168,85,247,.13);
-  transition:.2s;
+  color:white;
+  font:900 10px monospace;
+  letter-spacing:2px;
+  background:linear-gradient(135deg,#8b5cf6,#c026d3);
+  box-shadow:0 0 22px rgba(168,85,247,.12);
 }
 
 .install:hover{
+  box-shadow:0 0 35px rgba(168,85,247,.28);
   transform:translateY(-2px);
-  box-shadow:
-    0 0 30px rgba(168,85,247,.3);
 }
 
 .secondary{
   height:42px;
   border-radius:11px;
-  border:1px solid rgba(168,85,247,.18);
-  background:#0e0119;
-  color:#927ba1;
-  font:9px monospace;
-  letter-spacing:1px;
   cursor:pointer;
-  transition:.2s;
+  color:#a99bb2;
+  border:1px solid #2d1b3b;
+  background:#0c0613;
+  font:9px monospace;
 }
 
 .secondary:hover{
   color:#d8b4fe;
-  border-color:var(--purple);
-  background:rgba(168,85,247,.07);
+  border-color:#69389a;
 }
 
-/* =========================
-   FEATURED KHANDU
-========================= */
-
-.don-section{
-  margin-top:18px;
-  padding:22px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  border-radius:20px;
-  border:1px solid rgba(236,72,153,.2);
-  background:
-    radial-gradient(
-      circle at 90% 50%,
-      rgba(236,72,153,.1),
-      transparent 35%
-    ),
-    rgba(18,2,31,.9);
-}
-
-.don-mini{
-  width:62px;
-  height:62px;
-  border-radius:18px;
-  overflow:hidden;
-  flex:none;
-  border:1px solid rgba(236,72,153,.45);
-  box-shadow:0 0 25px rgba(236,72,153,.18);
-}
-
-.don-mini img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.don-text{
-  flex:1;
-}
-
-.don-label{
-  color:#ec4899;
-  font:9px monospace;
-  letter-spacing:2px;
-}
-
-.don-name{
-  margin-top:4px;
-  font-size:18px;
-  font-weight:900;
-}
-
-.don-sub{
-  margin-top:4px;
-  color:#765f82;
-  font:9px monospace;
-}
-
-.don-badge{
-  padding:9px 12px;
-  border-radius:10px;
-  border:1px solid rgba(236,72,153,.25);
-  background:rgba(236,72,153,.06);
-  color:#f472b6;
-  font:9px monospace;
-}
-
-/* =========================
-   EMPTY
-========================= */
+/* EMPTY */
 
 .empty{
   display:none;
-  padding:65px 20px;
+  padding:60px 20px;
   text-align:center;
-  border:1px dashed rgba(168,85,247,.25);
+  border:1px dashed #392344;
   border-radius:20px;
-  color:#705d7d;
+  color:#756982;
   font:11px monospace;
 }
 
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 footer{
-  margin-top:70px;
-  padding:35px 0 15px;
+  margin-top:75px;
+  padding:35px 0;
   text-align:center;
-  border-top:1px solid rgba(168,85,247,.12);
+  border-top:1px solid #1d1227;
 }
 
-.footer-dp{
-  width:55px;
-  height:55px;
-  margin:0 auto 12px;
-  border-radius:18px;
-  overflow:hidden;
-  border:1px solid rgba(168,85,247,.35);
-  box-shadow:0 0 20px rgba(168,85,247,.18);
-}
-
-.footer-dp img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.footer-brand{
-  font-weight:950;
-  letter-spacing:1px;
+.footer-title{
+  font-weight:900;
+  letter-spacing:2px;
 }
 
 .footer-text{
-  margin-top:7px;
-  color:#655270;
+  margin-top:8px;
+  color:#655a6e;
   font:9px monospace;
   letter-spacing:1.5px;
 }
 
-.footer-links{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  margin-top:17px;
-}
+/* MOBILE */
 
-.footer-links a{
-  color:#806b8e;
-  font:9px monospace;
-}
+@media(max-width:800px){
 
-.footer-links a:hover{
-  color:#c084fc;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:850px){
-
-  .hero-grid{
-    grid-template-columns:1fr;
-  }
-
-  .profile{
-    flex-direction:row;
-    justify-content:flex-start;
-    gap:15px;
-  }
-
-  .profile-dp{
-    width:90px;
-    height:90px;
-    border-radius:24px;
-  }
-
-  .profile-dp img{
-    border-radius:20px;
+  .hero{
+    display:block;
   }
 
   .stats{
-    grid-template-columns:repeat(2,1fr);
+    margin-top:28px;
   }
 
   .grid{
     grid-template-columns:1fr;
   }
-}
 
-@media(max-width:520px){
-
-  .nav{
-    height:61px;
+  .feature-content{
+    align-items:flex-start;
   }
 
-  .dp{
-    width:39px;
-    height:39px;
-    border-radius:12px;
-  }
-
-  .brand-title{
-    font-size:13px;
-  }
-
-  .online{
+  .feature-button{
     display:none;
   }
+}
 
-  .telegram{
-    padding:9px 10px;
+@media(max-width:500px){
+
+  .nav{
+    height:60px;
+  }
+
+  .logo{
+    width:38px;
+    height:38px;
+  }
+
+  .brand-sub{
+    display:none;
   }
 
   .wrap{
-    padding-top:48px;
-  }
-
-  .hero{
-    padding:25px 19px;
-    border-radius:23px;
+    padding-top:60px;
   }
 
   h1{
-    font-size:53px;
     letter-spacing:-4px;
   }
 
-  .hero-description{
-    font-size:13px;
+  .feature{
+    padding:18px;
+  }
+
+  .feature-content{
+    display:block;
+  }
+
+  .khandu{
+    width:90px;
+    height:90px;
+  }
+
+  .feature-title{
+    font-size:25px;
   }
 
   .stats{
-    gap:8px;
+    gap:6px;
   }
 
   .stat{
-    padding:15px;
+    min-width:0;
+    flex:1;
+    padding:12px;
   }
 
   .stat-number{
-    font-size:23px;
+    font-size:20px;
   }
 
-  .toolbar{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .search-wrap{
-    grid-column:1/-1;
-  }
-
-  .filter{
-    width:100%;
-  }
-
-  .section-head{
-    margin-top:40px;
-  }
-
-  .don-section{
-    padding:16px;
-  }
-
-  .don-badge{
-    display:none;
-  }
-}
-
-/* =========================
-   REDUCED MOTION
-========================= */
-
-@media(prefers-reduced-motion:reduce){
-
-  *,
-  *::before,
-  *::after{
-    animation:none !important;
-    transition:none !important;
+  .card{
+    padding:17px;
   }
 }
 </style>
@@ -1033,23 +641,16 @@ footer{
 
 <body>
 
-<div class="scanline"></div>
-
-<!-- =========================
-     NAVBAR
-========================= -->
-
 <nav class="nav">
 
   <div class="brand">
 
-    <div class="dp">
-      <img
-        src="./khandu-don.png"
-        alt="Khandu Don"
-        onerror="this.style.display='none'"
-      >
-    </div>
+    <!-- Put khandu-don.png beside index.html -->
+    <img
+      class="logo"
+      src="khandu-don.png"
+      alt="Khandu Don"
+    >
 
     <div>
       <div class="brand-title">
@@ -1057,675 +658,370 @@ footer{
       </div>
 
       <div class="brand-sub">
-        GAMING RELEASE HUB
+        GAMING IPA HUB
       </div>
     </div>
 
   </div>
 
-  <div class="nav-right">
-
-    <div class="online">
-      <span class="online-dot"></span>
-      SYSTEM ONLINE
-    </div>
-
-    <a
-      class="telegram"
-      href="https://t.me/ItsRorito"
-      target="_blank"
-      rel="noopener"
-    >
-      TELEGRAM ↗
-    </a>
-
-  </div>
+  <a
+    class="nav-button"
+    href="https://t.me/ItsRorito"
+    target="_blank"
+    rel="noopener"
+  >
+    TELEGRAM ↗
+  </a>
 
 </nav>
 
 
 <main class="wrap">
 
-<!-- =========================
-     HERO
-========================= -->
+  <div class="kicker">
+    SYSTEM // 01
+  </div>
 
-<section class="hero">
-
-  <div class="hero-grid">
+  <section class="hero">
 
     <div>
 
-      <div class="kicker">
-        <span></span>
-        KHANDU DON NETWORK
-      </div>
-
       <h1>
-        ENTER THE<br>
-        <span class="gradient-text">
-          GAME ZONE
-        </span>
+        <span class="gradient">IPA</span><br>
+        GAMING HUB
       </h1>
 
-      <p class="hero-description">
-        Welcome to the next-generation release hub.
-        Discover applications, gaming releases and
-        authorized packages through a fast,
-        futuristic interface built for mobile.
+      <p class="description">
+        A futuristic application hub for authorized
+        iOS releases. Browse your applications,
+        download available packages and manage
+        your release catalog from one interface.
       </p>
 
-      <div class="hero-buttons">
+    </div>
 
-        <button
-          class="hero-btn primary"
-          onclick="scrollToApps()"
-        >
-          EXPLORE APPS
-        </button>
+    <div class="stats">
 
-        <a
-          class="hero-btn"
-          href="https://t.me/ItsRorito"
-          target="_blank"
-          rel="noopener"
-        >
-          JOIN TELEGRAM ↗
-        </a>
+      <div class="stat">
+        <div class="stat-number" id="liveCount">0</div>
+        <div class="stat-label">READY</div>
+      </div>
 
+      <div class="stat">
+        <div class="stat-number" id="appCount">0</div>
+        <div class="stat-label">APPS</div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-number">24/7</div>
+        <div class="stat-label">ONLINE</div>
       </div>
 
     </div>
 
+  </section>
 
-    <!-- KHANDU PROFILE -->
 
-    <div class="profile">
+  <!-- KHANDU DON -->
 
-      <div class="profile-dp">
+  <section class="feature">
 
-        <img
-          src="./khandu-don.png"
-          alt="Khandu Don"
-          onerror="this.style.display='none'"
-        >
+    <div class="feature-content">
 
-      </div>
+      <img
+        class="khandu"
+        src="khandu-don.png"
+        alt="Khandu Don"
+      >
 
-      <div>
+      <div class="feature-info">
 
-        <div class="profile-name">
+        <span class="feature-tag">
+          OWNER PROFILE
+        </span>
+
+        <div class="feature-title">
           Khandu Don
         </div>
 
-        <div class="profile-role">
-          FOUNDER / RELEASE SYSTEM
+        <div class="feature-text">
+          OFFICIAL RELEASE CONTROL · PURPLE PROTOCOL
         </div>
 
-        <div class="profile-status">
-          ● ONLINE
+        <div class="online">
+          <span class="dot"></span>
+          SYSTEM ONLINE
         </div>
 
       </div>
 
+      <a
+        class="feature-button"
+        href="#catalog"
+      >
+        ENTER HUB
+      </a>
+
     </div>
 
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =========================
-     STATS
-========================= -->
+  <!-- SEARCH -->
 
-<div class="stats">
+  <div class="toolbar">
 
-  <div class="stat">
-
-    <div
-      class="stat-number"
-      id="liveCount"
-    >
-      0
-    </div>
-
-    <div class="stat-label">
-      LIVE RELEASES
-    </div>
-
-  </div>
-
-
-  <div class="stat">
-
-    <div
-      class="stat-number"
-      id="appCount"
-    >
-      0
-    </div>
-
-    <div class="stat-label">
-      TOTAL APPS
-    </div>
-
-  </div>
-
-
-  <div class="stat">
-
-    <div class="stat-number">
-      4
-    </div>
-
-    <div class="stat-label">
-      CATEGORIES
-    </div>
-
-  </div>
-
-
-  <div class="stat">
-
-    <div class="stat-number">
-      24/7
-    </div>
-
-    <div class="stat-label">
-      NETWORK
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     KHANDU DON FEATURE
-========================= -->
-
-<section class="don-section">
-
-  <div class="don-mini">
-
-    <img
-      src="./khandu-don.png"
-      alt="Khandu Don"
-      onerror="this.style.display='none'"
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="Search IPA applications..."
     >
 
+    <button class="filter active" data-filter="all">
+      ALL
+    </button>
+
+    <button class="filter" data-filter="social">
+      SOCIAL
+    </button>
+
+    <button class="filter" data-filter="media">
+      MEDIA
+    </button>
+
+    <button class="filter" data-filter="games">
+      GAMES
+    </button>
+
+    <button class="filter" data-filter="tools">
+      TOOLS
+    </button>
+
   </div>
 
-  <div class="don-text">
 
-    <div class="don-label">
-      NETWORK OWNER
+  <div class="catalog" id="catalog">
+
+    <div class="catalog-title">
+      APPLICATION DATABASE
     </div>
 
-    <div class="don-name">
+    <div class="system">
+      <span class="dot"></span>
+      READY
+    </div>
+
+  </div>
+
+
+  <section
+    class="grid"
+    id="appGrid"
+  ></section>
+
+
+  <div
+    class="empty"
+    id="empty"
+  >
+    NO APPLICATIONS FOUND
+  </div>
+
+
+  <footer>
+
+    <div class="footer-title">
       KHANDU DON
     </div>
 
-    <div class="don-sub">
-      DIGITAL RELEASE COMMAND CENTER
+    <div class="footer-text">
+      PURPLE GAMING HUB · AUTHORIZED RELEASE CATALOG · © 2026
     </div>
 
-  </div>
-
-  <div class="don-badge">
-    VERIFIED NODE
-  </div>
-
-</section>
-
-
-<!-- =========================
-     CATALOG HEADER
-========================= -->
-
-<div
-  id="apps"
-  class="section-head"
->
-
-  <div>
-
-    <div class="section-title">
-      RELEASE DATABASE
-    </div>
-
-    <div class="section-sub">
-      SELECT YOUR NEXT APPLICATION
-    </div>
-
-  </div>
-
-  <div class="catalog-status">
-
-    <span class="catalog-dot"></span>
-
-    <b>ONLINE</b>
-
-  </div>
-
-</div>
-
-
-<!-- =========================
-     SEARCH
-========================= -->
-
-<div class="toolbar">
-
-  <div class="search-wrap">
-
-    <span class="search-icon">
-      ⌕
-    </span>
-
-    <input
-      class="search"
-      id="search"
-      type="search"
-      placeholder="Search the release database..."
-    >
-
-  </div>
-
-
-  <button
-    class="filter active"
-    data-filter="all"
-  >
-    ALL
-  </button>
-
-  <button
-    class="filter"
-    data-filter="social"
-  >
-    SOCIAL
-  </button>
-
-  <button
-    class="filter"
-    data-filter="media"
-  >
-    MEDIA
-  </button>
-
-  <button
-    class="filter"
-    data-filter="tools"
-  >
-    TOOLS
-  </button>
-
-  <button
-    class="filter"
-    data-filter="games"
-  >
-    GAMES
-  </button>
-
-</div>
-
-
-<!-- =========================
-     APP GRID
-========================= -->
-
-<section
-  class="grid"
-  id="appGrid"
-></section>
-
-
-<div
-  class="empty"
-  id="empty"
->
-  NO RELEASES FOUND
-</div>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-  <div class="footer-dp">
-
-    <img
-      src="./khandu-don.png"
-      alt="Khandu Don"
-      onerror="this.style.display='none'"
-    >
-
-  </div>
-
-  <div class="footer-brand">
-    KHANDU DON NETWORK
-  </div>
-
-  <div class="footer-text">
-    GAMING RELEASE HUB · POWERED BY RORITO DEV · © 2026
-  </div>
-
-  <div class="footer-links">
-
-    <a
-      href="https://t.me/ItsRorito"
-      target="_blank"
-      rel="noopener"
-    >
-      TELEGRAM
-    </a>
-
-    <a href="#">
-      PRIVACY
-    </a>
-
-    <a href="#">
-      TERMS
-    </a>
-
-  </div>
-
-</footer>
+  </footer>
 
 </main>
 
 
 <script>
 
-/* ==========================================
-   APP DATABASE
-========================================== */
+/*
+========================================================
+ KHANDU DON IPA DATABASE
+========================================================
+
+Folder structure:
+
+index.html
+khandu-don.png
+ipas/
+  youtube.ipa
+  youtube-music.ipa
+  tiktok.ipa
+  instagram.ipa
+  telegram.ipa
+  whatsapp.ipa
+  discord.ipa
+  spotify.ipa
+  minecraft.ipa
+
+Only put IPA files here that you are authorized
+to distribute.
+
+========================================================
+*/
+
 
 const apps = [
 
   {
-    name:"Instagram",
-    category:"social",
+    name:"YouTube",
+    category:"media",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"2 hours ago",
-    size:"—",
-    icon:"instagram",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    size:"IPA",
+    icon:"youtube",
+    status:"READY",
+    ipa:"ipas/youtube.ipa"
+  },
+
+  {
+    name:"YouTube Music",
+    category:"media",
+    version:"Latest",
+    region:"GLOBAL",
+    size:"IPA",
+    icon:"youtubemusic",
+    status:"READY",
+    ipa:"ipas/youtube-music.ipa"
   },
 
   {
     name:"TikTok",
     category:"social",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"4 hours ago",
-    size:"—",
+    size:"IPA",
     icon:"tiktok",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/tiktok.ipa"
+  },
+
+  {
+    name:"Instagram",
+    category:"social",
+    version:"Latest",
+    region:"GLOBAL",
+    size:"IPA",
+    icon:"instagram",
+    status:"READY",
+    ipa:"ipas/instagram.ipa"
   },
 
   {
     name:"Telegram",
     category:"social",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
+    size:"IPA",
     icon:"telegram",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/telegram.ipa"
   },
 
   {
     name:"WhatsApp",
     category:"social",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
+    size:"IPA",
     icon:"whatsapp",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/whatsapp.ipa"
   },
 
   {
     name:"Discord",
     category:"social",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"Yesterday",
-    size:"—",
+    size:"IPA",
     icon:"discord",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"YouTube",
-    category:"media",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"1 hour ago",
-    size:"—",
-    icon:"youtube",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/discord.ipa"
   },
 
   {
     name:"Spotify",
     category:"media",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
+    size:"IPA",
     icon:"spotify",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"Netflix",
-    category:"media",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
-    icon:"netflix",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"Twitch",
-    category:"media",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"Yesterday",
-    size:"—",
-    icon:"twitch",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"CapCut",
-    category:"media",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"Yesterday",
-    size:"—",
-    icon:"capcut",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"Google Drive",
-    category:"tools",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
-    icon:"googledrive",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"Google Chrome",
-    category:"tools",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
-    icon:"googlechrome",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"GitHub",
-    category:"tools",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"Yesterday",
-    size:"—",
-    icon:"github",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"Canva",
-    category:"tools",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"2 days ago",
-    size:"—",
-    icon:"canva",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/spotify.ipa"
   },
 
   {
     name:"Minecraft",
     category:"games",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
+    size:"IPA",
     icon:"minecraft",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/minecraft.ipa"
   },
 
   {
     name:"Roblox",
     category:"games",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"Today",
-    size:"—",
+    size:"IPA",
     icon:"roblox",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"Among Us",
-    category:"games",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"Yesterday",
-    size:"—",
-    icon:"amongus",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/roblox.ipa"
   },
 
   {
     name:"Brawl Stars",
     category:"games",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"2 days ago",
-    size:"—",
+    size:"IPA",
     icon:"brawlstars",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    status:"READY",
+    ipa:"ipas/brawl-stars.ipa"
   },
 
   {
-    name:"Clash Royale",
-    category:"games",
+    name:"Google Drive",
+    category:"tools",
+    version:"Latest",
     region:"GLOBAL",
-    version:"v1.0",
-    time:"2 days ago",
-    size:"—",
-    icon:"clashroyale",
-    status:"LIVE",
-    install:"",
-    ipa:""
-  },
-
-  {
-    name:"PUBG",
-    category:"games",
-    region:"GLOBAL",
-    version:"v1.0",
-    time:"3 days ago",
-    size:"—",
-    icon:"pubg",
-    status:"LIVE",
-    install:"",
-    ipa:""
+    size:"IPA",
+    icon:"googledrive",
+    status:"READY",
+    ipa:"ipas/google-drive.ipa"
   }
 
 ];
 
 
-/* ==========================================
-   ICON SYSTEM
-========================================== */
+/* ICON */
 
 function iconURL(name){
 
   return "https://cdn.simpleicons.org/" +
-    name +
-    "/ffffff";
+         name +
+         "/ffffff";
 
 }
 
 
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* ELEMENTS */
 
 const grid =
   document.getElementById("appGrid");
@@ -1739,31 +1035,24 @@ const search =
 let currentFilter = "all";
 
 
-/* ==========================================
-   RENDER
-========================================== */
+/* RENDER */
 
 function render(){
 
   const query =
-    search.value
-      .toLowerCase()
-      .trim();
+    search.value.toLowerCase().trim();
 
   const filtered =
     apps.filter(app => {
 
-      const matchesSearch =
-        app.name
-          .toLowerCase()
-          .includes(query);
+      const searchMatch =
+        app.name.toLowerCase().includes(query);
 
-      const matchesFilter =
+      const filterMatch =
         currentFilter === "all" ||
         app.category === currentFilter;
 
-      return matchesSearch &&
-             matchesFilter;
+      return searchMatch && filterMatch;
 
     });
 
@@ -1771,10 +1060,7 @@ function render(){
   grid.innerHTML = "";
 
 
-  filtered.forEach((app)=>{
-
-    const realIndex =
-      apps.indexOf(app);
+  filtered.forEach(app => {
 
     const card =
       document.createElement("article");
@@ -1786,17 +1072,13 @@ function render(){
 
       <div class="card-top">
 
-        <div class="icon">
-
-          <img
-            src="${iconURL(app.icon)}"
-            alt="${app.name}"
-            loading="lazy"
-            onerror="this.style.display='none'"
-          >
-
-        </div>
-
+        <img
+          class="app-icon"
+          src="${iconURL(app.icon)}"
+          alt="${app.name}"
+          loading="lazy"
+          onerror="this.style.display='none'"
+        >
 
         <div class="info-wrap">
 
@@ -1812,7 +1094,6 @@ function render(){
 
           </div>
 
-
           <div class="title">
             ${app.name}
           </div>
@@ -1824,13 +1105,9 @@ function render(){
 
       <div class="status">
 
-        <span class="status-dot"></span>
+        <span class="dot"></span>
 
-        ${app.status === "LIVE"
-          ? "LIVE RELEASE"
-          : "COMING SOON"}
-
-        · ${app.time}
+        ${app.status} · IPA READY
 
       </div>
 
@@ -1841,9 +1118,7 @@ function render(){
       <div class="info">
 
         <span>
-          ${app.status === "LIVE"
-            ? "AUTHORIZED RELEASE"
-            : "NOT AVAILABLE"}
+          AUTHORIZED RELEASE
         </span>
 
         <span>
@@ -1857,28 +1132,23 @@ function render(){
 
         <button
           class="install"
-          ${app.status !== "LIVE" ? "disabled" : ""}
-          onclick="installApp(${realIndex})"
-        >
-          ${app.status === "LIVE"
-            ? "⚡ INSTALL RELEASE"
-            : "COMING SOON"}
-        </button>
-
-
-        <button
-          class="secondary"
-          onclick="downloadApp(${realIndex})"
+          onclick="downloadIPA('${app.ipa}','${escapeName(app.name)}')"
         >
           DOWNLOAD IPA
         </button>
 
+        <button
+          class="secondary"
+          onclick="copyLink('${app.ipa}')"
+        >
+          COPY LINK
+        </button>
 
         <button
           class="secondary"
-          onclick="copyAppLink(${realIndex})"
+          onclick="showInfo('${escapeName(app.name)}')"
         >
-          COPY LINK
+          APP INFO
         </button>
 
       </div>
@@ -1892,9 +1162,7 @@ function render(){
 
 
   empty.style.display =
-    filtered.length
-      ? "none"
-      : "block";
+    filtered.length ? "none" : "block";
 
 
   updateStats();
@@ -1902,130 +1170,100 @@ function render(){
 }
 
 
-/* ==========================================
-   STATS
-========================================== */
+/* ESCAPE */
 
-function updateStats(){
+function escapeName(name){
 
-  const live =
-    apps.filter(
-      x => x.status === "LIVE"
-    ).length;
-
-  document.getElementById(
-    "liveCount"
-  ).textContent = live;
-
-  document.getElementById(
-    "appCount"
-  ).textContent = apps.length;
+  return name.replace(/'/g,"&#39;");
 
 }
 
 
-/* ==========================================
-   INSTALL
-========================================== */
+/* DOWNLOAD */
 
-function installApp(index){
+function downloadIPA(path,name){
 
-  const app =
-    apps[index];
-
-  if(!app.install){
+  if(!path){
 
     alert(
-      app.name +
-      "\\n\\nNo authorized installation URL has been configured yet."
+      name +
+      "\\n\\nNo IPA has been configured."
     );
 
     return;
+
   }
-
-  window.location.href =
-    app.install;
-
-}
-
-
-/* ==========================================
-   DOWNLOAD IPA
-========================================== */
-
-function downloadApp(index){
-
-  const app =
-    apps[index];
-
-  if(!app.ipa){
-
-    alert(
-      "No authorized IPA URL has been added for " +
-      app.name +
-      "."
-    );
-
-    return;
-  }
-
-  window.location.href =
-    app.ipa;
-
-}
-
-
-/* ==========================================
-   COPY LINK
-========================================== */
-
-function copyAppLink(index){
-
-  const app =
-    apps[index];
 
   const link =
-    app.install ||
-    app.ipa ||
-    window.location.href;
+    document.createElement("a");
 
+  link.href = path;
+  link.download = "";
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  link.remove();
+
+}
+
+
+/* COPY */
+
+function copyLink(path){
+
+  const fullURL =
+    new URL(path,window.location.href).href;
 
   if(navigator.clipboard){
 
-    navigator.clipboard
-      .writeText(link)
+    navigator.clipboard.writeText(fullURL)
       .then(()=>{
 
-        alert(
-          app.name +
-          " link copied!"
-        );
-
-      })
-      .catch(()=>{
-
-        prompt(
-          "Copy this link:",
-          link
-        );
+        alert("IPA link copied!");
 
       });
 
   }else{
 
-    prompt(
-      "Copy this link:",
-      link
-    );
+    alert(fullURL);
 
   }
 
 }
 
 
-/* ==========================================
-   SEARCH
-========================================== */
+/* INFO */
+
+function showInfo(name){
+
+  alert(
+    name +
+    "\\n\\n" +
+    "KHANDU DON IPA HUB\\n" +
+    "Release: Authorized\\n" +
+    "Format: IPA"
+  );
+
+}
+
+
+/* STATS */
+
+function updateStats(){
+
+  document.getElementById("appCount")
+    .textContent = apps.length;
+
+  document.getElementById("liveCount")
+    .textContent =
+      apps.filter(x => x.status === "READY").length;
+
+}
+
+
+/* SEARCH */
 
 search.addEventListener(
   "input",
@@ -2033,9 +1271,7 @@ search.addEventListener(
 );
 
 
-/* ==========================================
-   FILTERS
-========================================== */
+/* FILTERS */
 
 document
   .querySelectorAll(".filter")
@@ -2064,24 +1300,7 @@ document
   });
 
 
-/* ==========================================
-   SCROLL
-========================================== */
-
-function scrollToApps(){
-
-  document
-    .getElementById("apps")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-
-/* ==========================================
-   INITIALIZE
-========================================== */
+/* START */
 
 render();
 
